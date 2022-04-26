@@ -1,5 +1,5 @@
 ---
-title: "The Archiectural Principle of Obliviousness"
+title: "The Architectural Principle of Obliviousness"
 abbrev: "Obliviousness"
 category: info
 
@@ -24,10 +24,10 @@ informative:
 
 --- abstract
 
-This document defines the archiectural principle of obliviousness. In short an oblivious system
+This document defines the architectural principle of obliviousness. In short an oblivious system
 separates information that can be used to identify a user from other information that is needed to operate
 a services in order to protect the user's privacy. In order to still enable a service to verify that
-a user is authorized to use a service, a separate trusted entities that knows and attests the user's identifity
+a user is authorized to use a service, a separate trusted entities that knows and attests the user's identity
 is introduced into the architecture.
 
 
@@ -46,7 +46,7 @@ While on a first glance it seems counterintuitive to involve yet another party i
 
 An oblivious system separates information that can be used to identify a user from other information that is needed to operate
 a services in order to protect the user's privacy. In order to still enable a service to verify that
-a user is authorized to use a service, a separate trusted entities that knows and attests the user's identifity
+a user is authorized to use a service, a separate trusted entities that knows and attests the user's identity
 is introduced into the architecture.
 
 # Impact of Obliviousness
