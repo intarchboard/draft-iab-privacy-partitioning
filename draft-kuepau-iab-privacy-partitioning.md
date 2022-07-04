@@ -24,9 +24,9 @@ informative:
 
 --- abstract
 
-There is a growing trend in Internet protocols to partition data and communication across
-multiple parties as a means to improve the privacy of user identity, data, and metadata.
-This document describes emerging patterns in protocols to partition what information is
+This document describes the principle of privacy partitioning that selectively spreads data and communication across
+multiple parties as a means to improve the privacy by separaring user identity from user actions.
+This document describes emerging patterns in protocols to partition what data and metadata is
 revealed through protocol interactions, provides common terminology, and discusses how
 to analyze such models.
 
@@ -36,11 +36,12 @@ to analyze such models.
 
 The focus of many common security protocols, such as TLS or IPsec, is to prevent data
 from being modified or seen by parties other than the protocol participants. Encrypting
-and authenticating communication (in HTTP, in DNS, and more) provides user privacy
-benefits by ensuring that information about user identity and activity cannot be
-read by passively observing traffic.
+and authenticating communication (in HTTP, in DNS, and more) is therefore a prerequisite for
+user privacy by ensuring that information about user identity and activity cannot be
+read by passively observing traffic and therefore giving the ccontrol of its data back to the user. 
 
-More recently, however, another aspect of privacy has come into focus: preventing
+However, this is not sufficient to ensure good or the best possibl user privacy. 
+Another aspect of privacy has come into focus: preventing
 protocol participants from being exposed to unnecessary data or metadata. Some examples
 of this include:
 
@@ -58,7 +59,8 @@ having specific activities being tracked and identified.
 
 These are all problems that involve needing to separate out which information
 is seen at different steps of protocol interaction, or between different
-participants in a protocol.
+participants in a protocol. In order to protect user privacy, it is therefore particularily
+important to separate user identity (who) from user actions (what) whenever possisble.
 
 Several working groups in the IETF are working on solutions in this space, including
 OHAI, MASQUE, Privacy Pass, and PPM. One commonality between these is that they
