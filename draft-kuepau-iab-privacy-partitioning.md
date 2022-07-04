@@ -38,9 +38,9 @@ The focus of many common security protocols, such as TLS or IPsec, is to prevent
 from being modified or seen by parties other than the protocol participants. Encrypting
 and authenticating communication (in HTTP, in DNS, and more) is therefore a prerequisite for
 user privacy by ensuring that information about user identity and activity cannot be
-read by passively observing traffic and therefore giving the ccontrol of its data back to the user. 
+read by passively observing traffic and therefore giving the control of its data back to the user.
 
-However, this is not sufficient to ensure good or the best possibl user privacy. 
+However, this is not sufficient to ensure good or the best possible user privacy.
 Another aspect of privacy has come into focus: preventing
 protocol participants from being exposed to unnecessary data or metadata. Some examples
 of this include:
@@ -60,7 +60,7 @@ having specific activities being tracked and identified.
 These are all problems that involve needing to separate out which information
 is seen at different steps of protocol interaction, or between different
 participants in a protocol. In order to protect user privacy, it is therefore particularily
-important to separate user identity (who) from user actions (what) whenever possisble.
+important to separate user identity (who) from user actions (what) whenever possible.
 
 Several working groups in the IETF are working on solutions in this space, including
 OHAI, MASQUE, Privacy Pass, and PPM. One commonality between these is that they
