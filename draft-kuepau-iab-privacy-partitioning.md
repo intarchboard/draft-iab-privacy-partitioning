@@ -98,13 +98,19 @@ Oblivious DoH applies the same principle as Oblivious HTTP to DNS...
 
 MASQUE provide an HTTP3-based generic proxying framework similar as many VPN services today. Such a proxy can be used conceal user identity/IP address from the server. However, the proxy itself still has full visibility. Only if the MASQUE framework is used with at least two encapsulated proxies, identify and user actions can be decouples for all entities involved.
 
+MASQUE / OHTTP / ODoH decouple data on a network path. Decoupling in space, effectively. Other decoupling strategies necessarily have to build on top of that.
+
 ## PrivacyPass
 
 The privacypass protocol connects thee client to an attester that forwards a request to a token issuer. This token can then be used by the client to accesss services anonymously. 
 
+Privacy Pass decouples trust/attestation using blinding, and relies on decoupled paths.
+
 ## PPM/PRIO
 
 PPM doesn't necessarily separate identity from other user data, however, enables anonymous data collection (without the need of knowledge of identity) and ensures anonymity by only providing partial data to each so-called leader while still enabling analysis of aggregated data by the collector. 
+
+PPM decouples based on computation, but also relies on separate servers / network paths.
 
 # Impacts of Partitioning
 
