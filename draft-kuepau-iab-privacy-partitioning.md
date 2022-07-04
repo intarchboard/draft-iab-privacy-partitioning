@@ -68,9 +68,9 @@ can seem counterintuitive for providing privacy, the ability to separate what da
 is shared between these parties limits the amount of information about a single
 client that can be concentrated by a server.
 
-These works mainly focus one communication protocol support for privacy partitioning. 
+These works mainly focus one communication protocol support for privacy partitioning.
 A remaining challenging also lives in identity management itself. Today, mainly services
-implement their own identify management (requiring separate account of each service) or 
+implement their own identify management (requiring separate account of each service) or
 rely on a small number of large identify providers. The use of a third party identity
 provider would allow for privacy partitioning by having the identify provider attesting service
 access rights or other relevant user characteristics in an anonymous way. However, today use of
