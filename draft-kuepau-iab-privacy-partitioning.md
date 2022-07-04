@@ -38,7 +38,7 @@ The focus of many common security protocols, such as TLS or IPsec, is to prevent
 from being modified or seen by parties other than the protocol participants. Encrypting
 and authenticating communication (in HTTP, in DNS, and more) is therefore a prerequisite for
 user privacy by ensuring that information about user identity and activity cannot be
-read by passively observing traffic and therefore giving the control of its data back to the user.
+read by passively observing traffic and thereby giving the control of its data back to the user.
 
 However, this is not sufficient to ensure good or the best possible user privacy.
 Another aspect of privacy has come into focus: preventing
