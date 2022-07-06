@@ -25,7 +25,7 @@ informative:
 --- abstract
 
 This document describes the principle of privacy partitioning that selectively spreads data and communication across
-multiple parties as a means to improve the privacy by separaring user identity from user actions.
+multiple parties as a means to improve the privacy by separating user identity from user actions.
 This document describes emerging patterns in protocols to partition what data and metadata is
 revealed through protocol interactions, provides common terminology, and discusses how
 to analyze such models.
@@ -38,9 +38,9 @@ The focus of many common security protocols, such as TLS or IPsec, is to prevent
 from being modified or seen by parties other than the protocol participants. Encrypting
 and authenticating communication (in HTTP, in DNS, and more) is therefore a prerequisite for
 user privacy by ensuring that information about user identity and activity cannot be
-read by passively observing traffic and thereby giving the control of its data back to the user.
+read by passively observing traffic.
 
-However, this is not sufficient to ensure good or the best possible user privacy.
+However, this is not sufficient to provide a complete user privacy solution.
 Another aspect of privacy has come into focus: preventing
 protocol participants from being exposed to unnecessary data or metadata. Some examples
 of this include:
