@@ -70,12 +70,12 @@ client that can be concentrated by a server.
 
 These works mainly focus one communication protocol support for privacy partitioning.
 A remaining challenging also lives in identity management itself. Today, mainly services
-implement their own identify management (requiring separate account of each service) or
-rely on a small number of large identify providers. The use of a third party identity
-provider would allow for privacy partitioning by having the identify provider attesting service
+implement their own identity management (requiring separate account of each service) or
+rely on a small number of large identity providers. The use of a third party identity
+provider would allow for privacy partitioning by having the identity provider attesting service
 access rights or other relevant user characteristics in an anonymous way. However, today use of
 the centralized system rather lead to an even larger centralization of data as user activity is
-not sufficiently revealed from the identify management system, and identity is not anonymized by
+not sufficiently revealed from the identity management system, and identity is not anonymized by
 the management system.
 
 # Definition and Terminology
