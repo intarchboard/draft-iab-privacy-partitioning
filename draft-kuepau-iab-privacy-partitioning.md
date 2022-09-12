@@ -199,13 +199,13 @@ The following section discusses currently on-going work in the IETF and how the 
 
 ## OHAI
 
-Oblivious HTTP introduces a Proxy Resource and a Request Resource. The Proxy Resource can identify the user based on its IP address, however, it can not see the user request that can only be only decapsulated by the Request Resource which in turn only sees the IP address of the proxy.  
+Oblivious HTTP introduces a Proxy Resource and a Request Resource. The Proxy Resource can identify the user based on its IP address, however, it can not see the user request that can only be only decapsulated by the Request Resource which in turn only sees the IP address of the proxy.
 
 ## ODoH
 
 Oblivious DoH applies the same principle as Oblivious HTTP to DNS...
 
-## MASQUE 
+## MASQUE
 
 MASQUE provide an HTTP3-based generic proxying framework similar as many VPN services today. Such a proxy can be used conceal user identity/IP address from the server. However, the proxy itself still has full visibility. Only if the MASQUE framework is used with at least two encapsulated proxies, identify and user actions can be decouples for all entities involved.
 
@@ -213,19 +213,19 @@ MASQUE / OHTTP / ODoH decouple data on a network path. Decoupling in space, effe
 
 ## PrivacyPass
 
-The privacypass protocol connects thee client to an attester that forwards a request to a token issuer. This token can then be used by the client to accesss services anonymously. 
+The privacypass protocol connects thee client to an attester that forwards a request to a token issuer. This token can then be used by the client to accesss services anonymously.
 
 Privacy Pass decouples trust/attestation using blinding, and relies on decoupled paths.
 
 ## PPM/PRIO
 
-PPM doesn't necessarily separate identity from other user data, however, enables anonymous data collection (without the need of knowledge of identity) and ensures anonymity by only providing partial data to each so-called leader while still enabling analysis of aggregated data by the collector. 
+PPM doesn't necessarily separate identity from other user data, however, enables anonymous data collection (without the need of knowledge of identity) and ensures anonymity by only providing partial data to each so-called leader while still enabling analysis of aggregated data by the collector.
 
 PPM decouples based on computation, but also relies on separate servers / network paths.
 
 # Impacts of Partitioning
 
-Applying privacy partitioning to communication protocols lead to a substantial change in communication patterns. 
+Applying privacy partitioning to communication protocols lead to a substantial change in communication patterns.
 Instead of sending traffic directly to a service, essentially all user traffic is routed through a set of intermediaries.
 Information has has been observed passively in the network or metadata that has been unintentionally revealed to the service provider
 cannot be used anymore for e.g. existing security procedures such as access rate limiting or DDoS mitigation.
