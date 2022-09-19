@@ -72,7 +72,7 @@ client that can be concentrated by a server.
 
 # Partitioning
 
-This document defines "partitioning" as the general technique use to separate the data
+This document defines "partitioning" as the general technique used to separate the data
 and metadata visible to various parties in network communication, with the aim of improving
 user privacy.
 
