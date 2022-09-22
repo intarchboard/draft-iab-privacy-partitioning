@@ -24,7 +24,7 @@ informative:
 
 --- abstract
 
-This document describes the principle of partitioning, which selectively spreads data and communication across
+This document describes the principle of privacy partitioning, which selectively spreads data and communication across
 multiple parties as a means to improve the privacy by separating user identity from user actions.
 This document describes emerging patterns in protocols to partition what data and metadata is
 revealed through protocol interactions, provides common terminology, and discusses how
@@ -70,13 +70,13 @@ can seem counterintuitive for providing privacy, the ability to separate what da
 is shared between these parties limits the amount of information about a single
 client that can be concentrated by a server.
 
-# Partitioning
+# Privacy Partitioning
 
-This document defines "partitioning" as the general technique used to separate the data
+This document defines "privacy partitioning" as the general technique used to separate the data
 and metadata visible to various parties in network communication, with the aim of improving
 user privacy.
 
-At a high level, partitioning can be described as separating *who* someone is
+At a high level, privacy partitioning can be described as separating *who* someone is
 from *what* they do.
 
 Partitioning is not a binary state, but a spectrum. It is difficult, and potentially impossible,
@@ -147,7 +147,7 @@ the same pseudonym is used less often and across fewer contexts; and when indepe
 chosen pseudonyms are more frequently used for new actions (making them, from an observer's or
 attacker's perspective, unlinkable)."
 
-The "anonymitity level" of a given identity exists on a scale, not a clear line between real
+The "anonymity level" of a given identity exists on a scale, not a clear line between real
 identity, pseudonymity, and anonymity. Some techniques for partitioning contexts assign
 new pseudonymous or anonymous identities to clients within the context, and the selection of
 these and the set of users that share the identity can greatly impact how effective
