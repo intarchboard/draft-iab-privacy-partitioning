@@ -76,6 +76,10 @@ This document defines "privacy partitioning" as the general technique used to se
 and metadata visible to various parties in network communication, with the aim of improving
 user privacy.
 
+
+Data partitioning can be achieved in different ways, e.g. over time, across network paths, based on (en)coding, etc. However, in order to improve user privacy, partitioning needs to be performed carefully to reduce the set of entities that have access to a user’s identity,
+or the ability to correlate traffic to a user.
+
 At a high level, privacy partitioning can be described as separating *who* someone is
 from *what* they do.
 
