@@ -170,7 +170,8 @@ does not participate in contexts where both identities are visible. For example,
 encrypting an HTTP exchange might prevent a network middlebox that sees a client IP address
 from seeing the user account identity, but it doesn't prevent the TLS-terminating server
 from observing both identities and correlating them. As such, preventing correlation
-requires making contexts more disjoint, such as by using proxying.
+requires making contexts more disjoint, such as by using proxying to
+conceal a client IP address that would otherwise be used as an identifier.
 
 ## Mitigating Collusion
 
