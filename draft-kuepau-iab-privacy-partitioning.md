@@ -191,42 +191,88 @@ logging or sharing of data, or to require auditing.
 - Adding more partitions and contexts, to make it increasingly difficult to collude with
 enough parties to recover identities.
 
-# Archictural Models using Partitioning
+# A Survey of Protocols using Partitioning
 
-In order to achieve privacy partitioning, more entities than the user (data owner) and service provider need
-to be involved in the communication architecture. Usually at least one entity is introduced that knows the user's identity and can
-attest certain properties or rights that are connected with that identity (attester). However, this entity should not require
-any knowledge about the service used or related user actions that could reveal privacy-sensitive data about the user or the user behavior.
-Therefore another entities might be needed that has knowledge about the service that is requested by the user and its requirements but relies
-on an anonymous identify provided by the attester (???).
+The following section discusses currently on-going work in the IETF
+that is applying privacy partitioning.
 
-The following section discusses currently on-going work in the IETF and how the privacy partitioning princplie is applied.
+## CONNECT Proxying and MASQUE
 
-## OHAI
+HTTP "forward proxies", when using encryption, provide privacy partitioning by separating
+a connection into multiple segments. When connections over the proxy themselves are encrypted,
+the proxy cannot see the end-to-end content. HTTP has historically supported forward proxying
+for TCP-like streams via the CONNECT method. More recently, the MASQUE working group has developed
+protocols to similarly proxy UDP {{?CONNECT-UDP=RFC9297}} and IP packets
+{{?CONNECT-IP=I-D.ietf-masque-connect-ip}}.
 
-Oblivious HTTP introduces a Proxy Resource and a Request Resource. The Proxy Resource can identify the user based on its IP address, however, it can not see the user request that can only be only decapsulated by the Request Resource which in turn only sees the IP address of the proxy.
+Use of a single proxy partitions communication into a Client-to-Proxy context (the transport
+metadata between the client and the proxy, and the request to the proxy to open a connection
+to the target), a Proxy-to-Target context (the transport metadata between the proxy and target),
+and a Client-to-Target context (the end-to-end data, which generally would be a TLS-encrypted
+connection). However, this alone does not achieve the goals of privacy partitioning fully,
+since the proxy is in a privileged position where it participates in a context that sees
+the client identity and the target information. If the target is sufficiently generic, this
+scenario is acceptable, but if the act of communicating with the target is sensitive, then
+the proxy can learn information about the client.
+
+TODO: Diagram of one hop contexts
+
+Using two or more proxies provides better privacy partitioning. Now, each proxy sees the Client
+metadata, but not the Target; the Target, but not the Client metadata; or neither.
+
+TODO: Diagram of two hop contexts
+
+Forward proxying, such as the protocols developed in MASQUE, uses both encryption (via TLS) and
+separation of connections (proxy hops) to achieve privacy partitioning.
+
+## Oblivious HTTP
+
+Oblivious HTTP {{?OHTTP=I-D.ietf-ohai-ohttp}}, developed in the OHAI working group, adds per-message
+encryption to HTTP exchanges through a relay system. Clients send requests through an Oblivious Relay,
+which cannot read message contents, to an Oblivious Gateway, which can decrypt the messages but
+cannot communicate directly with the client or observe client metadata like IP address.
+Oblivious HTTP relies on Hybrid Public Key Encryption {{?HPKE=RFC9180}} to perform encryption.
+
+Oblivious HTTP uses both encryption and separation of connections to achieve privacy partitioning.
+The end-to-end messages are encrypted between the Client and Gateway (forming a Client-to-Gateway context),
+and the connections are separated into a Client-to-Relay context and a Relay-to-Gateway context. It is also important
+to note that the Relay-to-Gateway connection can be a single connection, even if the Relay has many
+separate Clients. This provides better anonymity by making the pseudonym presented by the Relay to
+be shared across many Clients.
+
+TODO: Diagram of Client, Relay, Gateway, and Target; with three contexts, Client-to-Gateway/Target, Client-to-Relay,
+and Relay-to-Gateway/Target.
 
 ## ODoH
 
-Oblivious DoH applies the same principle as Oblivious HTTP to DNS...
+Oblivious DNS over HTTPS {{?ODOH=RFC9230}} applies the same principle as Oblivious HTTP, but operates on
+DNS messages only. As a precursor to the more generalized Oblivious HTTP, it relies on the same
+HPKE cryptographic primatives, and can be analyzed in the same way.
 
-## MASQUE
+## Privacy Pass
 
-MASQUE provide an HTTP3-based generic proxying framework similar as many VPN services today. Such a proxy can be used conceal user identity/IP address from the server. However, the proxy itself still has full visibility. Only if the MASQUE framework is used with at least two encapsulated proxies, identify and user actions can be decouples for all entities involved.
+Privacy Pass is an architecture {{?PRIVACYPASS=I-D.ietf-privacypass-architecture}} and set of protocols 
+being developed in the Privacy Pass working group that allow clients to present proof of verification in
+an anonymous and unlinkable fashion, via tokens. These tokens originally were designed as a way to prove
+that a client had solved a CAPTCHA, but can be applied to other fraud prevention and attestation
+scenarios as well.
 
-MASQUE / OHTTP / ODoH decouple data on a network path. Decoupling in space, effectively. Other decoupling strategies necessarily have to build on top of that.
+In Privacy Pass, privacy partitioning is achieved by encryption (creating tokens that are cryptographically
+unlinkable) and separation of connections across two contexts: a "redemption context" between clients an origins
+(servers that request and receive tokens), and an "issuance context" between clients, attestation servers, and
+token issuance servers.
 
-## PrivacyPass
+TODO: Diagram of contexts in privacy pass
 
-The privacypass protocol connects thee client to an attester that forwards a request to a token issuer. This token can then be used by the client to accesss services anonymously.
+## DAP (PPM)
 
-Privacy Pass decouples trust/attestation using blinding, and relies on decoupled paths.
+Distributed Aggregation Protocol (DAP) is a protocol being developed in the PPM working group to allow
+servers to collect aggregate metrics across a large population of clients, without learning individual
+data points about clients.
 
-## PPM/PRIO
+TODO: Analysis of contexts
 
-PPM doesn't necessarily separate identity from other user data, however, enables anonymous data collection (without the need of knowledge of identity) and ensures anonymity by only providing partial data to each so-called leader while still enabling analysis of aggregated data by the collector.
-
-PPM decouples based on computation, but also relies on separate servers / network paths.
+TODO: Diagram for DAP
 
 # Impacts of Partitioning
 
