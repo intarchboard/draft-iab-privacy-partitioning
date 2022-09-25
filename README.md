@@ -1,11 +1,11 @@
-# The Archiectural Principle of Obliviousness
+# Partitioning as an Architecture for Privacy
 
-This is the working area for the individual Internet-Draft, "The Archiectural Principle of Obliviousness".
+This is the working area for the individual Internet-Draft, "Partitioning as an Architecture for Privacy".
 
-* [Editor's Copy](https://intarchboard.github.io/draft-obliviousness/#go.draft-kuepau-iab-obliviousness.html)
-* [Datatracker Page](https://datatracker.ietf.org/doc/draft-kuepau-iab-obliviousness)
-* [Individual Draft](https://datatracker.ietf.org/doc/html/draft-kuepau-iab-obliviousness)
-* [Compare Editor's Copy to Individual Draft](https://intarchboard.github.io/draft-obliviousness/#go.draft-kuepau-iab-obliviousness.diff)
+* [Editor's Copy](https://intarchboard.github.io/draft-obliviousness/#go.draft-kuepau-iab-privacy-partitioning.html)
+* [Datatracker Page](https://datatracker.ietf.org/doc/draft-kuepau-iab-privacy-partitioning)
+* [Individual Draft](https://datatracker.ietf.org/doc/html/draft-kuepau-iab-privacy-partitioning)
+* [Compare Editor's Copy to Individual Draft](https://intarchboard.github.io/draft-obliviousness/#go.draft-kuepau-iab-privacy-partitioning.diff)
 
 
 ## Contributing
