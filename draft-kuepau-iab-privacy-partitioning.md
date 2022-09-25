@@ -2,6 +2,7 @@
 title: "Partitioning as an Architecture for Privacy"
 abbrev: "Partitioning for Privacy"
 category: info
+stream: IAB
 
 docname: draft-kuepau-iab-privacy-partitioning-latest
 v: 3
@@ -251,7 +252,7 @@ HPKE cryptographic primatives, and can be analyzed in the same way.
 
 ## Privacy Pass
 
-Privacy Pass is an architecture {{?PRIVACYPASS=I-D.ietf-privacypass-architecture}} and set of protocols 
+Privacy Pass is an architecture {{?PRIVACYPASS=I-D.ietf-privacypass-architecture}} and set of protocols
 being developed in the Privacy Pass working group that allow clients to present proof of verification in
 an anonymous and unlinkable fashion, via tokens. These tokens originally were designed as a way to prove
 that a client had solved a CAPTCHA, but can be applied to other fraud prevention and attestation
