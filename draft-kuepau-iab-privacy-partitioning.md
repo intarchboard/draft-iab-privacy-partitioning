@@ -130,8 +130,6 @@ the entities that participate in both contexts can allow the data in both contex
 ~~~
 {: #diagram-https title="Diagram of how adding encryption splits the context into two."}
 
-
-
 Another way to create a partition is to simply use separate connections. For example, to
 split two separate HTTP requests from one another, a client could issue the requests on
 separate TCP connections, each on a different network, and at different times; and avoid
@@ -271,7 +269,7 @@ Client metadata, but not the Target; the Target, but not the Client metadata; or
 +--------+ outer tunnel +--------+              +--------+              +--------+
 
 ~~~
-{: #diagram-1hop title="Diagram of one hop contexts."}
+{: #diagram-2hop title="Diagram of two-hop contexts."}
 
 Forward proxying, such as the protocols developed in MASQUE, uses both encryption (via TLS) and
 separation of connections (proxy hops) to achieve privacy partitioning.
@@ -300,10 +298,7 @@ be shared across many Clients.
 +--------+              +--------+              +---------+ HTTP request +--------+
 
 ~~~
-{: #diagram-2hop title="Diagram of one hop contexts."}
-
-TODO: Diagram of Client, Relay, Gateway, and Target; with three contexts, Client-to-Gateway/Target, Client-to-Relay,
-and Relay-to-Gateway/Target.
+{: #diagram-ohttp title="Diagram of oblivious contexts."}
 
 ## ODoH
 
