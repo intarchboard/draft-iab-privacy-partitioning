@@ -159,7 +159,7 @@ identity, pseudonymity, and anonymity. Some techniques for partitioning contexts
 new pseudonymous or anonymous identities to clients within the context, and the selection of
 these and the set of users that share the identity can greatly impact how effective
 partitioning is. E.g. the IP address is often used as a pseudo identifier, even though
-it was never designed to act as identifier and does not provide any stability guarantees. 
+it was never designed to act as identifier and does not provide any stability guarantees.
 
 For the purposes of user privacy, the identity that this document focuses on most is the
 identity within a context that represents the user or the client; and which may be
@@ -213,9 +213,9 @@ Use of a single proxy with the use of a tunnel connection between the client and
 as the end-to-end connection that is tunneled, as shown in the figure below, partitions
 communication into a Client-to-Proxy context (the transport
 metadata between the client and the target, and the request to the proxy to open a connection
-to the target), 
+to the target),
 and a Client-to-Target context (the end-to-end data, which generally would be a TLS-encrypted
-connection). 
+connection).
 
 TODO: Diagram of one hop contexts
 
