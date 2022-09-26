@@ -77,17 +77,19 @@ This document defines "privacy partitioning" as the general technique used to se
 and metadata visible to various parties in network communication, with the aim of improving
 user privacy.
 
-
-Data partitioning can be achieved in different ways, e.g. over time, across network paths, based on (en)coding, etc. However, in order to improve user privacy, partitioning needs to be performed carefully to reduce the set of entities that have access to a user’s identity,
-or the ability to correlate traffic to a user.
+Data partitioning can be achieved in different ways, e.g. over time, across network paths,
+based on (en)coding, etc. However, in order to improve user privacy, partitioning needs to
+be performed carefully to reduce the set of entities that have access to a user’s identity,
+and therefore the ability to correlate traffic to a user, as well minimize any additional
+knowledge about the user's actions that is shared with these entities.
 
 At a high level, privacy partitioning can be described as separating *who* someone is
 from *what* they do.
 
 Partitioning is not a binary state, but a spectrum. It is difficult, and potentially impossible,
-to completely guarantee that no metadata is linkable across various actions. Instead, as protocols
-develop new techniques to partition data and metadata, it becomes easier to prevent entities
-from being able to correlate information about a user and reduce their privacy.
+to completely guarantee that no (meta)data is linkable across various actions. But new protocols,
+that are develop with techniques to partition data and metadata, help to prevent entities
+from being able to correlate information about a user and thereby reduce their privacy.
 
 ## Communication Contexts
 
@@ -156,7 +158,8 @@ The "anonymity level" of a given identity exists on a scale, not a clear line be
 identity, pseudonymity, and anonymity. Some techniques for partitioning contexts assign
 new pseudonymous or anonymous identities to clients within the context, and the selection of
 these and the set of users that share the identity can greatly impact how effective
-partitioning is.
+partitioning is. E.g. the IP address is often used as a pseudo identifier, even though
+it was never designed to act as identifier and does not provide any stability guarantees. 
 
 For the purposes of user privacy, the identity that this document focuses on most is the
 identity within a context that represents the user or the client; and which may be
@@ -206,25 +209,29 @@ for TCP-like streams via the CONNECT method. More recently, the MASQUE working g
 protocols to similarly proxy UDP {{?CONNECT-UDP=RFC9297}} and IP packets
 {{?CONNECT-IP=I-D.ietf-masque-connect-ip}}.
 
-Use of a single proxy partitions communication into a Client-to-Proxy context (the transport
-metadata between the client and the proxy, and the request to the proxy to open a connection
-to the target), a Proxy-to-Target context (the transport metadata between the proxy and target),
+Use of a single proxy with the use of a tunnel connection between the client and proxy as well
+as the end-to-end connection that is tunneled, as shown in the figure below, partitions
+communication into a Client-to-Proxy context (the transport
+metadata between the client and the target, and the request to the proxy to open a connection
+to the target), 
 and a Client-to-Target context (the end-to-end data, which generally would be a TLS-encrypted
-connection). However, this alone does not achieve the goals of privacy partitioning fully,
-since the proxy is in a privileged position where it participates in a context that sees
-the client identity and the target information. If the target is sufficiently generic, this
-scenario is acceptable, but if the act of communicating with the target is sensitive, then
-the proxy can learn information about the client.
+connection). 
 
 TODO: Diagram of one hop contexts
 
-Using two or more proxies provides better privacy partitioning. Now, each proxy sees the Client
-metadata, but not the Target; the Target, but not the Client metadata; or neither.
+However, this single-hop proxy setup alone does not achieve the goals of privacy partitioning fully,
+since the proxy is in a privileged position where it participates in a context that sees
+the client identity (IP address) and target information (end-to-end metadata or other
+unencrypted data). If the target is sufficiently generic, this
+scenario is acceptable, but if the act of communicating with the target is sensitive, then
+the proxy can learn information about the client. Otherwise, using two or more proxies provides
+better privacy partitioning. As soon below, now, each proxy sees either the Client
+metadata, but not the Target; or the Target, but not the Client metadata; or neither.
 
 TODO: Diagram of two hop contexts
 
 Forward proxying, such as the protocols developed in MASQUE, uses both encryption (via TLS) and
-separation of connections (proxy hops) to achieve privacy partitioning.
+separation of connections (proxy hops that see different inner connections) to achieve privacy partitioning.
 
 ## Oblivious HTTP
 
