@@ -79,16 +79,16 @@ user privacy.
 
 Data partitioning can be achieved in different ways, e.g. over time, across network paths,
 based on (en)coding, etc. However, in order to improve user privacy, partitioning needs to
-be performed carefully to reduce the set of entities that have access to a user’s identity,
-and therefore the ability to correlate traffic to a user, as well minimize any additional
-knowledge about the user's actions that is shared with these entities.
+be performed carefully to reduce the set of entities that have access to a user’s identity and
+activity, or have the ability to correlate traffic across different contexts, which allows entities
+to correlate identities and actions.
 
 At a high level, privacy partitioning can be described as separating *who* someone is
 from *what* they do.
 
 Partitioning is not a binary state, but a spectrum. It is difficult, and potentially impossible,
-to completely guarantee that no (meta)data is linkable across various actions. But new protocols,
-that are develop with techniques to partition data and metadata, help to prevent entities
+to completely guarantee that no data or metadata is linkable across various actions. Instead, as protocols
+develop new techniques to partition data and metadata, it becomes easier to prevent entities
 from being able to correlate information about a user and thereby reduce their privacy.
 
 ## Communication Contexts
