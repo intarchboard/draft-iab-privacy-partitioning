@@ -257,8 +257,8 @@ the proxy can learn information about the client.
 {: #diagram-1hop title="Diagram of one hop contexts."}
 
 
-Using two or more proxies provides better privacy partitioning. Now, each proxy sees either the
-Client metadata, but not the Target; or the Target, but not the Client metadata; or neither.
+Using two or more proxies provides better privacy partitioning. Now, each proxy sees the
+Client metadata, but not the Target; the Target, but not the Client metadata; or neither.
 
 ~~~ aasvg
 
@@ -295,9 +295,9 @@ be shared across many Clients.
 
 +--------+              +--------+              +---------+              +--------+
 |        |<------------>|        |              |         |              |        |
-| Client |<-------------| Relay  |------------->| Gateway |              | Traget |
-|        |<-------------|        |------------->|         |------------->|        |
-+--------+              +--------+              +---------+ DNS request  +--------+
+| Client |              | Relay  |<------------>| Gateway |              | Traget |
+|        |<.............|        |..............|         |------------->|        |
++--------+              +--------+              +---------+ HTTP request +--------+
 
 ~~~
 {: #diagram-1hop title="Diagram of one hop contexts."}
