@@ -103,15 +103,17 @@ content of the transaction as well as any metadata from the transport and IP hea
 participants include the client, routers, other network middleboxes, intermediaries, and server.
 
 ~~~ aasvg
-
-+--------+                +-----------+              +--------+
-|        |----+-HTTP-+----|           |--------------|        |
-| Client |    |      |    | Middlebox |              | Server |
-|        |----+-TCP--+----|           |--------------|        |
-+--------+     packet     +-----------+              +--------+
-
++-------------------------------------------------------------------+
+| Context A                                                         |
+|  +--------+                +-----------+              +--------+  |
+|  |        |------HTTP------|           |--------------|        |  |
+|  | Client |                | Middlebox |              | Server |  |
+|  |        |------TCP-------|           |--------------|        |  |
+|  +--------+      flow      +-----------+              +--------+  |
+|                                                                   |
++-------------------------------------------------------------------+
 ~~~
-{: #diagram-middlebox title="Diagram of a basic unencrypted client-to-server connection with middleboxes."}
+{: #diagram-middlebox title="Diagram of a basic unencrypted client-to-server connection with middleboxes"}
 
 Adding TLS encryption to the HTTP session is a simple partitioning technique that splits the
 previous context into two separate contexts: the content of the transaction is now only visible
@@ -120,15 +122,25 @@ IP headers remain in the original context. In this scenario, without any further
 the entities that participate in both contexts can allow the data in both contexts to be correlated.
 
 ~~~ aasvg
-
-+--------+                                           +--------+
-|        |----+-HTTP-+-------------------------------|        |
-| Client |    |      |    +-----------+              | Server |
-|        |----+-TCP--+----| Middlebox |--------------|        |
-+--------+     packet     +-----------+              +--------+
-
++-------------------------------------------------------------------+
+| Context A                                                         |
+|  +--------+                                           +--------+  |
+|  |        |                                           |        |  |
+|  | Client |-------------------HTTPS-------------------| Server |  |
+|  |        |                                           |        |  |
+|  +--------+                                           +--------+  |
+|                                                                   |
++-------------------------------------------------------------------+
+| Context B                                                         |
+|  +--------+                +-----------+              +--------+  |
+|  |        |                |           |              |        |  |
+|  | Client |-------TCP------| Middlebox |--------------| Server |  |
+|  |        |       flow     |           |              |        |  |
+|  +--------+                +-----------+              +--------+  |
+|                                                                   |
++-------------------------------------------------------------------+
 ~~~
-{: #diagram-https title="Diagram of how adding encryption splits the context into two."}
+{: #diagram-https title="Diagram of how adding encryption splits the context into two"}
 
 Another way to create a partition is to simply use separate connections. For example, to
 split two separate HTTP requests from one another, a client could issue the requests on
@@ -136,15 +148,25 @@ separate TCP connections, each on a different network, and at different times; a
 including obvious identifiers like HTTP cookies across the requests.
 
 ~~~ aasvg
-
-+--------+ IP A             +-----------+              +--------+
-|        |------------------| Middlebox |--------------|        |
-| Client |                  +-----------+              | Server |
-|        |---------------------------------------------|        |
-+--------+ IP B                                        +--------+
-
++-------------------------------------------------------------------+
+| Context A                                                         |
+|  +--------+                +-----------+              +--------+  |
+|  |        | IP A           |           |              |        |  |
+|  | Client |-------TCP------| Middlebox |--------------| Server |  |
+|  |        |       flow A   |     A     |              |        |  |
+|  +--------+                +-----------+              +--------+  |
+|                                                                   |
++-------------------------------------------------------------------+
+| Context B                                                         |
+|  +--------+                +-----------+              +--------+  |
+|  |        | IP B           |           |              |        |  |
+|  | Client |-------TCP------| Middlebox |--------------| Server |  |
+|  |        |       flow B   |     B     |              |        |  |
+|  +--------+                +-----------+              +--------+  |
+|                                                                   |
++-------------------------------------------------------------------+
 ~~~
-{: #diagram-dualconnect title="Diagram of making separate connections to generate separate contexts."}
+{: #diagram-dualconnect title="Diagram of making separate connections to generate separate contexts"}
 
 The privacy-oriented protocols described in this document generally involve more complex
 partitioning, but the techniques to partition communication contexts still employ the
@@ -244,32 +266,82 @@ scenario is acceptable, but if the act of communicating with the target is sensi
 the proxy can learn information about the client.
 
 ~~~ aasvg
-
-+--------+                +--------+               +--------+
-|        |----------------|        |               |        |
-| Client |<---------------| Proxy  |-------------->| Target |
-|        |----------------|        |      e2e      |        |
-+--------+     tunnel     +--------+               +--------+
-
++-------------------------------------------------------------------+
+| Client-to-Target Context                                          |
+|  +--------+                +-----------+              +--------+  |
+|  |        |                |           |              |        |  |
+|  | Client |----Proxied-----|   Proxy   |--------------| Server |  |
+|  |        |      flow      |           |              |        |  |
+|  +--------+                +-----------+              +--------+  |
+|                                                                   |
++-------------------------------------------------------------------+
+| Client-to-Proxy Context                                           |
+|  +--------+                +-----------+                          |
+|  |        |                |           |                          |
+|  | Client |---Transport----|   Proxy   |                          |
+|  |        |     flow       |           |                          |
+|  +--------+                +-----------+                          |
+|                                                                   |
++-------------------------------------------------------------------+
+| Proxy-to-Target Context                                           |
+|                            +-----------+              +--------+  |
+|                            |           |              |        |  |
+|                            |   Proxy   |--Transport---| Server |  |
+|                            |           |    flow      |        |  |
+|                            +-----------+              +--------+  |
+|                                                                   |
++-------------------------------------------------------------------+
 ~~~
-{: #diagram-1hop title="Diagram of one hop contexts."}
+{: #diagram-1hop title="Diagram of one-hop proxy contexts"}
 
 
 Using two or more proxies provides better privacy partitioning. Now, each proxy sees the
 Client metadata, but not the Target; the Target, but not the Client metadata; or neither.
 
 ~~~ aasvg
-
-+--------+              +--------+              +--------+              +--------+
-|        |--------------|        |              |        |              |        |
-|        |--------------| First  |--------------| Second |              |        |
-| Client |<-------------| Proxy  |--------------| Proxy  |------------->| Target |
-|        |--------------|        |--------------|        |     e2e      |        |
-|        |--------------|        | inner tunnel |        |              |        |
-+--------+ outer tunnel +--------+              +--------+              +--------+
-
++-------------------------------------------------------------------+
+| Client-to-Target Context                                          |
+|  +--------+                           +-------+       +--------+  |
+|  |        |                           |       |       |        |  |
+|  | Client |----------Proxied----------| Proxy |-------| Server |  |
+|  |        |           flow            |   B   |       |        |  |
+|  +--------+                           +-------+       +--------+  |
+|                                                                   |
++-------------------------------------------------------------------+
+| Client-to-Proxy B Context                                         |
+|  +--------+         +-------+         +-------+                   |
+|  |        |         |       |         |       |                   |
+|  | Client |---------| Proxy |---------| Proxy |                   |
+|  |        |         |   A   |         |   B   |                   |
+|  +--------+         +-------+         +-------+                   |
+|                                                                   |
++-------------------------------------------------------------------+
+| Client-to-Proxy A Context                                         |
+|  +--------+         +-------+                                     |
+|  |        |         |       |                                     |
+|  | Client |---------| Proxy |                                     |
+|  |        |         |   A   |                                     |
+|  +--------+         +-------+                                     |
+|                                                                   |
++-------------------------------------------------------------------+
+| Proxy A-to-Proxy B Context                                        |
+|                     +-------+         +-------+                   |
+|                     |       |         |       |                   |
+|                     | Proxy |---------| Proxy |                   |
+|                     |   A   |         |   B   |                   |
+|                     +-------+         +-------+                   |
+|                                                                   |
++-------------------------------------------------------------------+
+| Proxy B-to-Target Context                                         |
+|                                       +-------+       +--------+  |
+|                                       |       |       |        |  |
+|                                       | Proxy |-------| Server |  |
+|                                       |   B   |       |        |  |
+|                                       +-------+       +--------+  |
+|                                                                   |
++-------------------------------------------------------------------+
 ~~~
-{: #diagram-2hop title="Diagram of two-hop contexts."}
+{: #diagram-2hop title="Diagram of two-hop proxy contexts"}
 
 Forward proxying, such as the protocols developed in MASQUE, uses both encryption (via TLS) and
 separation of connections (proxy hops) to achieve privacy partitioning.
@@ -290,15 +362,33 @@ separate Clients. This provides better anonymity by making the pseudonym present
 be shared across many Clients.
 
 ~~~ aasvg
-
-+--------+              +--------+              +---------+              +--------+
-|        |<------------>|        |              |         |              |        |
-| Client |              | Relay  |<------------>| Gateway |              | Traget |
-|        |<.............|        |..............|         |------------->|        |
-+--------+              +--------+              +---------+ HTTP request +--------+
-
++-------------------------------------------------------------------+
+| Client-to-Target Context                                          |
+|  +--------+                           +---------+     +--------+  |
+|  |        |                           |         |     |        |  |
+|  | Client |---------------------------| Gateway |-----| Target |  |
+|  |        |                           |         |     |        |  |
+|  +--------+                           +---------+     +--------+  |
+|                                                                   |
++-------------------------------------------------------------------+
+| Client-to-Gateway Context                                         |
+|  +--------+         +-------+         +---------+                 |
+|  |        |         |       |         |         |                 |
+|  | Client |---------| Relay |---------| Gateway |                 |
+|  |        |         |       |         |         |                 |
+|  +--------+         +-------+         +---------+                 |
+|                                                                   |
++-------------------------------------------------------------------+
+| Client-to-Relay Context                                           |
+|  +--------+         +-------+                                     |
+|  |        |         |       |                                     |
+|  | Client |---------| Relay |                                     |
+|  |        |         |       |                                     |
+|  +--------+         +-------+                                     |
+|                                                                   |
++-------------------------------------------------------------------+
 ~~~
-{: #diagram-ohttp title="Diagram of oblivious contexts."}
+{: #diagram-ohttp title="Diagram of Oblivious HTTP contexts"}
 
 ## ODoH
 
@@ -320,17 +410,25 @@ unlinkable) and separation of connections across two contexts: a "redemption con
 token issuance servers.
 
 ~~~ aasvg
-
-+----------+                 +--------+    challenge    +--------+
-|          |  token request  |        |<----------------|        |
-|          |<----------------|        |                 |        |
-| attester |                 | Client |                 | origin |
-|          |<----------------|        |                 |        |
-|          |  token response |        |---------------->|        |
-+----------+                 +--------+     response    +--------+
-
++-------------------------------------------------------------------+
+| Redemption Context                                                |
+|  +--------+         +--------+                                    |
+|  |        |         |        |                                    |
+|  | Origin |---------| Client |                                    |
+|  |        |         |        |                                    |
+|  +--------+         +--------+                                    |
+|                                                                   |
++-------------------------------------------------------------------+
+| Issuance Context                                                  |
+|                     +--------+      +----------+      +--------+  |
+|                     |        |      |          |      |        |  |
+|                     | Client |------| Attester |------| Issuer |  |
+|                     |        |      |          |      |        |  |
+|                     +--------+      +----------+      +--------+  |
+|                                                                   |
++-------------------------------------------------------------------+
 ~~~
-{: #diagram-privacypass title="Diagram of contexts in privacy pass."}
+{: #diagram-privacypass title="Diagram of contexts in Privacy Pass"}
 
 ## DAP (PPM)
 
