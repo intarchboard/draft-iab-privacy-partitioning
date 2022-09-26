@@ -300,7 +300,7 @@ be shared across many Clients.
 +--------+              +--------+              +---------+ HTTP request +--------+
 
 ~~~
-{: #diagram-1hop title="Diagram of one hop contexts."}
+{: #diagram-2hop title="Diagram of one hop contexts."}
 
 TODO: Diagram of Client, Relay, Gateway, and Target; with three contexts, Client-to-Gateway/Target, Client-to-Relay,
 and Relay-to-Gateway/Target.
@@ -335,7 +335,7 @@ token issuance servers.
 +----------+                 +--------+     response    +--------+
 
 ~~~
-{: #diagram-1hop title="Diagram of contexts in privacy pass."}
+{: #diagram-privacypass title="Diagram of contexts in privacy pass."}
 
 ## DAP (PPM)
 
