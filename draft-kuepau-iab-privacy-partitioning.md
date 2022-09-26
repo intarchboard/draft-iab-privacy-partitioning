@@ -158,8 +158,8 @@ The "anonymity level" of a given identity exists on a scale, not a clear line be
 identity, pseudonymity, and anonymity. Some techniques for partitioning contexts assign
 new pseudonymous or anonymous identities to clients within the context, and the selection of
 these and the set of users that share the identity can greatly impact how effective
-partitioning is. E.g. the IP address is often used as a pseudo identifier, even though
-it was never designed to act as identifier and does not provide any stability guarantees.
+partitioning is. For example, IP addresses are often used as pseudonyms, even though
+they were not designed to act as user identifiers and do not provide stability guarantees.
 
 For the purposes of user privacy, the identity that this document focuses on most is the
 identity within a context that represents the user or the client; and which may be
