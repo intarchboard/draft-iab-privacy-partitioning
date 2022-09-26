@@ -102,7 +102,18 @@ For example, in an unencrypted HTTP session over TCP, the communication context 
 content of the transaction as well as any metadata from the transport and IP headers; and the
 participants include the client, routers, other network middleboxes, intermediaries, and server.
 
-TODO: Diagram of a basic unencrypted client-to-server connection with middleboxes
+~~~ aasvg
++-------------------------------------------------------------------+
+| Context A                                                         |
+|  +--------+                +-----------+              +--------+  |
+|  |        |------HTTP------|           |--------------|        |  |
+|  | Client |                | Middlebox |              | Server |  |
+|  |        |------TCP-------|           |--------------|        |  |
+|  +--------+      flow      +-----------+              +--------+  |
+|                                                                   |
++-------------------------------------------------------------------+
+~~~
+{: #diagram-middlebox title="Diagram of a basic unencrypted client-to-server connection with middleboxes"}
 
 Adding TLS encryption to the HTTP session is a simple partitioning technique that splits the
 previous context into two separate contexts: the content of the transaction is now only visible
@@ -110,14 +121,52 @@ to the client, TLS-terminating intermediaries, and server; while the metadata in
 IP headers remain in the original context. In this scenario, without any further partitioning,
 the entities that participate in both contexts can allow the data in both contexts to be correlated.
 
-TODO: Diagram of how adding encryption splits the context into two.
+~~~ aasvg
++-------------------------------------------------------------------+
+| Context A                                                         |
+|  +--------+                                           +--------+  |
+|  |        |                                           |        |  |
+|  | Client |-------------------HTTPS-------------------| Server |  |
+|  |        |                                           |        |  |
+|  +--------+                                           +--------+  |
+|                                                                   |
++-------------------------------------------------------------------+
+| Context B                                                         |
+|  +--------+                +-----------+              +--------+  |
+|  |        |                |           |              |        |  |
+|  | Client |-------TCP------| Middlebox |--------------| Server |  |
+|  |        |       flow     |           |              |        |  |
+|  +--------+                +-----------+              +--------+  |
+|                                                                   |
++-------------------------------------------------------------------+
+~~~
+{: #diagram-https title="Diagram of how adding encryption splits the context into two"}
 
 Another way to create a partition is to simply use separate connections. For example, to
 split two separate HTTP requests from one another, a client could issue the requests on
 separate TCP connections, each on a different network, and at different times; and avoid
 including obvious identifiers like HTTP cookies across the requests.
 
-TODO: Diagram of making separate connections to generate separate contexts.
+~~~ aasvg
++-------------------------------------------------------------------+
+| Context A                                                         |
+|  +--------+                +-----------+              +--------+  |
+|  |        | IP A           |           |              |        |  |
+|  | Client |-------TCP------| Middlebox |--------------| Server |  |
+|  |        |       flow A   |     A     |              |        |  |
+|  +--------+                +-----------+              +--------+  |
+|                                                                   |
++-------------------------------------------------------------------+
+| Context B                                                         |
+|  +--------+                +-----------+              +--------+  |
+|  |        | IP B           |           |              |        |  |
+|  | Client |-------TCP------| Middlebox |--------------| Server |  |
+|  |        |       flow B   |     B     |              |        |  |
+|  +--------+                +-----------+              +--------+  |
+|                                                                   |
++-------------------------------------------------------------------+
+~~~
+{: #diagram-dualconnect title="Diagram of making separate connections to generate separate contexts"}
 
 The privacy-oriented protocols described in this document generally involve more complex
 partitioning, but the techniques to partition communication contexts still employ the
@@ -204,7 +253,7 @@ a connection into multiple segments. When connections over the proxy themselves 
 the proxy cannot see the end-to-end content. HTTP has historically supported forward proxying
 for TCP-like streams via the CONNECT method. More recently, the MASQUE working group has developed
 protocols to similarly proxy UDP {{?CONNECT-UDP=RFC9297}} and IP packets
-{{?CONNECT-IP=I-D.ietf-masque-connect-ip}}.
+{{?CONNECT-IP=I-D.ietf-masque-connect-ip}} based on tunneling.
 
 Use of a single proxy partitions communication into a Client-to-Proxy context (the transport
 metadata between the client and the proxy, and the request to the proxy to open a connection
@@ -216,12 +265,83 @@ the client identity and the target information. If the target is sufficiently ge
 scenario is acceptable, but if the act of communicating with the target is sensitive, then
 the proxy can learn information about the client.
 
-TODO: Diagram of one hop contexts
+~~~ aasvg
++-------------------------------------------------------------------+
+| Client-to-Target Context                                          |
+|  +--------+                +-----------+              +--------+  |
+|  |        |                |           |              |        |  |
+|  | Client |----Proxied-----|   Proxy   |--------------| Server |  |
+|  |        |      flow      |           |              |        |  |
+|  +--------+                +-----------+              +--------+  |
+|                                                                   |
++-------------------------------------------------------------------+
+| Client-to-Proxy Context                                           |
+|  +--------+                +-----------+                          |
+|  |        |                |           |                          |
+|  | Client |---Transport----|   Proxy   |                          |
+|  |        |     flow       |           |                          |
+|  +--------+                +-----------+                          |
+|                                                                   |
++-------------------------------------------------------------------+
+| Proxy-to-Target Context                                           |
+|                            +-----------+              +--------+  |
+|                            |           |              |        |  |
+|                            |   Proxy   |--Transport---| Server |  |
+|                            |           |    flow      |        |  |
+|                            +-----------+              +--------+  |
+|                                                                   |
++-------------------------------------------------------------------+
+~~~
+{: #diagram-1hop title="Diagram of one-hop proxy contexts"}
 
-Using two or more proxies provides better privacy partitioning. Now, each proxy sees the Client
-metadata, but not the Target; the Target, but not the Client metadata; or neither.
 
-TODO: Diagram of two hop contexts
+Using two or more proxies provides better privacy partitioning. Now, each proxy sees the
+Client metadata, but not the Target; the Target, but not the Client metadata; or neither.
+
+~~~ aasvg
++-------------------------------------------------------------------+
+| Client-to-Target Context                                          |
+|  +--------+                           +-------+       +--------+  |
+|  |        |                           |       |       |        |  |
+|  | Client |----------Proxied----------| Proxy |-------| Server |  |
+|  |        |           flow            |   B   |       |        |  |
+|  +--------+                           +-------+       +--------+  |
+|                                                                   |
++-------------------------------------------------------------------+
+| Client-to-Proxy B Context                                         |
+|  +--------+         +-------+         +-------+                   |
+|  |        |         |       |         |       |                   |
+|  | Client |---------| Proxy |---------| Proxy |                   |
+|  |        |         |   A   |         |   B   |                   |
+|  +--------+         +-------+         +-------+                   |
+|                                                                   |
++-------------------------------------------------------------------+
+| Client-to-Proxy A Context                                         |
+|  +--------+         +-------+                                     |
+|  |        |         |       |                                     |
+|  | Client |---------| Proxy |                                     |
+|  |        |         |   A   |                                     |
+|  +--------+         +-------+                                     |
+|                                                                   |
++-------------------------------------------------------------------+
+| Proxy A-to-Proxy B Context                                        |
+|                     +-------+         +-------+                   |
+|                     |       |         |       |                   |
+|                     | Proxy |---------| Proxy |                   |
+|                     |   A   |         |   B   |                   |
+|                     +-------+         +-------+                   |
+|                                                                   |
++-------------------------------------------------------------------+
+| Proxy B-to-Target Context                                         |
+|                                       +-------+       +--------+  |
+|                                       |       |       |        |  |
+|                                       | Proxy |-------| Server |  |
+|                                       |   B   |       |        |  |
+|                                       +-------+       +--------+  |
+|                                                                   |
++-------------------------------------------------------------------+
+~~~
+{: #diagram-2hop title="Diagram of two-hop proxy contexts"}
 
 Forward proxying, such as the protocols developed in MASQUE, uses both encryption (via TLS) and
 separation of connections (proxy hops) to achieve privacy partitioning.
@@ -241,8 +361,34 @@ to note that the Relay-to-Gateway connection can be a single connection, even if
 separate Clients. This provides better anonymity by making the pseudonym presented by the Relay to
 be shared across many Clients.
 
-TODO: Diagram of Client, Relay, Gateway, and Target; with three contexts, Client-to-Gateway/Target, Client-to-Relay,
-and Relay-to-Gateway/Target.
+~~~ aasvg
++-------------------------------------------------------------------+
+| Client-to-Target Context                                          |
+|  +--------+                           +---------+     +--------+  |
+|  |        |                           |         |     |        |  |
+|  | Client |---------------------------| Gateway |-----| Target |  |
+|  |        |                           |         |     |        |  |
+|  +--------+                           +---------+     +--------+  |
+|                                                                   |
++-------------------------------------------------------------------+
+| Client-to-Gateway Context                                         |
+|  +--------+         +-------+         +---------+                 |
+|  |        |         |       |         |         |                 |
+|  | Client |---------| Relay |---------| Gateway |                 |
+|  |        |         |       |         |         |                 |
+|  +--------+         +-------+         +---------+                 |
+|                                                                   |
++-------------------------------------------------------------------+
+| Client-to-Relay Context                                           |
+|  +--------+         +-------+                                     |
+|  |        |         |       |                                     |
+|  | Client |---------| Relay |                                     |
+|  |        |         |       |                                     |
+|  +--------+         +-------+                                     |
+|                                                                   |
++-------------------------------------------------------------------+
+~~~
+{: #diagram-ohttp title="Diagram of Oblivious HTTP contexts"}
 
 ## ODoH
 
@@ -263,7 +409,26 @@ unlinkable) and separation of connections across two contexts: a "redemption con
 (servers that request and receive tokens), and an "issuance context" between clients, attestation servers, and
 token issuance servers.
 
-TODO: Diagram of contexts in privacy pass
+~~~ aasvg
++-------------------------------------------------------------------+
+| Redemption Context                                                |
+|  +--------+         +--------+                                    |
+|  |        |         |        |                                    |
+|  | Origin |---------| Client |                                    |
+|  |        |         |        |                                    |
+|  +--------+         +--------+                                    |
+|                                                                   |
++-------------------------------------------------------------------+
+| Issuance Context                                                  |
+|                     +--------+      +----------+      +--------+  |
+|                     |        |      |          |      |        |  |
+|                     | Client |------| Attester |------| Issuer |  |
+|                     |        |      |          |      |        |  |
+|                     +--------+      +----------+      +--------+  |
+|                                                                   |
++-------------------------------------------------------------------+
+~~~
+{: #diagram-privacypass title="Diagram of contexts in Privacy Pass"}
 
 ## DAP (PPM)
 
