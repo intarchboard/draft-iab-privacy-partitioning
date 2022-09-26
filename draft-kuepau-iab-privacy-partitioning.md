@@ -231,7 +231,7 @@ metadata, but not the Target; or the Target, but not the Client metadata; or nei
 TODO: Diagram of two hop contexts
 
 Forward proxying, such as the protocols developed in MASQUE, uses both encryption (via TLS) and
-separation of connections (proxy hops that see different inner connections) to achieve privacy partitioning.
+separation of connections (via proxy hops that see only the next hop) to achieve privacy partitioning.
 
 ## Oblivious HTTP
 
