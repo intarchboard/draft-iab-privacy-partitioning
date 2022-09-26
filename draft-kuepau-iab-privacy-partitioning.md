@@ -440,6 +440,12 @@ TODO: Analysis of contexts
 
 TODO: Diagram for DAP
 
+# Analysis of Privacy Partioning
+
+TODO: Provide a framework for analyzing the privacy properties of partitioned contexts
+
+TODO: Discuss how privacy breaks down when assumptions are violated
+
 # Impacts of Partitioning
 
 Applying privacy partitioning to communication protocols lead to a substantial change in communication patterns.
