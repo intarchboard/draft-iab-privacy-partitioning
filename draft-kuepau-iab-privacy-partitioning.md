@@ -69,7 +69,7 @@ privacy. Thus, order to protect user privacy, it is important to keep identity (
 This document defines "privacy partitioning" as the general technique used to separate the data
 and metadata visible to various parties in network communication, with the aim of improving
 user privacy. Partitioning is a spectrum and not a panacea. It is difficult to guarantee there
-is no link between user-specific identity and user-specific data. However, applied properly
+is no link between user-specific identity and user-specific data. However, applied properly,
 privacy partitioning helps ensure that user privacy violations becomes more technically difficult
 to achieve over time.
 
