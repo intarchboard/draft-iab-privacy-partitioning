@@ -75,7 +75,7 @@ to achieve over time.
 
 Several IETF working groups are working on protocols or systems that adhere to the principle
 of privacy partitioning, including OHAI, MASQUE, Privacy Pass, and PPM. This document summarizes
-work in those groups and framework for reasoning about the resulting privacy posture of different
+work in those groups and describes a framework for reasoning about the resulting privacy posture of different
 endpoints in practice.
 
 # Privacy Partitioning
