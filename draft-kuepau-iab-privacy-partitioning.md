@@ -26,7 +26,7 @@ informative:
 --- abstract
 
 This document describes the principle of privacy partitioning, which selectively spreads data and communication across
-multiple parties as a means to improve the privacy by separating user identity from user actions.
+multiple parties as a means to improve the privacy by separating user identity from user data.
 This document describes emerging patterns in protocols to partition what data and metadata is
 revealed through protocol interactions, provides common terminology, and discusses how
 to analyze such models.
@@ -35,70 +35,83 @@ to analyze such models.
 
 # Introduction
 
-The focus of many common security protocols, such as TLS or IPsec, is to prevent data
-from being modified or seen by parties other than the protocol participants. Encrypting
-and authenticating communication (in HTTP, in DNS, and more) is therefore a prerequisite for
-user privacy by ensuring that information about user identity and activity cannot be
-read by passively observing traffic.
+Protocols such as TLS and IPsec provide a secure (authenticated and encrypted) channel
+between two endpoints over which endpoints transfer information. Encryption and authentication
+of data in transit is necessary to protect information from being seen or modified by parties
+other than the intended protocol participants. As such, it is necessary for ensuring that
+information transferred over these channels remain private.
 
-However, this is not sufficient to provide a complete user privacy solution.
-Another aspect of privacy has come into focus: preventing
-protocol participants from being exposed to unnecessary data or metadata. Some examples
-of this include:
+However, a secure channel between two endpoints is insufficient for privacy of the endpoints
+themselves. In recent years, privacy has expanded beyond the need to protect data in transit
+between two endpoints. Some examples of this expansion include:
 
-- A user accessing a service on a website might not want to reveal their location,
-but if that service is able to observe the client's IP address, it can infer many
-location details.
+- A user accessing a service on a website might not consent to reveal their location,
+but if that service is able to observe the client's IP address, it can learn inforamtion
+about the user's location. This is problematic for privacy since the service can link
+user data to the user's location.
 
 - A user might want to be able to access content for which they are authorized,
 such as a news article, without needing to have which specific articles they
-read on their account being recorded.
+read on their account being recorded. This is problematic for privacy since the service
+can link user activity to the user's account.
 
-- A client device that needs to upload metrics to an aggregated
-service might want to be able to contribute into the aggregated metrics system without
-having specific activities being tracked and identified.
+- A client device that needs to upload metrics to an aggregation service might want to be
+able to contribute data to the system without having their specific contributions being
+attribued to them. This is problematic for privacy since the service can link client
+contributions to the specific client.
 
-These are all problems that involve needing to separate out which information
-is seen at different steps of protocol interaction, or between different
-participants in a protocol. In order to protect user privacy, it is therefore particularily
-important to separate user identity (who) from user actions (what) whenever possible.
-
-Several working groups in the IETF are working on solutions in this space, including
-OHAI, MASQUE, Privacy Pass, and PPM. One commonality between these is that they
-usually involve at least three parties: a client and at least two parties acting
-as servers or intermediaries. While at first glance, the involvement of more parties
-can seem counterintuitive for providing privacy, the ability to separate what data
-is shared between these parties limits the amount of information about a single
-client that can be concentrated by a server.
-
-# Privacy Partitioning
+The commonality in these examples is that clients want to interact with or use a service
+without exposing too much user-specific or identifying information to that service. In particular,
+separating the user-specific identity information from user-specific data is necessary for
+privacy. Thus, order to protect user privacy, it is important to keep identity (who) and data
+(what) separate.
 
 This document defines "privacy partitioning" as the general technique used to separate the data
 and metadata visible to various parties in network communication, with the aim of improving
-user privacy.
+user privacy. Partitioning is a spectrum and not a panacea. It is difficult to guarantee there
+is no link between user-specific identity and user-specific data. However, applied properly
+privacy partitioning helps ensure that user privacy violations becomes more technically difficult
+to achieve over time.
 
+Several IETF working groups are working on protocols or systems that adhere to the principle
+of privacy partitioning, including OHAI, MASQUE, Privacy Pass, and PPM. This document summarizes
+work in those groups and framework for reasoning about the resulting privacy posture of different
+endpoints in practice.
 
-Data partitioning can be achieved in different ways, e.g. over time, across network paths, based on (en)coding, etc. However, in order to improve user privacy, partitioning needs to be performed carefully to reduce the set of entities that have access to a user’s identity,
-or the ability to correlate traffic to a user.
+# Privacy Partitioning
 
-At a high level, privacy partitioning can be described as separating *who* someone is
-from *what* they do.
+For the purposes of user privacy, this document focuses on user-specific information. This
+might include any identifying information that is specific to a user, such as their email
+address or IP address, or data about the user, such as their date of birth. Informally,
+the goal of privacy partitioning is to ensure that each party in a system beyond the user
+themselves only has access to one type of user-specific information.
 
-Partitioning is not a binary state, but a spectrum. It is difficult, and potentially impossible,
-to completely guarantee that no metadata is linkable across various actions. Instead, as protocols
-develop new techniques to partition data and metadata, it becomes easier to prevent entities
-from being able to correlate information about a user and reduce their privacy.
+This is a simple application of the principle of least privilege, wherein every party in
+a system only has access to the minimum amount of information needed to fulfill their
+function. Privacy partitioning advocates for this minimization by ensuring that protocols,
+applications, and systems only reveal user-specific information to parties that need access
+to the  information for their intended purpose.
 
-## Communication Contexts
+Put simply, privacy partitioning aims to separate *who* someone is from *what* they do. In the
+rest of this section, we describe how the privacy partitioning can be used to achieve this goal.
 
-In order to define an analyze how various partitioning techniques work, the boundaries of what is
-being partitioned need to be established.
+## Privacy Contexts
 
-This document defines the term "communication context" to refer to a set of data and metadata,
-and the set of networked entities that share a common view of that data and metadata. Partitioning
-creates more contexts where there would otherwise be a single context.
+Each piece of user-specific information exists within some context, where a context
+is abstractly defined as a set of data and metadata and the entities that share access
+to that metadata. In order to prevent correlation of user-specific information across
+contexts, partitions need to ensure that any single entity (other than the client itself)
+does not participate in more than one context where the information is visible.
 
-For example, in an unencrypted HTTP session over TCP, the communication context includes both the
+{{?RFC6973}} discusses the importance of identifiers in reducing correlation:
+
+"Correlation is the combination of various pieces of information related to an individual
+or that obtain that characteristic when combined... Correlation is closely related to
+identification.  Internet protocols can facilitate correlation by allowing individuals'
+activities to be tracked and combined over time."
+
+Context separation is foundational to privacy partitioning and reducing correlation.
+As an example, consider an unencrypted HTTP session over TCP, wherein the context includes both the
 content of the transaction as well as any metadata from the transport and IP headers; and the
 participants include the client, routers, other network middleboxes, intermediaries, and server.
 
@@ -168,68 +181,37 @@ including obvious identifiers like HTTP cookies across the requests.
 ~~~
 {: #diagram-dualconnect title="Diagram of making separate connections to generate separate contexts"}
 
-The privacy-oriented protocols described in this document generally involve more complex
-partitioning, but the techniques to partition communication contexts still employ the
+## Context Separation
+
+In order to define an analyze how various partitioning techniques work, the boundaries of what is
+being partitioned need to be established. This is the role of context separation. In particular,
+in order to prevent correlation of user-specific information across contexts, partitions need
+to ensure that any single entity (other than the client itself) does not participate in contexts
+where both identities are visible.
+
+Context separation can be achieved in different ways, e.g. over time, across network paths, based
+on (en)coding, etc. The privacy-oriented protocols described in this document generally involve
+more complex partitioning, but the techniques to partition communication contexts still employ the
 same techniques:
 
 1. Encryption allows partitioning of contexts within a given network path.
+1. Using separate connections across time or space allow partitioning of contexts for different
+application transactions.
 
-1. Using separate connections across time and/or space allow partitioning of contexts for
-different transactions.
-
-## Identities and Correlation
-
-Creating separate communication contexts is one important aspect of partioning, but
-ensuring that the contexts are split to prevent correlation of identities is necessary
-to make the partitions effective for improving privacy.
-
-{{?RFC6973}} discusses the importance of identifiers in reducing correlation:
-
-"Correlation is the combination of various pieces of information related to an individual
-or that obtain that characteristic when combined... Correlation is closely related to
-identification.  Internet protocols can facilitate correlation by allowing individuals'
-activities to be tracked and combined over time."
-
-{{?RFC6973}} goes on to discuss different ways that identities can be obscured: anonymity
-and pseudonymity.
-
-"To enable anonymity of an individual, there must exist a set of individuals that appear to
-have the same attribute(s) as the individual."
-
-"Pseudonymity is strengthened when less personal data can be linked to the pseudonym; when
-the same pseudonym is used less often and across fewer contexts; and when independently
-chosen pseudonyms are more frequently used for new actions (making them, from an observer's or
-attacker's perspective, unlinkable)."
-
-The "anonymity level" of a given identity exists on a scale, not a clear line between real
-identity, pseudonymity, and anonymity. Some techniques for partitioning contexts assign
-new pseudonymous or anonymous identities to clients within the context, and the selection of
-these and the set of users that share the identity can greatly impact how effective
-partitioning is.
-
-For the purposes of user privacy, the identity that this document focuses on most is the
-identity within a context that represents the user or the client; and which may be
-transmitted within the context as explicit data or as implicit metadata. Every context
-involves at least one identity for the client, and usually involves multiple - for example,
-a user interacting with a website may have a logged-in user account identity as well as
-an IP address identity.
-
-In order to prevent correlation of two specific identities across communication
-contexts, partitions need to ensure that any single entity (other than the client itself)
-does not participate in contexts where both identities are visible. For example,
+These techniques are frequently used in conjunction for context separation. For example,
 encrypting an HTTP exchange might prevent a network middlebox that sees a client IP address
 from seeing the user account identity, but it doesn't prevent the TLS-terminating server
 from observing both identities and correlating them. As such, preventing correlation
-requires making contexts more disjoint, such as by using proxying to
-conceal a client IP address that would otherwise be used as an identifier.
+requires separating contexts, such as by using proxying to conceal a client IP address
+that would otherwise be used as an identifier.
 
 ## Mitigating Collusion
 
-Partitioning has the goal of not allowing a single entity to gather information beyond the context
+Partitioning aims to ensure that no single entity can gather information beyond the context
 that a user or client intends. It can make trivial correlation of data and identities difficult for
 a single entity. However, designing protocols to use partitioning cannot (alone) prevent
 tracking if entities across the different contexts collude and share data. Thus, partitioning is not a
-panacea, but rather a tool, and a necessary condition to achieve privacy.
+panacea, but rather a tool, and a necessary condition for meaningful privacy improvements.
 
 Other techniques that can be used to mitigate collusion include:
 
@@ -346,7 +328,7 @@ Client metadata, but not the Target; the Target, but not the Client metadata; or
 Forward proxying, such as the protocols developed in MASQUE, uses both encryption (via TLS) and
 separation of connections (proxy hops) to achieve privacy partitioning.
 
-## Oblivious HTTP
+## Oblivious HTTP and DNS
 
 Oblivious HTTP {{?OHTTP=I-D.ietf-ohai-ohttp}}, developed in the OHAI working group, adds per-message
 encryption to HTTP exchanges through a relay system. Clients send requests through an Oblivious Relay,
@@ -389,8 +371,6 @@ be shared across many Clients.
 +-------------------------------------------------------------------+
 ~~~
 {: #diagram-ohttp title="Diagram of Oblivious HTTP contexts"}
-
-## ODoH
 
 Oblivious DNS over HTTPS {{?ODOH=RFC9230}} applies the same principle as Oblivious HTTP, but operates on
 DNS messages only. As a precursor to the more generalized Oblivious HTTP, it relies on the same
