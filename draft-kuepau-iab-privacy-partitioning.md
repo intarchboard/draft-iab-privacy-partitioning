@@ -183,7 +183,7 @@ including obvious identifiers like HTTP cookies across the requests.
 
 ## Context Separation
 
-In order to define an analyze how various partitioning techniques work, the boundaries of what is
+In order to define and analyze how various partitioning techniques work, the boundaries of what is
 being partitioned need to be established. This is the role of context separation. In particular,
 in order to prevent correlation of user-specific information across contexts, partitions need
 to ensure that any single entity (other than the client itself) does not participate in contexts
