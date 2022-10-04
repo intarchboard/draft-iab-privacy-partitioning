@@ -42,7 +42,7 @@ other than the intended protocol participants. As such, this kind of security is
 information transferred over these channels remain private.
 
 However, a secure channel between two endpoints is insufficient for privacy of the endpoints
-themselves. In recent years, privacy has expanded beyond the need to protect data in transit
+themselves. In recent years, privacy requirements have expanded beyond the need to protect data in transit
 between two endpoints. Some examples of this expansion include:
 
 - A user accessing a service on a website might not consent to reveal their location,
