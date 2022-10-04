@@ -99,7 +99,7 @@ rest of this section, we describe how privacy partitioning can be used to achiev
 
 Each piece of user-specific information exists within some context, where a context
 is abstractly defined as a set of data and metadata and the entities that share access
-to that metadata. In order to prevent correlation of user-specific information across
+to that information. In order to prevent correlation of user-specific information across
 contexts, partitions need to ensure that any single entity (other than the client itself)
 does not participate in more than one context where the information is visible.
 
