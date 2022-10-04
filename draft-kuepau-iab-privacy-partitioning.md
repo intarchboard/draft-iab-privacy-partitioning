@@ -38,7 +38,7 @@ to analyze such models.
 Protocols such as TLS and IPsec provide a secure (authenticated and encrypted) channel
 between two endpoints over which endpoints transfer information. Encryption and authentication
 of data in transit is necessary to protect information from being seen or modified by parties
-other than the intended protocol participants. As such, it is necessary for ensuring that
+other than the intended protocol participants. As such, this kind of security is necessary for ensuring that
 information transferred over these channels remain private.
 
 However, a secure channel between two endpoints is insufficient for privacy of the endpoints
