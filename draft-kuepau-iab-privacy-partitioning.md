@@ -93,7 +93,7 @@ applications, and systems only reveal user-specific information to parties that 
 to the  information for their intended purpose.
 
 Put simply, privacy partitioning aims to separate *who* someone is from *what* they do. In the
-rest of this section, we describe how the privacy partitioning can be used to achieve this goal.
+rest of this section, we describe how privacy partitioning can be used to achieve this goal.
 
 ## Privacy Contexts
 
