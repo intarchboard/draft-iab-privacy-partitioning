@@ -466,6 +466,10 @@ about individual client data.
 ~~~
 {: #pa-topology title="Diagram of contexts in DAP"}
 
+# Applying Privacy Partioning
+
+TODO: talk about how to think about new protocols that are using partitioning, the models that we derive from looking at the existing ones, how you recognize a protocol that's using this, and what tools do we have to evaluate it
+
 # Limits of Privacy Partitioning {#limits}
 
 Privacy Partitioning aims to increase user privacy, though as stated is not a panacea.
