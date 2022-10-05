@@ -541,7 +541,6 @@ and protocol). This has a number of practical implications, described below.
    systems like CONNECT proxying may seem like they would regress performance, often times the highly
    optimized nature of proxy-to-proxy paths leads to improved perforamnce. In general, while performance
    and privacy tradeoffs are often cast as a zero sum game, in reality this is often not the case.
-   <!-- Do we want to same something about connection coalescing here as an example? -->
 
 # Security Considerations
 
