@@ -511,7 +511,7 @@ remains an open problem to determine whether a certain set of information reveal
 specific user. There is ample evidence of data being assumed "private" or "anonymous" but, in hindsight,
 winds up revealing too much information such that it allows one to link back to individual
 clients; see {{?DataSetReconstruction=DOI.10.1109/SP.2008.33}} and {{CensusReconstruction}}
-for more examples of this in the real world, and see{{security-considerations}} for more discussion.
+for more examples of this in the real world, and see {{security-considerations}} for more discussion.
 
 # Impacts of Partitioning
 
