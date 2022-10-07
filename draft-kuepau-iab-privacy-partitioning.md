@@ -21,6 +21,9 @@ author:
 normative:
 
 informative:
+  CensusReconstruction:
+    title: The Census Bureau's Simulated Reconstruction-Abetted Re-identification Attack on the 2010 Census
+    target: https://www.census.gov/data/academy/webinars/2021/disclosure-avoidance-series/simulated-reconstruction-abetted-re-identification-attack-on-the-2010-census.html
 
 
 --- abstract
@@ -236,7 +239,7 @@ that is applying privacy partitioning.
 
 ## CONNECT Proxying and MASQUE
 
-HTTP "forward proxies", when using encryption, provide privacy partitioning by separating
+HTTP forward proxies, when using encryption, provide privacy partitioning by separating
 a connection into multiple segments. When connections over the proxy themselves are encrypted,
 the proxy cannot see the end-to-end content. HTTP has historically supported forward proxying
 for TCP-like streams via the CONNECT method. More recently, the MASQUE working group has developed
@@ -283,8 +286,9 @@ the proxy can learn information about the client.
 {: #diagram-1hop title="Diagram of one-hop proxy contexts"}
 
 
-Using two or more proxies provides better privacy partitioning. Now, each proxy sees the
-Client metadata, but not the Target; the Target, but not the Client metadata; or neither.
+Using two (or more) proxies provides better privacy partitioning. In particular, with two proxies,
+each proxy sees the Client metadata, but not the Target; the Target, but not the Client
+metadata; or neither.
 
 ~~~ aasvg
 +-------------------------------------------------------------------+
@@ -387,13 +391,16 @@ HPKE cryptographic primatives, and can be analyzed in the same way.
 Privacy Pass is an architecture {{?PRIVACYPASS=I-D.ietf-privacypass-architecture}} and set of protocols
 being developed in the Privacy Pass working group that allow clients to present proof of verification in
 an anonymous and unlinkable fashion, via tokens. These tokens originally were designed as a way to prove
-that a client had solved a CAPTCHA, but can be applied to other fraud prevention and attestation
-scenarios as well.
+that a client had solved a CAPTCHA, but can be applied to other types of user or device attestation checks
+as well. In Privacy Pass, clients interact with an attester and issuer for the purposes of issuing a token,
+and clients then interact with an origin server to redeeem said token.
 
-In Privacy Pass, privacy partitioning is achieved by encryption (creating tokens that are cryptographically
-unlinkable) and separation of connections across two contexts: a "redemption context" between clients an origins
-(servers that request and receive tokens), and an "issuance context" between clients, attestation servers, and
-token issuance servers.
+In Privacy Pass, privacy partitioning is achieved with cryptographic protection (in the form of blind
+signature protocols or similar) and separation of connections across two contexts:
+a "redemption context" between clients an origins (servers that request and receive tokens), and an
+"issuance context" between clients, attestation servers, and token issuance servers. The cryptographic
+protection ensures that information revealed during the issuance context is separated from information
+revealed during the redemption context.
 
 ~~~ aasvg
 +-------------------------------------------------------------------+
@@ -416,60 +423,124 @@ token issuance servers.
 ~~~
 {: #diagram-privacypass title="Diagram of contexts in Privacy Pass"}
 
-## DAP (PPM)
+## Privacy Preserving Measurement
 
-Distributed Aggregation Protocol (DAP) is a protocol being developed in the PPM working group to allow
-servers to collect aggregate metrics across a large population of clients, without learning individual
-data points about clients.
+The Privacy Preserving Measurement (PPM) working group is chartered to develop protocols and systems
+that help a data aggregation or collection server (or multiple, non-colluding servers) compute aggregate
+values without learning the value of any one client's individual measurement. Distributed Aggregation
+Protocol (DAP) is the primary working item of the group.
 
-TODO: Analysis of contexts
+At a high level, DAP uses a combination of cryptographic protection (in the form of secret sharing amongst
+non-colluding servers) to establish two contexts: an "upload context" between clients and non-colluding
+aggregation servers wherein aggregation servers possibly learn client identity but nothing about their individual
+measurement reports, and a "collect context" wherein a collector learns aggregate measurement results and nothing
+about individual client data.
 
-TODO: Diagram for DAP
+~~~ aasvg
++-------------------------------------+--------------------+
+| Upload Context                      | Collect Context    |
+|                     +------------+  |                    |
+|              +------>   Helper   |  |                    |
+| +--------+   |      +------^-----+  |                    |
+| |        +---+             |        |   +-----------+    |
+| | Client |                 |        |   | Collector |    |
+| |        +---+             |        |   +-----+-----+    |
+| +--------+   |      +------V-----+  |         |          |
+|              +------>   Leader   <------------+          |
+|                     +------------+  |                    |
++-------------------------------------+--------------------+
+~~~
+{: #pa-topology title="Diagram of contexts in DAP"}
 
-# Analysis of Privacy Partioning
+# Applying Privacy Partioning
 
-TODO: Provide a framework for analyzing the privacy properties of partitioned contexts
+TODO: talk about how to think about new protocols that are using partitioning, the models that we derive from looking at the existing ones, how you recognize a protocol that's using this, and what tools do we have to evaluate it
 
-TODO: Discuss how privacy breaks down when assumptions are violated
+# Limits of Privacy Partitioning {#limits}
+
+Privacy Partitioning aims to increase user privacy, though as stated is not a panacea.
+The privacy properties depend on numerous factors, including, though not limited to:
+
+- Non-collusion across contexts; and
+- The type of information exposed in each context.
+
+We elaborate on each below.
+
+## Violations by Collusion
+
+Privacy partitions ensure that only the client, i.e., the entity which is responsible for partitioning,
+can link all user-specific information together up to collusion. No other entity individually
+knows how to link all the user-specific information as long as they do not collude with each other
+across contexts. This is why non-collusion is a fundamental requirement for privacy partitioning
+to offer meaningful privacy for end-users.
+
+As an example, consider OHTTP, wherein the Oblivious Relay knows the Client identity but not
+the Client data, and the Oblivious Gateway knows the Client data but not the Client identity.
+If the Oblivious Relay and Gateway collude, they can link Client identity and data together
+for each request and response transaction by simply observing the requests in transit.
+
+## Violations by Insufficient Partitioning
+
+It is possible to define contexts that contain more than one type of user-specific information,
+despite effort to do otherwise. As an example, consider OHTTP used for the purposes of hiding
+client-identifying information for a browser telemetry system. It is entirely possible for reports
+in such a telemetry system to contain both client-specific telemetry data, such as information
+about their specific browser instance, as well as client-identifying inforamtion, such as the client's
+location or IP address. Even though OHTTP separates the client IP address from the server via
+a relay, the server still learns this directly from the client.
+
+Other relevant examples of insufficient partitioning include TLS and Encrypted Client Hello (ECH) {{?I-D.ietf-tls-esni}}
+and VPNs. TLS and ECH use cryptographic protection (encryption) to hide information from unauthorized parties,
+but both clients and servers (two entities) can link user-specific data to user-specific identity (IP address).
+Similarly, while VPNs hide identity from end servers, the VPN server has still can see the identity of both the
+client and server. Applying privacy partitioning would advocate for at least two additional entities to avoid
+revealing both (identity (who) and user actions (what)) from each involved party.
+
+While straightforward violations of user privacy like this may seem straightforward to mitigate, it
+remains an open problem to determine whether a certain set of information reveals "too much" about a
+specific user. There is ample evidence of data being assumed "private" or "anonymous" but, in hindsight,
+winds up revealing too much information such that it allows one to link back to individual
+clients; see {{?DataSetReconstruction=DOI.10.1109/SP.2008.33}} and {{CensusReconstruction}}
+for more examples of this in the real world, and see {{security-considerations}} for more discussion.
 
 # Impacts of Partitioning
 
 Applying privacy partitioning to communication protocols lead to a substantial change in communication patterns.
-Instead of sending traffic directly to a service, essentially all user traffic is routed through a set of intermediaries.
-Information has has been observed passively in the network or metadata that has been unintentionally revealed to the service provider
-cannot be used anymore for e.g. existing security procedures such as access rate limiting or DDoS mitigation.
+For example, instead of sending traffic directly to a service, essentially all user traffic is routed through
+a set of intermediaries, possibly adding more end-to-end round trips in the process (depending on the system
+and protocol). This has a number of practical implications, described below.
 
-However, network management techniques deployed at present often rely on information that is exposed by
-most traffic but without any guarantees that the information is accurate. Privacy partitioning provides
-an opportunity for improvements in these management techniques by providing opportunities to actively
-exchange information with each entity in a privacy-preserving way and requesting exactly the information
-needed for a specific task or function rather then relying on assumption that are derived on a limited
-set of unintentionally revealed information which cannot be guaranteed to be present and may disappear
-any time in future.
+1. Service operational or management challenges. Information that is traditionally passively observed in the
+   network or metadata that has been unintentionally revealed to the service provider cannot be used anymore
+   for e.g. existing security procedures such as application rate limiting or DDoS mitigation.
+   However, network management techniques deployed at present often rely on information that is exposed by
+   most traffic but without any guarantees that the information is accurate. Privacy partitioning provides
+   an opportunity for improvements in these management techniques by providing opportunities to actively
+   exchange information with each entity in a privacy-preserving way and requesting exactly the information
+   needed for a specific task or function rather then relying on assumption that are derived on a limited
+   set of unintentionally revealed information which cannot be guaranteed to be present and may disappear
+   any time in future.
+
+1. Varying performance effects. Depending on how context separation is done, privacy partitioning may
+   affect application performance. As an example, Privacy Pass introduces an entire end-to-end round
+   trip to issue a token before it can be redeemed, thereby decreasing perormance. In contrast, while
+   systems like CONNECT proxying may seem like they would regress performance, often times the highly
+   optimized nature of proxy-to-proxy paths leads to improved perforamnce. In general, while performance
+   and privacy tradeoffs are often cast as a zero sum game, in reality this is often not the case.
 
 # Security Considerations
 
-In these models, only the client knows the fully joined set of information. No server individually
-knows how to join all the data as long as servers do not collude the data. Therefore, for privacy
-partitioning to be applicable there must always be a non-collusion assumption between all involved entities.
-
-Clients needs to be able to be explicit about what data they share (location, etc.) with which entity.
-All information shared need to be analysed based on its privacy-sensitivity and in relation to the
-entities/service it is shared with. In order to do this, clients need to be able to explicitly select
-different entities and hops over which to partition data. As a result, the client still needs to trust
-these entities to not collude but these entities also need to actively/more explicitly collude in order
-to rejoin data.
-
-TLS and Encrypted Client Hello (ECH) are good examples of using encryption to hide information from some entities,
-but where clients and servers (two entities) still can correlate all information. VPNs hide identity from end
-servers, but the VPN server has still can see the identity of both the client and server. Therefore, privacy
-partitioning requires at least two additional entities to avoid revealing both (identity (who) and user actions
-(what)) from each involved party.
-
-Timing side-channels, etc, are still possible. They can of course be mitigated in very expensive ways by, e.g., fuzzing the data,
-but it's important to point out that this general architecture doesn't prevent these attacks. It does, however, move the
-threat model to this kind of analysis rather than just looking at direct metadata.
-
+{{limits}} discusses some of the limitations of privacy partitioning in practice. In general,
+privacy is best viewed as a spectrum and not a binary state (private or not). Applied correctly,
+partitioning helps improve an end-users privacy posture, thereby making violations harder to
+do via technical, social, or policy means. For example, side channels such as traffic analysis
+{{?I-D.irtf-pearg-website-fingerprinting}} or timing analysis are still possible and can allow
+an unauthorized entity to learn information about a context they are not a participant of.
+Proposed mitigations for these types of attacks, e.g., padding application traffic or generating
+fake traffic, can be very expensive and are therefore not typically applied in practice.
+Nevertheless, privacy partitioning moves the threat vector from one that has direct access to
+user-specific information to one which requires more effort, e.g., computational resources,
+to violate end-user privacy.
 
 # IANA Considerations
 
