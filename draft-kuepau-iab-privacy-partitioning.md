@@ -442,7 +442,7 @@ Applying privacy partitioning to an existing or new system or protocol is a stra
 1. Partition different types of user-identifying information across contexts to minimize the amount of
    user-identifying information in any single context.
 
-The most impactful types of user-identifying information to partition are (a) user identity and (b) user data.
+The most impactful types of user-identifying information to partition are (a) user identity or identities that can be linked and (b) user data.
 For example, Oblivious DoH and Oblivious HTTP partition the client IP address and client request data into
 separate contexts, thereby ensuring that no entity beyond the client can observe both. Collusing across contexts
 may reverses this partition process, but can also promote non-user-identifying information to user-identifying.
