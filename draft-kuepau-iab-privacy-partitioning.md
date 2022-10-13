@@ -250,15 +250,14 @@ for TCP-like streams via the CONNECT method. More recently, the MASQUE working g
 protocols to similarly proxy UDP {{?CONNECT-UDP=RFC9297}} and IP packets
 {{?CONNECT-IP=I-D.ietf-masque-connect-ip}} based on tunneling.
 
-Use of a single proxy partitions communication into a Client-to-Proxy context (the transport
-metadata between the client and the proxy, and the request to the proxy to open a connection
-to the target), a Proxy-to-Target context (the transport metadata between the proxy and target),
+In a single-proxy setup there is a tunnel connection between the client and proxy and an end-to-end connection that is tunnelled between the client and target. This setup, as shown in the figure below, partitions
+communication into a Client-to-Proxy context (the transport
+metadata between the client and the target, and the request to the proxy to open a connection
+to the target),
 and a Client-to-Target context (the end-to-end data, which generally would be a TLS-encrypted
-connection). However, this alone does not achieve the goals of privacy partitioning fully,
-since the proxy is in a privileged position where it participates in a context that sees
-the client identity and the target information. If the target is sufficiently generic, this
-scenario is acceptable, but if the act of communicating with the target is sensitive, then
-the proxy can learn information about the client.
+connection). There is also a Proxy-to-Target context; in case of MASQUE this context only
+contains any (unprotected) packet header information that is added or modified by the proxy,
+e.g., the IP and UDP headers.
 
 ~~~ aasvg
 +-------------------------------------------------------------------+
@@ -340,7 +339,7 @@ metadata; or neither.
 {: #diagram-2hop title="Diagram of two-hop proxy contexts"}
 
 Forward proxying, such as the protocols developed in MASQUE, uses both encryption (via TLS) and
-separation of connections (proxy hops) to achieve privacy partitioning.
+separation of connections (via proxy hops that see only the next hop) to achieve privacy partitioning.
 
 ## Oblivious HTTP and DNS
 
