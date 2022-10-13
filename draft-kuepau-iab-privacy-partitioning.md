@@ -97,8 +97,6 @@ to the  information for their intended purpose.
 
 Put simply, privacy partitioning aims to separate *who* someone is from *what* they do. In the
 rest of this section, we describe how privacy partitioning can be used to achieve this goal.
-
-
 ## Privacy Contexts
 
 Each piece of user-specific information exists within some context, where a context
