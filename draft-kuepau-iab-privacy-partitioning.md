@@ -214,7 +214,9 @@ communication into a Client-to-Proxy context (the transport
 metadata between the client and the target, and the request to the proxy to open a connection
 to the target),
 and a Client-to-Target context (the end-to-end data, which generally would be a TLS-encrypted
-connection).
+connection). There is also a Proxy-to-Target context; in case of MASQUE this context only 
+contains any (unprotected) packet header information that is added or modified by the proxy,
+e.g. potentially the IP und UDP headers or only the source IP address depending on the MASQUE setup. 
 
 TODO: Diagram of one hop contexts
 
