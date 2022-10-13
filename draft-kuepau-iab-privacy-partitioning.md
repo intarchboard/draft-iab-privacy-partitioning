@@ -209,8 +209,7 @@ for TCP-like streams via the CONNECT method. More recently, the MASQUE working g
 protocols to similarly proxy UDP {{?CONNECT-UDP=RFC9297}} and IP packets
 {{?CONNECT-IP=I-D.ietf-masque-connect-ip}}.
 
-Use of a single proxy based on a tunnel connection between the client and proxy as well
-as the end-to-end connection that is tunneled, as shown in the figure below, partitions
+In a single-proxy setup there is a tunnel connection between the client and proxy and an end-to-end connection that is tunnelled between the client and target. This setup, as shown in the figure below, partitions
 communication into a Client-to-Proxy context (the transport
 metadata between the client and the target, and the request to the proxy to open a connection
 to the target),
