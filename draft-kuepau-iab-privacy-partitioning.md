@@ -17,6 +17,10 @@ author:
     fullname: Tommy Pauly
     organization: Apple
     email: tpauly@apple.com
+ -
+    fullname: Christopher A. Wood
+    organization: Cloudflare
+    email: caw@heapingbits.net
 
 normative:
 
