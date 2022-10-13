@@ -253,7 +253,7 @@ to the target),
 and a Client-to-Target context (the end-to-end data, which generally would be a TLS-encrypted
 connection). There is also a Proxy-to-Target context; in case of MASQUE this context only
 contains any (unprotected) packet header information that is added or modified by the proxy,
-e.g. potentially the IP und UDP headers or only the source IP address depending on the MASQUE setup.
+e.g., the IP and UDP headers.
 
 ~~~ aasvg
 +-------------------------------------------------------------------+
