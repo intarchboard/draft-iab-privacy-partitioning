@@ -21,12 +21,15 @@ author:
 normative:
 
 informative:
+  CensusReconstruction:
+    title: The Census Bureau's Simulated Reconstruction-Abetted Re-identification Attack on the 2010 Census
+    target: https://www.census.gov/data/academy/webinars/2021/disclosure-avoidance-series/simulated-reconstruction-abetted-re-identification-attack-on-the-2010-census.html
 
 
 --- abstract
 
 This document describes the principle of privacy partitioning, which selectively spreads data and communication across
-multiple parties as a means to improve the privacy by separating user identity from user actions.
+multiple parties as a means to improve the privacy by separating user identity from user data.
 This document describes emerging patterns in protocols to partition what data and metadata is
 revealed through protocol interactions, provides common terminology, and discusses how
 to analyze such models.
@@ -35,76 +38,105 @@ to analyze such models.
 
 # Introduction
 
-The focus of many common security protocols, such as TLS or IPsec, is to prevent data
-from being modified or seen by parties other than the protocol participants. Encrypting
-and authenticating communication (in HTTP, in DNS, and more) is therefore a prerequisite for
-user privacy by ensuring that information about user identity and activity cannot be
-read by passively observing traffic.
+Protocols such as TLS and IPsec provide a secure (authenticated and encrypted) channel
+between two endpoints over which endpoints transfer information. Encryption and authentication
+of data in transit is necessary to protect information from being seen or modified by parties
+other than the intended protocol participants. As such, this kind of security is necessary for ensuring that
+information transferred over these channels remain private.
 
-However, this is not sufficient to provide a complete user privacy solution.
-Another aspect of privacy has come into focus: preventing
-protocol participants from being exposed to unnecessary data or metadata. Some examples
-of this include:
+However, a secure channel between two endpoints is insufficient for privacy of the endpoints
+themselves. In recent years, privacy requirements have expanded beyond the need to protect data in transit
+between two endpoints. Some examples of this expansion include:
 
-- A user accessing a service on a website might not want to reveal their location,
-but if that service is able to observe the client's IP address, it can infer many
-location details.
+- A user accessing a service on a website might not consent to reveal their location,
+but if that service is able to observe the client's IP address, it can learn inforamtion
+about the user's location. This is problematic for privacy since the service can link
+user data to the user's location.
 
 - A user might want to be able to access content for which they are authorized,
 such as a news article, without needing to have which specific articles they
-read on their account being recorded.
+read on their account being recorded. This is problematic for privacy since the service
+can link user activity to the user's account.
 
-- A client device that needs to upload metrics to an aggregated
-service might want to be able to contribute into the aggregated metrics system without
-having specific activities being tracked and identified.
+- A client device that needs to upload metrics to an aggregation service might want to be
+able to contribute data to the system without having their specific contributions being
+attribued to them. This is problematic for privacy since the service can link client
+contributions to the specific client.
 
-These are all problems that involve needing to separate out which information
-is seen at different steps of protocol interaction, or between different
-participants in a protocol. In order to protect user privacy, it is therefore particularily
-important to separate user identity (who) from user actions (what) whenever possible.
-
-Several working groups in the IETF are working on solutions in this space, including
-OHAI, MASQUE, Privacy Pass, and PPM. One commonality between these is that they
-usually involve at least three parties: a client and at least two parties acting
-as servers or intermediaries. While at first glance, the involvement of more parties
-can seem counterintuitive for providing privacy, the ability to separate what data
-is shared between these parties limits the amount of information about a single
-client that can be concentrated by a server.
-
-# Privacy Partitioning
+The commonality in these examples is that clients want to interact with or use a service
+without exposing too much user-specific or identifying information to that service. In particular,
+separating the user-specific identity information from user-specific data is necessary for
+privacy. Thus, order to protect user privacy, it is important to keep identity (who) and data
+(what) separate.
 
 This document defines "privacy partitioning" as the general technique used to separate the data
 and metadata visible to various parties in network communication, with the aim of improving
-user privacy.
+user privacy. Partitioning is a spectrum and not a panacea. It is difficult to guarantee there
+is no link between user-specific identity and user-specific data. However, applied properly,
+privacy partitioning helps ensure that user privacy violations becomes more technically difficult
+to achieve over time.
 
-Data partitioning can be achieved in different ways, e.g. over time, across network paths,
-based on (en)coding, etc. However, in order to improve user privacy, partitioning needs to
-be performed carefully to reduce the set of entities that have access to a user’s identity and
-activity, or have the ability to correlate traffic across different contexts, which allows entities
-to correlate identities and actions.
+Several IETF working groups are working on protocols or systems that adhere to the principle
+of privacy partitioning, including OHAI, MASQUE, Privacy Pass, and PPM. This document summarizes
+work in those groups and describes a framework for reasoning about the resulting privacy posture of different
+endpoints in practice.
 
-At a high level, privacy partitioning can be described as separating *who* someone is
-from *what* they do.
+# Privacy Partitioning
 
-Partitioning is not a binary state, but a spectrum. It is difficult, and potentially impossible,
-to completely guarantee that no data or metadata is linkable across various actions. Instead, as protocols
-develop new techniques to partition data and metadata, it becomes easier to prevent entities
-from being able to correlate information about a user and thereby reduce their privacy.
+For the purposes of user privacy, this document focuses on user-specific information. This
+might include any identifying information that is specific to a user, such as their email
+address or IP address, or data about the user, such as their date of birth. Informally,
+the goal of privacy partitioning is to ensure that each party in a system beyond the user
+themselves only has access to one type of user-specific information.
 
-## Communication Contexts
+This is a simple application of the principle of least privilege, wherein every party in
+a system only has access to the minimum amount of information needed to fulfill their
+function. Privacy partitioning advocates for this minimization by ensuring that protocols,
+applications, and systems only reveal user-specific information to parties that need access
+to the  information for their intended purpose.
 
-In order to define an analyze how various partitioning techniques work, the boundaries of what is
-being partitioned need to be established.
+Put simply, privacy partitioning aims to separate *who* someone is from *what* they do. In the
+rest of this section, we describe how privacy partitioning can be used to achieve this goal.
 
-This document defines the term "communication context" to refer to a set of data and metadata,
-and the set of networked entities that share a common view of that data and metadata. Partitioning
-creates more contexts where there would otherwise be a single context.
 
-For example, in an unencrypted HTTP session over TCP, the communication context includes both the
+## Privacy Contexts
+
+Each piece of user-specific information exists within some context, where a context
+is abstractly defined as a set of data and metadata and the entities that share access
+to that information. In order to prevent correlation of user-specific information across
+contexts, partitions need to ensure that any single entity (other than the client itself)
+does not participate in more than one context where the information is visible.
+
+{{?RFC6973}} discusses the importance of identifiers in reducing correlation as a way
+of improving privacy:
+
+"Correlation is the combination of various pieces of information related to an individual
+or that obtain that characteristic when combined... Correlation is closely related to
+identification.  Internet protocols can facilitate correlation by allowing individuals'
+activities to be tracked and combined over time."
+
+"Pseudonymity is strengthened when less personal data can be linked to the pseudonym; when
+the same pseudonym is used less often and across fewer contexts; and when independently
+chosen pseudonyms are more frequently used for new actions (making them, from an observer's or
+attacker's perspective, unlinkable)."
+
+Context separation is foundational to privacy partitioning and reducing correlation.
+As an example, consider an unencrypted HTTP session over TCP, wherein the context includes both the
 content of the transaction as well as any metadata from the transport and IP headers; and the
 participants include the client, routers, other network middleboxes, intermediaries, and server.
 
-TODO: Diagram of a basic unencrypted client-to-server connection with middleboxes
+~~~ aasvg
++-------------------------------------------------------------------+
+| Context A                                                         |
+|  +--------+                +-----------+              +--------+  |
+|  |        |------HTTP------|           |--------------|        |  |
+|  | Client |                | Middlebox |              | Server |  |
+|  |        |------TCP-------|           |--------------|        |  |
+|  +--------+      flow      +-----------+              +--------+  |
+|                                                                   |
++-------------------------------------------------------------------+
+~~~
+{: #diagram-middlebox title="Diagram of a basic unencrypted client-to-server connection with middleboxes"}
 
 Adding TLS encryption to the HTTP session is a simple partitioning technique that splits the
 previous context into two separate contexts: the content of the transaction is now only visible
@@ -112,78 +144,84 @@ to the client, TLS-terminating intermediaries, and server; while the metadata in
 IP headers remain in the original context. In this scenario, without any further partitioning,
 the entities that participate in both contexts can allow the data in both contexts to be correlated.
 
-TODO: Diagram of how adding encryption splits the context into two.
+~~~ aasvg
++-------------------------------------------------------------------+
+| Context A                                                         |
+|  +--------+                                           +--------+  |
+|  |        |                                           |        |  |
+|  | Client |-------------------HTTPS-------------------| Server |  |
+|  |        |                                           |        |  |
+|  +--------+                                           +--------+  |
+|                                                                   |
++-------------------------------------------------------------------+
+| Context B                                                         |
+|  +--------+                +-----------+              +--------+  |
+|  |        |                |           |              |        |  |
+|  | Client |-------TCP------| Middlebox |--------------| Server |  |
+|  |        |       flow     |           |              |        |  |
+|  +--------+                +-----------+              +--------+  |
+|                                                                   |
++-------------------------------------------------------------------+
+~~~
+{: #diagram-https title="Diagram of how adding encryption splits the context into two"}
 
 Another way to create a partition is to simply use separate connections. For example, to
 split two separate HTTP requests from one another, a client could issue the requests on
 separate TCP connections, each on a different network, and at different times; and avoid
 including obvious identifiers like HTTP cookies across the requests.
 
-TODO: Diagram of making separate connections to generate separate contexts.
+~~~ aasvg
++-------------------------------------------------------------------+
+| Context A                                                         |
+|  +--------+                +-----------+              +--------+  |
+|  |        | IP A           |           |              |        |  |
+|  | Client |-------TCP------| Middlebox |--------------| Server |  |
+|  |        |       flow A   |     A     |              |        |  |
+|  +--------+                +-----------+              +--------+  |
+|                                                                   |
++-------------------------------------------------------------------+
+| Context B                                                         |
+|  +--------+                +-----------+              +--------+  |
+|  |        | IP B           |           |              |        |  |
+|  | Client |-------TCP------| Middlebox |--------------| Server |  |
+|  |        |       flow B   |     B     |              |        |  |
+|  +--------+                +-----------+              +--------+  |
+|                                                                   |
++-------------------------------------------------------------------+
+~~~
+{: #diagram-dualconnect title="Diagram of making separate connections to generate separate contexts"}
 
-The privacy-oriented protocols described in this document generally involve more complex
-partitioning, but the techniques to partition communication contexts still employ the
+## Context Separation
+
+In order to define and analyze how various partitioning techniques work, the boundaries of what is
+being partitioned need to be established. This is the role of context separation. In particular,
+in order to prevent correlation of user-specific information across contexts, partitions need
+to ensure that any single entity (other than the client itself) does not participate in contexts
+where both identities are visible.
+
+Context separation can be achieved in different ways, e.g. over time, across network paths, based
+on (en)coding, etc. The privacy-oriented protocols described in this document generally involve
+more complex partitioning, but the techniques to partition communication contexts still employ the
 same techniques:
 
 1. Encryption allows partitioning of contexts within a given network path.
+1. Using separate connections across time or space allow partitioning of contexts for different
+application transactions.
 
-1. Using separate connections across time and/or space allow partitioning of contexts for
-different transactions.
-
-## Identities and Correlation
-
-Creating separate communication contexts is one important aspect of partioning, but
-ensuring that the contexts are split to prevent correlation of identities is necessary
-to make the partitions effective for improving privacy.
-
-{{?RFC6973}} discusses the importance of identifiers in reducing correlation:
-
-"Correlation is the combination of various pieces of information related to an individual
-or that obtain that characteristic when combined... Correlation is closely related to
-identification.  Internet protocols can facilitate correlation by allowing individuals'
-activities to be tracked and combined over time."
-
-{{?RFC6973}} goes on to discuss different ways that identities can be obscured: anonymity
-and pseudonymity.
-
-"To enable anonymity of an individual, there must exist a set of individuals that appear to
-have the same attribute(s) as the individual."
-
-"Pseudonymity is strengthened when less personal data can be linked to the pseudonym; when
-the same pseudonym is used less often and across fewer contexts; and when independently
-chosen pseudonyms are more frequently used for new actions (making them, from an observer's or
-attacker's perspective, unlinkable)."
-
-The "anonymity level" of a given identity exists on a scale, not a clear line between real
-identity, pseudonymity, and anonymity. Some techniques for partitioning contexts assign
-new pseudonymous or anonymous identities to clients within the context, and the selection of
-these and the set of users that share the identity can greatly impact how effective
-partitioning is. For example, IP addresses are often used as pseudonyms, even though
-they were not designed to act as user identifiers and do not provide stability guarantees.
-
-For the purposes of user privacy, the identity that this document focuses on most is the
-identity within a context that represents the user or the client; and which may be
-transmitted within the context as explicit data or as implicit metadata. Every context
-involves at least one identity for the client, and usually involves multiple - for example,
-a user interacting with a website may have a logged-in user account identity as well as
-an IP address identity.
-
-In order to prevent correlation of two specific identities across communication
-contexts, partitions need to ensure that any single entity (other than the client itself)
-does not participate in contexts where both identities are visible. For example,
+These techniques are frequently used in conjunction for context separation. For example,
 encrypting an HTTP exchange might prevent a network middlebox that sees a client IP address
 from seeing the user account identity, but it doesn't prevent the TLS-terminating server
 from observing both identities and correlating them. As such, preventing correlation
-requires making contexts more disjoint, such as by using proxying to
-conceal a client IP address that would otherwise be used as an identifier.
+requires separating contexts, such as by using proxying to conceal a client IP address
+that would otherwise be used as an identifier.
 
 ## Mitigating Collusion
 
-Partitioning has the goal of not allowing a single entity to gather information beyond the context
+Partitioning aims to ensure that no single entity can gather information beyond the context
 that a user or client intends. It can make trivial correlation of data and identities difficult for
 a single entity. However, designing protocols to use partitioning cannot (alone) prevent
 tracking if entities across the different contexts collude and share data. Thus, partitioning is not a
-panacea, but rather a tool, and a necessary condition to achieve privacy.
+panacea, but rather a tool, and a necessary condition for meaningful privacy improvements.
 
 Other techniques that can be used to mitigate collusion include:
 
@@ -202,12 +240,12 @@ that is applying privacy partitioning.
 
 ## CONNECT Proxying and MASQUE
 
-HTTP "forward proxies", when using encryption, provide privacy partitioning by separating
+HTTP forward proxies, when using encryption, provide privacy partitioning by separating
 a connection into multiple segments. When connections over the proxy themselves are encrypted,
 the proxy cannot see the end-to-end content. HTTP has historically supported forward proxying
 for TCP-like streams via the CONNECT method. More recently, the MASQUE working group has developed
 protocols to similarly proxy UDP {{?CONNECT-UDP=RFC9297}} and IP packets
-{{?CONNECT-IP=I-D.ietf-masque-connect-ip}}.
+{{?CONNECT-IP=I-D.ietf-masque-connect-ip}} based on tunneling.
 
 In a single-proxy setup there is a tunnel connection between the client and proxy and an end-to-end connection that is tunnelled between the client and target. This setup, as shown in the figure below, partitions
 communication into a Client-to-Proxy context (the transport
@@ -218,23 +256,89 @@ connection). There is also a Proxy-to-Target context; in case of MASQUE this con
 contains any (unprotected) packet header information that is added or modified by the proxy,
 e.g. potentially the IP und UDP headers or only the source IP address depending on the MASQUE setup. 
 
-TODO: Diagram of one hop contexts
+~~~ aasvg
++-------------------------------------------------------------------+
+| Client-to-Target Context                                          |
+|  +--------+                +-----------+              +--------+  |
+|  |        |                |           |              |        |  |
+|  | Client |----Proxied-----|   Proxy   |--------------| Server |  |
+|  |        |      flow      |           |              |        |  |
+|  +--------+                +-----------+              +--------+  |
+|                                                                   |
++-------------------------------------------------------------------+
+| Client-to-Proxy Context                                           |
+|  +--------+                +-----------+                          |
+|  |        |                |           |                          |
+|  | Client |---Transport----|   Proxy   |                          |
+|  |        |     flow       |           |                          |
+|  +--------+                +-----------+                          |
+|                                                                   |
++-------------------------------------------------------------------+
+| Proxy-to-Target Context                                           |
+|                            +-----------+              +--------+  |
+|                            |           |              |        |  |
+|                            |   Proxy   |--Transport---| Server |  |
+|                            |           |    flow      |        |  |
+|                            +-----------+              +--------+  |
+|                                                                   |
++-------------------------------------------------------------------+
+~~~
+{: #diagram-1hop title="Diagram of one-hop proxy contexts"}
 
-However, this single-hop proxy setup alone does not achieve the goals of privacy partitioning fully,
-since the proxy is in a privileged position where it participates in a context that sees
-the client identity (IP address) and target information (end-to-end metadata or other
-unencrypted data). If the target is sufficiently generic, this
-scenario is acceptable, but if the act of communicating with the target is sensitive, then
-the proxy can learn information about the client. Otherwise, using two or more proxies provides
-better privacy partitioning. As soon below, now, each proxy sees either the Client
-metadata, but not the Target; or the Target, but not the Client metadata; or neither.
 
-TODO: Diagram of two hop contexts
+Using two (or more) proxies provides better privacy partitioning. In particular, with two proxies,
+each proxy sees the Client metadata, but not the Target; the Target, but not the Client
+metadata; or neither.
+
+~~~ aasvg
++-------------------------------------------------------------------+
+| Client-to-Target Context                                          |
+|  +--------+                           +-------+       +--------+  |
+|  |        |                           |       |       |        |  |
+|  | Client |----------Proxied----------| Proxy |-------| Server |  |
+|  |        |           flow            |   B   |       |        |  |
+|  +--------+                           +-------+       +--------+  |
+|                                                                   |
++-------------------------------------------------------------------+
+| Client-to-Proxy B Context                                         |
+|  +--------+         +-------+         +-------+                   |
+|  |        |         |       |         |       |                   |
+|  | Client |---------| Proxy |---------| Proxy |                   |
+|  |        |         |   A   |         |   B   |                   |
+|  +--------+         +-------+         +-------+                   |
+|                                                                   |
++-------------------------------------------------------------------+
+| Client-to-Proxy A Context                                         |
+|  +--------+         +-------+                                     |
+|  |        |         |       |                                     |
+|  | Client |---------| Proxy |                                     |
+|  |        |         |   A   |                                     |
+|  +--------+         +-------+                                     |
+|                                                                   |
++-------------------------------------------------------------------+
+| Proxy A-to-Proxy B Context                                        |
+|                     +-------+         +-------+                   |
+|                     |       |         |       |                   |
+|                     | Proxy |---------| Proxy |                   |
+|                     |   A   |         |   B   |                   |
+|                     +-------+         +-------+                   |
+|                                                                   |
++-------------------------------------------------------------------+
+| Proxy B-to-Target Context                                         |
+|                                       +-------+       +--------+  |
+|                                       |       |       |        |  |
+|                                       | Proxy |-------| Server |  |
+|                                       |   B   |       |        |  |
+|                                       +-------+       +--------+  |
+|                                                                   |
++-------------------------------------------------------------------+
+~~~
+{: #diagram-2hop title="Diagram of two-hop proxy contexts"}
 
 Forward proxying, such as the protocols developed in MASQUE, uses both encryption (via TLS) and
 separation of connections (via proxy hops that see only the next hop) to achieve privacy partitioning.
 
-## Oblivious HTTP
+## Oblivious HTTP and DNS
 
 Oblivious HTTP {{?OHTTP=I-D.ietf-ohai-ohttp}}, developed in the OHAI working group, adds per-message
 encryption to HTTP exchanges through a relay system. Clients send requests through an Oblivious Relay,
@@ -249,10 +353,34 @@ to note that the Relay-to-Gateway connection can be a single connection, even if
 separate Clients. This provides better anonymity by making the pseudonym presented by the Relay to
 be shared across many Clients.
 
-TODO: Diagram of Client, Relay, Gateway, and Target; with three contexts, Client-to-Gateway/Target, Client-to-Relay,
-and Relay-to-Gateway/Target.
-
-## ODoH
+~~~ aasvg
++-------------------------------------------------------------------+
+| Client-to-Target Context                                          |
+|  +--------+                           +---------+     +--------+  |
+|  |        |                           |         |     |        |  |
+|  | Client |---------------------------| Gateway |-----| Target |  |
+|  |        |                           |         |     |        |  |
+|  +--------+                           +---------+     +--------+  |
+|                                                                   |
++-------------------------------------------------------------------+
+| Client-to-Gateway Context                                         |
+|  +--------+         +-------+         +---------+                 |
+|  |        |         |       |         |         |                 |
+|  | Client |---------| Relay |---------| Gateway |                 |
+|  |        |         |       |         |         |                 |
+|  +--------+         +-------+         +---------+                 |
+|                                                                   |
++-------------------------------------------------------------------+
+| Client-to-Relay Context                                           |
+|  +--------+         +-------+                                     |
+|  |        |         |       |                                     |
+|  | Client |---------| Relay |                                     |
+|  |        |         |       |                                     |
+|  +--------+         +-------+                                     |
+|                                                                   |
++-------------------------------------------------------------------+
+~~~
+{: #diagram-ohttp title="Diagram of Oblivious HTTP contexts"}
 
 Oblivious DNS over HTTPS {{?ODOH=RFC9230}} applies the same principle as Oblivious HTTP, but operates on
 DNS messages only. As a precursor to the more generalized Oblivious HTTP, it relies on the same
@@ -263,45 +391,156 @@ HPKE cryptographic primatives, and can be analyzed in the same way.
 Privacy Pass is an architecture {{?PRIVACYPASS=I-D.ietf-privacypass-architecture}} and set of protocols
 being developed in the Privacy Pass working group that allow clients to present proof of verification in
 an anonymous and unlinkable fashion, via tokens. These tokens originally were designed as a way to prove
-that a client had solved a CAPTCHA, but can be applied to other fraud prevention and attestation
-scenarios as well.
+that a client had solved a CAPTCHA, but can be applied to other types of user or device attestation checks
+as well. In Privacy Pass, clients interact with an attester and issuer for the purposes of issuing a token,
+and clients then interact with an origin server to redeeem said token.
 
-In Privacy Pass, privacy partitioning is achieved by encryption (creating tokens that are cryptographically
-unlinkable) and separation of connections across two contexts: a "redemption context" between clients an origins
-(servers that request and receive tokens), and an "issuance context" between clients, attestation servers, and
-token issuance servers.
+In Privacy Pass, privacy partitioning is achieved with cryptographic protection (in the form of blind
+signature protocols or similar) and separation of connections across two contexts:
+a "redemption context" between clients an origins (servers that request and receive tokens), and an
+"issuance context" between clients, attestation servers, and token issuance servers. The cryptographic
+protection ensures that information revealed during the issuance context is separated from information
+revealed during the redemption context.
 
-TODO: Diagram of contexts in privacy pass
+~~~ aasvg
++-------------------------------------------------------------------+
+| Redemption Context                                                |
+|  +--------+         +--------+                                    |
+|  |        |         |        |                                    |
+|  | Origin |---------| Client |                                    |
+|  |        |         |        |                                    |
+|  +--------+         +--------+                                    |
+|                                                                   |
++-------------------------------------------------------------------+
+| Issuance Context                                                  |
+|                     +--------+      +----------+      +--------+  |
+|                     |        |      |          |      |        |  |
+|                     | Client |------| Attester |------| Issuer |  |
+|                     |        |      |          |      |        |  |
+|                     +--------+      +----------+      +--------+  |
+|                                                                   |
++-------------------------------------------------------------------+
+~~~
+{: #diagram-privacypass title="Diagram of contexts in Privacy Pass"}
 
-## DAP (PPM)
+## Privacy Preserving Measurement
 
-Distributed Aggregation Protocol (DAP) is a protocol being developed in the PPM working group to allow
-servers to collect aggregate metrics across a large population of clients, without learning individual
-data points about clients.
+The Privacy Preserving Measurement (PPM) working group is chartered to develop protocols and systems
+that help a data aggregation or collection server (or multiple, non-colluding servers) compute aggregate
+values without learning the value of any one client's individual measurement. Distributed Aggregation
+Protocol (DAP) is the primary working item of the group.
 
-TODO: Analysis of contexts
+At a high level, DAP uses a combination of cryptographic protection (in the form of secret sharing amongst
+non-colluding servers) to establish two contexts: an "upload context" between clients and non-colluding
+aggregation servers wherein aggregation servers possibly learn client identity but nothing about their individual
+measurement reports, and a "collect context" wherein a collector learns aggregate measurement results and nothing
+about individual client data.
 
-TODO: Diagram for DAP
+~~~ aasvg
++-------------------------------------+--------------------+
+| Upload Context                      | Collect Context    |
+|                     +------------+  |                    |
+|              +------>   Helper   |  |                    |
+| +--------+   |      +------^-----+  |                    |
+| |        +---+             |        |   +-----------+    |
+| | Client |                 |        |   | Collector |    |
+| |        +---+             |        |   +-----+-----+    |
+| +--------+   |      +------V-----+  |         |          |
+|              +------>   Leader   <------------+          |
+|                     +------------+  |                    |
++-------------------------------------+--------------------+
+~~~
+{: #pa-topology title="Diagram of contexts in DAP"}
+
+# Applying Privacy Partioning
+
+TODO: talk about how to think about new protocols that are using partitioning, the models that we derive from looking at the existing ones, how you recognize a protocol that's using this, and what tools do we have to evaluate it
+
+# Limits of Privacy Partitioning {#limits}
+
+Privacy Partitioning aims to increase user privacy, though as stated is not a panacea.
+The privacy properties depend on numerous factors, including, though not limited to:
+
+- Non-collusion across contexts; and
+- The type of information exposed in each context.
+
+We elaborate on each below.
+
+## Violations by Collusion
+
+Privacy partitions ensure that only the client, i.e., the entity which is responsible for partitioning,
+can link all user-specific information together up to collusion. No other entity individually
+knows how to link all the user-specific information as long as they do not collude with each other
+across contexts. This is why non-collusion is a fundamental requirement for privacy partitioning
+to offer meaningful privacy for end-users.
+
+As an example, consider OHTTP, wherein the Oblivious Relay knows the Client identity but not
+the Client data, and the Oblivious Gateway knows the Client data but not the Client identity.
+If the Oblivious Relay and Gateway collude, they can link Client identity and data together
+for each request and response transaction by simply observing the requests in transit.
+
+## Violations by Insufficient Partitioning
+
+It is possible to define contexts that contain more than one type of user-specific information,
+despite effort to do otherwise. As an example, consider OHTTP used for the purposes of hiding
+client-identifying information for a browser telemetry system. It is entirely possible for reports
+in such a telemetry system to contain both client-specific telemetry data, such as information
+about their specific browser instance, as well as client-identifying inforamtion, such as the client's
+location or IP address. Even though OHTTP separates the client IP address from the server via
+a relay, the server still learns this directly from the client.
+
+Other relevant examples of insufficient partitioning include TLS and Encrypted Client Hello (ECH) {{?I-D.ietf-tls-esni}}
+and VPNs. TLS and ECH use cryptographic protection (encryption) to hide information from unauthorized parties,
+but both clients and servers (two entities) can link user-specific data to user-specific identity (IP address).
+Similarly, while VPNs hide identity from end servers, the VPN server has still can see the identity of both the
+client and server. Applying privacy partitioning would advocate for at least two additional entities to avoid
+revealing both (identity (who) and user actions (what)) from each involved party.
+
+While straightforward violations of user privacy like this may seem straightforward to mitigate, it
+remains an open problem to determine whether a certain set of information reveals "too much" about a
+specific user. There is ample evidence of data being assumed "private" or "anonymous" but, in hindsight,
+winds up revealing too much information such that it allows one to link back to individual
+clients; see {{?DataSetReconstruction=DOI.10.1109/SP.2008.33}} and {{CensusReconstruction}}
+for more examples of this in the real world, and see {{security-considerations}} for more discussion.
 
 # Impacts of Partitioning
 
 Applying privacy partitioning to communication protocols lead to a substantial change in communication patterns.
-Instead of sending traffic directly to a service, essentially all user traffic is routed through a set of intermediaries.
-Information has has been observed passively in the network or metadata that has been unintentionally revealed to the service provider
-cannot be used anymore for e.g. existing security procedures such as access rate limiting or DDoS mitigation.
+For example, instead of sending traffic directly to a service, essentially all user traffic is routed through
+a set of intermediaries, possibly adding more end-to-end round trips in the process (depending on the system
+and protocol). This has a number of practical implications, described below.
 
-However, network management techniques deployed at present often rely on information that is exposed by most traffic but without any guarantees that the information is accurate. Privacy partitioning provides an opportunity for improvements in these management techniques by providing opportunities to actively exchange information with each entity in a privacy-preserving way and requesting exactly the information needed for a specific task or function rather then relying on assumption that are derived on a limited set of unintentionally revealed information which cannot be guaranteed to be present and may disappear any time in future.
+1. Service operational or management challenges. Information that is traditionally passively observed in the
+   network or metadata that has been unintentionally revealed to the service provider cannot be used anymore
+   for e.g. existing security procedures such as application rate limiting or DDoS mitigation.
+   However, network management techniques deployed at present often rely on information that is exposed by
+   most traffic but without any guarantees that the information is accurate. Privacy partitioning provides
+   an opportunity for improvements in these management techniques by providing opportunities to actively
+   exchange information with each entity in a privacy-preserving way and requesting exactly the information
+   needed for a specific task or function rather then relying on assumption that are derived on a limited
+   set of unintentionally revealed information which cannot be guaranteed to be present and may disappear
+   any time in future.
+
+1. Varying performance effects. Depending on how context separation is done, privacy partitioning may
+   affect application performance. As an example, Privacy Pass introduces an entire end-to-end round
+   trip to issue a token before it can be redeemed, thereby decreasing perormance. In contrast, while
+   systems like CONNECT proxying may seem like they would regress performance, often times the highly
+   optimized nature of proxy-to-proxy paths leads to improved perforamnce. In general, while performance
+   and privacy tradeoffs are often cast as a zero sum game, in reality this is often not the case.
 
 # Security Considerations
 
-In these models, only the client knows the fully joined set of information. No server individually knows how to join all the data as long as servers do not collude the data. Therefore, for privacy partitioning to be applicable there must always be a non-collusion assumption between all involved entities.
-
-Clients needs to be able to be explicit about what data they share (location, etc.) with which entity. All information shared need to be analysed based on its privacy-sensitivity and in relation to the entities/service it is shared with. In order to do this, clients need to be able to explicitly select different entities and hops over which to partition data. As a result, the client still needs to trust these entities to not collude but these entities also need to actively/more explicitly collude in order to rejoin data.
-
-TLS and ECH are good examples of using encryption to hide information from most parties, but in that case clients and servers (two entities) still can join all informations. VPNs hide identity from the server but the proxy has still the full information. Therefore privacy partitioning requires at least two additional entities to avoid revealing both (identity (who) and user actions (what)) from each involved party.
-
-Timing side-channels, etc, are still possible. They can of course be mitigated in very expensive ways by e.g. fuzzing the data, but it's important to point out that this general architecture doesn't prevent these attacks. It does, however, move the threat model to this kind of analysis rather than just looking at direct metadata.
-
+{{limits}} discusses some of the limitations of privacy partitioning in practice. In general,
+privacy is best viewed as a spectrum and not a binary state (private or not). Applied correctly,
+partitioning helps improve an end-users privacy posture, thereby making violations harder to
+do via technical, social, or policy means. For example, side channels such as traffic analysis
+{{?I-D.irtf-pearg-website-fingerprinting}} or timing analysis are still possible and can allow
+an unauthorized entity to learn information about a context they are not a participant of.
+Proposed mitigations for these types of attacks, e.g., padding application traffic or generating
+fake traffic, can be very expensive and are therefore not typically applied in practice.
+Nevertheless, privacy partitioning moves the threat vector from one that has direct access to
+user-specific information to one which requires more effort, e.g., computational resources,
+to violate end-user privacy.
 
 # IANA Considerations
 
