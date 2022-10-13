@@ -214,24 +214,6 @@ from observing both identities and correlating them. As such, preventing correla
 requires separating contexts, such as by using proxying to conceal a client IP address
 that would otherwise be used as an identifier.
 
-## Mitigating Collusion
-
-Partitioning aims to ensure that no single entity can gather information beyond the context
-that a user or client intends. It can make trivial correlation of data and identities difficult for
-a single entity. However, designing protocols to use partitioning cannot (alone) prevent
-tracking if entities across the different contexts collude and share data. Thus, partitioning is not a
-panacea, but rather a tool, and a necessary condition for meaningful privacy improvements.
-
-Other techniques that can be used to mitigate collusion include:
-
-- Policy and contractual agreements between entities involved in partitioning, to disallow
-logging or sharing of data, or to require auditing.
-
-- Protocol requirements to make collusion or data sharing more difficult.
-
-- Adding more partitions and contexts, to make it increasingly difficult to collude with
-enough parties to recover identities.
-
 # A Survey of Protocols using Partitioning
 
 The following section discusses currently on-going work in the IETF
@@ -454,7 +436,42 @@ about individual client data.
 
 # Applying Privacy Partioning
 
-TODO: talk about how to think about new protocols that are using partitioning, the models that we derive from looking at the existing ones, how you recognize a protocol that's using this, and what tools do we have to evaluate it
+Applying privacy partitioning to an existing or new system or protocol is a straightforward process.
+
+1. Identify all types of information used or exposed in a system or protocol, some of which may be user-identifying.
+1. Partition different types of user-identifying information across contexts to minimize the amount of
+   user-identifying information in any single context.
+
+The most impactful types of user-identifying information to partition are (a) user identity and (b) user data.
+For example, Oblivious DoH and Oblivious HTTP partition the client IP address and client request data into
+separate contexts, thereby ensuring that no entity beyond the client can observe both. Collusing across contexts
+may reverses this partition process, but can also promote non-user-identifying information to user-identifying.
+For example, in CONNECT proxy systems that use QUIC, the QUIC connection ID is inherently non-user-identifying
+since it is generated randomly {{QUIC, Section 5.1}}. However, if combined with another context that has user-identifying
+information such as the client IP address, the QUIC connection ID can become user-identifying information.
+
+This partitioning process is inherently imperfect, and can be applied incorrectly. Partitions may contain
+more user-identifying information than desired, or some information in a context may be more user-identifying
+than intended. Nevertheless, partitions can help improve the client's privacy posture when applied correctly.
+
+Evaluating and qualifying the resulting privacy of a system or protocol that applies privacy partitioning depends
+on the contexts that exist and types of user-identifying information in each context. Such evaluation is
+helpful for identifying ways in which systems or protocols can improve their privacy posture. For example,
+consider DNS-over-HTTPS {{?DOH=RFC8484}}, which produces a single context which contains both the client IP
+address and client query. One application of privacy partitioning results in ODoH, which produces two contexts,
+one with the client IP address and the other with the client query.
+
+Recognizing potential appliations of privacy partitoning requires identifying the contexts in use, the information
+exposed in a context, and the intent of information exposed in a context. Unfortunately, determing what
+information to include in a given context is a nontrivial task. In principle, the information contained
+in a context should be fit for purpose. As such, new systems or protocols developed should aim to
+ensure that all information exposed in a context serves as few purposes as possible. Designing with this
+principle from the start helps mitigate issues that arise if users of the system or protocol inadvertently
+ossify on the information available in contexts. Legacy systems that have ossified on information available
+in contexts may be difficult to change in practice. As an example, many existing anti-abuse systems
+depend on some notion of client identity such as client IP address, coupled with client data, to provide
+value. Partitioning contexts in these systems such that they no longer see the client identity requires new
+solutions to the anti-abuse problem.
 
 # Limits of Privacy Partitioning {#limits}
 
@@ -478,6 +495,15 @@ As an example, consider OHTTP, wherein the Oblivious Relay knows the Client iden
 the Client data, and the Oblivious Gateway knows the Client data but not the Client identity.
 If the Oblivious Relay and Gateway collude, they can link Client identity and data together
 for each request and response transaction by simply observing the requests in transit.
+
+Technical solutions that prevent collusion do not currently exist. However, there are some
+mitigations that can be applied to reduce the risk of it happening in practice:
+
+- Policy and contractual agreements between entities involved in partitioning, to disallow
+logging or sharing of data, or to require auditing.
+- Protocol requirements to make collusion or data sharing more difficult.
+- Adding more partitions and contexts, to make it increasingly difficult to collude with
+enough parties to recover identities.
 
 ## Violations by Insufficient Partitioning
 
