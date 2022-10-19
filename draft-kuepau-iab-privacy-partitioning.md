@@ -436,7 +436,7 @@ about individual client data.
 
 # Applying Privacy Partioning
 
-Applying privacy partitioning to an existing or new system or protocol is a straightforward process.
+Applying privacy partitioning to an existing or new system or protocol requires the following steps:
 
 1. Identify all types of information used or exposed in a system or protocol, some of which may be user-identifying.
 1. Partition different types of user-identifying information across contexts to minimize the amount of
