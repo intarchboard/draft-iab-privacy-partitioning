@@ -438,7 +438,7 @@ about individual client data.
 
 Applying privacy partitioning to an existing or new system or protocol requires the following steps:
 
-1. Identify the types of information used or exposed in a system or protocol, some of which can be used to identity a user or correlate to other contexts.
+1. Identify the types of information used or exposed in a system or protocol, some of which can be used to identify a user or correlate to other contexts.
 1. Partition different types of user-identifying or correlatable information across contexts to minimize the amount of
 user-identifying or correlatable information in any single context.
 
