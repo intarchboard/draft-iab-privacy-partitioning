@@ -450,7 +450,7 @@ For example, in CONNECT proxy systems that use QUIC, the QUIC connection ID is i
 since it is generated randomly {{QUIC, Section 5.1}}. However, if combined with another context that has user-identifying
 information such as the client IP address, the QUIC connection ID can become user-identifying information.
 
-This partitioning process is inherently imperfect, and can be applied incorrectly. Partitions may contain
+This partitioning process can be applied incorrectly or incompletely. Partitions may contain
 more user-identifying information than desired, or some information in a context may be more user-identifying
 than intended. Nevertheless, partitions can help improve the client's privacy posture when applied correctly.
 
