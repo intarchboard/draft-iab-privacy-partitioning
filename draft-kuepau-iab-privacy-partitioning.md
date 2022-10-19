@@ -452,7 +452,8 @@ information such as the client IP address, the QUIC connection ID can become use
 
 This partitioning process can be applied incorrectly or incompletely. Contexts may contain
 more user-identifying information than desired, or some information in a context may be more user-identifying
-than intended. Nevertheless, partitions can help improve the client's privacy posture when applied carefully.
+than intended. Moreover, splitting user-identifying information over multiple contexts has to be done with care, as creating more contexts can increase the number of entities that need to be trusted to not collude.
+Nevertheless, partitions can help improve the client's privacy posture when applied carefully.
 
 Evaluating and qualifying the resulting privacy of a system or protocol that applies privacy partitioning depends
 on the contexts that exist and types of user-identifying information in each context. Such evaluation is
