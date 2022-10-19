@@ -496,8 +496,9 @@ the Client data, and the Oblivious Gateway knows the Client data but not the Cli
 If the Oblivious Relay and Gateway collude, they can link Client identity and data together
 for each request and response transaction by simply observing the requests in transit.
 
-Technical solutions that prevent collusion do not currently exist. However, there are some
-mitigations that can be applied to reduce the risk of it happening in practice:
+It is not currently possible to guarantee with technical protocol measure that two
+entities are not colluding. However, there are some mitigations that can be applied
+to reduce the risk of collusion happening in practice:
 
 - Policy and contractual agreements between entities involved in partitioning, to disallow
 logging or sharing of data, or to require auditing.
