@@ -12,7 +12,7 @@ author:
  -
     fullname: Mirja Kühlewind
     organization: Ericsson Research
-    email: mirja.kühlewind@ericsson.com
+    email: mirja.kuehlewind@ericsson.com
  -
     fullname: Tommy Pauly
     organization: Apple
