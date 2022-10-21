@@ -439,8 +439,8 @@ about individual client data.
 Applying privacy partitioning to an existing or new system or protocol requires the following steps:
 
 1. Identify the types of information used or exposed in a system or protocol, some of which can be used to identify a user or correlate to other contexts.
-1. Partition different types of user-identifying or correlatable information across contexts to minimize the amount of
-user-identifying or correlatable information in any single context.
+1.  Separate user-identifying information from other user data in different contexts and reduce the amount of
+user-identifying or correlatable information in each context to the minimum needed to fulfil the intended function.
 
 The most impactful types of information to partition are (a) user identity or identities (such as an account name or IP address) that can be linked and (b) user data (such as the content a user is accessing), which can be often sensitive when combined with user identity. Note that user data can itself be user-identifying, in which case it should be treated as an identifier.
 For example, Oblivious DoH and Oblivious HTTP partition the client IP address and client request data into
