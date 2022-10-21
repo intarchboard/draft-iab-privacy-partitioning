@@ -446,7 +446,7 @@ For example, Oblivious DoH and Oblivious HTTP partition the client IP address an
 separate contexts, thereby ensuring that no entity beyond the client can observe both. Collusing across contexts
 may reverses this partition process, but can also promote non-user-identifying information to user-identifying.
 For example, in CONNECT proxy systems that use QUIC, the QUIC connection ID is inherently non-user-identifying
-since it is generated randomly {{QUIC, Section 5.1}}. However, if combined with another context that has user-identifying
+since it is generated randomly {{?QUIC=RFC9000, Section 5.1}}. However, if combined with another context that has user-identifying
 information such as the client IP address, the QUIC connection ID can become user-identifying information.
 
 This partitioning process can be applied incorrectly or incompletely. Contexts may contain
