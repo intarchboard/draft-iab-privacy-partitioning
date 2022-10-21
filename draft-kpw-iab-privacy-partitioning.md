@@ -4,7 +4,7 @@ abbrev: "Partitioning for Privacy"
 category: info
 stream: IAB
 
-docname: draft-kuepau-iab-privacy-partitioning-latest
+docname: draft-kpw-iab-privacy-partitioning-latest
 v: 3
 keyword: Internet-Draft
 
