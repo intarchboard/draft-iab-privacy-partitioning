@@ -128,7 +128,7 @@ As an example, consider an unencrypted HTTP session over TCP, wherein the contex
 content of the transaction as well as any metadata from the transport and IP headers; and the
 participants include the client, routers, other network middleboxes, intermediaries, and server.
 
-~~~ aasvg
+~~~
 +-------------------------------------------------------------------+
 | Context A                                                         |
 |  +--------+                +-----------+              +--------+  |
@@ -147,7 +147,7 @@ to the client, TLS-terminating intermediaries, and server; while the metadata in
 IP headers remain in the original context. In this scenario, without any further partitioning,
 the entities that participate in both contexts can allow the data in both contexts to be correlated.
 
-~~~ aasvg
+~~~
 +-------------------------------------------------------------------+
 | Context A                                                         |
 |  +--------+                                           +--------+  |
@@ -173,7 +173,7 @@ split two separate HTTP requests from one another, a client could issue the requ
 separate TCP connections, each on a different network, and at different times; and avoid
 including obvious identifiers like HTTP cookies across the requests.
 
-~~~ aasvg
+~~~
 +-------------------------------------------------------------------+
 | Context A                                                         |
 |  +--------+                +-----------+              +--------+  |
@@ -241,7 +241,7 @@ connection). There is also a Proxy-to-Target context; in case of MASQUE this con
 contains any (unprotected) packet header information that is added or modified by the proxy,
 e.g., the IP and UDP headers.
 
-~~~ aasvg
+~~~
 +-------------------------------------------------------------------+
 | Client-to-Target Context                                          |
 |  +--------+                +-----------+              +--------+  |
@@ -275,7 +275,7 @@ Using two (or more) proxies provides better privacy partitioning. In particular,
 each proxy sees the Client metadata, but not the Target; the Target, but not the Client
 metadata; or neither.
 
-~~~ aasvg
+~~~
 +-------------------------------------------------------------------+
 | Client-to-Target Context                                          |
 |  +--------+                           +-------+       +--------+  |
@@ -338,7 +338,7 @@ to note that the Relay-to-Gateway connection can be a single connection, even if
 separate Clients. This provides better anonymity by making the pseudonym presented by the Relay to
 be shared across many Clients.
 
-~~~ aasvg
+~~~
 +-------------------------------------------------------------------+
 | Client-to-Target Context                                          |
 |  +--------+                           +---------+     +--------+  |
@@ -387,7 +387,7 @@ a "redemption context" between clients an origins (servers that request and rece
 protection ensures that information revealed during the issuance context is separated from information
 revealed during the redemption context.
 
-~~~ aasvg
+~~~
 +-------------------------------------------------------------------+
 | Redemption Context                                                |
 |  +--------+         +--------+                                    |
@@ -421,7 +421,7 @@ aggregation servers wherein aggregation servers possibly learn client identity b
 measurement reports, and a "collect context" wherein a collector learns aggregate measurement results and nothing
 about individual client data.
 
-~~~ aasvg
+~~~
 +-------------------------------------+--------------------+
 | Upload Context                      | Collect Context    |
 |                     +------------+  |                    |
