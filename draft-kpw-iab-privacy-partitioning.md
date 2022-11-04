@@ -553,7 +553,7 @@ and protocol). This has a number of practical implications, described below.
 
 1. Varying performance effects. Depending on how context separation is done, privacy partitioning may
    affect application performance. As an example, Privacy Pass introduces an entire end-to-end round
-   trip to issue a token before it can be redeemed, thereby decreasing perormance. In contrast, while
+   trip to issue a token before it can be redeemed, thereby decreasing performance. In contrast, while
    systems like CONNECT proxying may seem like they would regress performance, often times the highly
    optimized nature of proxy-to-proxy paths leads to improved perforamnce. In general, while performance
    and privacy tradeoffs are often cast as a zero sum game, in reality this is often not the case.
