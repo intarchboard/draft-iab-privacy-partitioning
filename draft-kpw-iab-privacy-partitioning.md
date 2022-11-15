@@ -128,13 +128,13 @@ As an example, consider an unencrypted HTTP session over TCP, wherein the contex
 content of the transaction as well as any metadata from the transport and IP headers; and the
 participants include the client, routers, other network middleboxes, intermediaries, and server.
 
-~~~
+~~~ aasvg
 +-------------------------------------------------------------------+
 | Context A                                                         |
 |  +--------+                +-----------+              +--------+  |
-|  |        |------HTTP------|           |--------------|        |  |
+|  |        +------HTTP------+           +--------------+        |  |
 |  | Client |                | Middlebox |              | Server |  |
-|  |        |------TCP-------|           |--------------|        |  |
+|  |        +------TCP-------+           +--------------+        |  |
 |  +--------+      flow      +-----------+              +--------+  |
 |                                                                   |
 +-------------------------------------------------------------------+
@@ -147,12 +147,12 @@ to the client, TLS-terminating intermediaries, and server; while the metadata in
 IP headers remain in the original context. In this scenario, without any further partitioning,
 the entities that participate in both contexts can allow the data in both contexts to be correlated.
 
-~~~
+~~~ aasvg
 +-------------------------------------------------------------------+
 | Context A                                                         |
 |  +--------+                                           +--------+  |
 |  |        |                                           |        |  |
-|  | Client |-------------------HTTPS-------------------| Server |  |
+|  | Client +-------------------HTTPS-------------------+ Server |  |
 |  |        |                                           |        |  |
 |  +--------+                                           +--------+  |
 |                                                                   |
@@ -160,7 +160,7 @@ the entities that participate in both contexts can allow the data in both contex
 | Context B                                                         |
 |  +--------+                +-----------+              +--------+  |
 |  |        |                |           |              |        |  |
-|  | Client |-------TCP------| Middlebox |--------------| Server |  |
+|  | Client +-------TCP------+ Middlebox +--------------+ Server |  |
 |  |        |       flow     |           |              |        |  |
 |  +--------+                +-----------+              +--------+  |
 |                                                                   |
@@ -173,21 +173,21 @@ split two separate HTTP requests from one another, a client could issue the requ
 separate TCP connections, each on a different network, and at different times; and avoid
 including obvious identifiers like HTTP cookies across the requests.
 
-~~~
+~~~ aasvg
 +-------------------------------------------------------------------+
 | Context A                                                         |
 |  +--------+                +-----------+              +--------+  |
 |  |        | IP A           |           |              |        |  |
-|  | Client |-------TCP------| Middlebox |--------------| Server |  |
-|  |        |       flow A   |     A     |              |        |  |
+|  | Client +-------TCP------+ Middlebox +--------------+ Server |  |
+|  |        |      flow A    |     A     |              |        |  |
 |  +--------+                +-----------+              +--------+  |
 |                                                                   |
 +-------------------------------------------------------------------+
 | Context B                                                         |
 |  +--------+                +-----------+              +--------+  |
 |  |        | IP B           |           |              |        |  |
-|  | Client |-------TCP------| Middlebox |--------------| Server |  |
-|  |        |       flow B   |     B     |              |        |  |
+|  | Client +-------TCP------+ Middlebox +--------------+ Server |  |
+|  |        |      flow B    |     B     |              |        |  |
 |  +--------+                +-----------+              +--------+  |
 |                                                                   |
 +-------------------------------------------------------------------+
@@ -241,12 +241,12 @@ connection). There is also a Proxy-to-Target context; in case of MASQUE this con
 contains any (unprotected) packet header information that is added or modified by the proxy,
 e.g., the IP and UDP headers.
 
-~~~
+~~~ aasvg
 +-------------------------------------------------------------------+
 | Client-to-Target Context                                          |
 |  +--------+                +-----------+              +--------+  |
 |  |        |                |           |              |        |  |
-|  | Client |----Proxied-----|   Proxy   |--------------| Server |  |
+|  | Client +----Proxied-----+   Proxy   +--------------+ Server |  |
 |  |        |      flow      |           |              |        |  |
 |  +--------+                +-----------+              +--------+  |
 |                                                                   |
@@ -254,7 +254,7 @@ e.g., the IP and UDP headers.
 | Client-to-Proxy Context                                           |
 |  +--------+                +-----------+                          |
 |  |        |                |           |                          |
-|  | Client |---Transport----|   Proxy   |                          |
+|  | Client +---Transport----+   Proxy   |                          |
 |  |        |     flow       |           |                          |
 |  +--------+                +-----------+                          |
 |                                                                   |
@@ -262,7 +262,7 @@ e.g., the IP and UDP headers.
 | Proxy-to-Target Context                                           |
 |                            +-----------+              +--------+  |
 |                            |           |              |        |  |
-|                            |   Proxy   |--Transport---| Server |  |
+|                            |   Proxy   +--Transport---+ Server |  |
 |                            |           |    flow      |        |  |
 |                            +-----------+              +--------+  |
 |                                                                   |
@@ -275,12 +275,12 @@ Using two (or more) proxies provides better privacy partitioning. In particular,
 each proxy sees the Client metadata, but not the Target; the Target, but not the Client
 metadata; or neither.
 
-~~~
+~~~ aasvg
 +-------------------------------------------------------------------+
 | Client-to-Target Context                                          |
 |  +--------+                           +-------+       +--------+  |
 |  |        |                           |       |       |        |  |
-|  | Client |----------Proxied----------| Proxy |-------| Server |  |
+|  | Client +----------Proxied----------+ Proxy +-------+ Server |  |
 |  |        |           flow            |   B   |       |        |  |
 |  +--------+                           +-------+       +--------+  |
 |                                                                   |
@@ -288,7 +288,7 @@ metadata; or neither.
 | Client-to-Proxy B Context                                         |
 |  +--------+         +-------+         +-------+                   |
 |  |        |         |       |         |       |                   |
-|  | Client |---------| Proxy |---------| Proxy |                   |
+|  | Client +---------+ Proxy +---------+ Proxy |                   |
 |  |        |         |   A   |         |   B   |                   |
 |  +--------+         +-------+         +-------+                   |
 |                                                                   |
@@ -296,7 +296,7 @@ metadata; or neither.
 | Client-to-Proxy A Context                                         |
 |  +--------+         +-------+                                     |
 |  |        |         |       |                                     |
-|  | Client |---------| Proxy |                                     |
+|  | Client +---------+ Proxy |                                     |
 |  |        |         |   A   |                                     |
 |  +--------+         +-------+                                     |
 |                                                                   |
@@ -304,7 +304,7 @@ metadata; or neither.
 | Proxy A-to-Proxy B Context                                        |
 |                     +-------+         +-------+                   |
 |                     |       |         |       |                   |
-|                     | Proxy |---------| Proxy |                   |
+|                     | Proxy +---------+ Proxy |                   |
 |                     |   A   |         |   B   |                   |
 |                     +-------+         +-------+                   |
 |                                                                   |
@@ -312,7 +312,7 @@ metadata; or neither.
 | Proxy B-to-Target Context                                         |
 |                                       +-------+       +--------+  |
 |                                       |       |       |        |  |
-|                                       | Proxy |-------| Server |  |
+|                                       | Proxy +-------+ Server |  |
 |                                       |   B   |       |        |  |
 |                                       +-------+       +--------+  |
 |                                                                   |
@@ -338,12 +338,12 @@ to note that the Relay-to-Gateway connection can be a single connection, even if
 separate Clients. This provides better anonymity by making the pseudonym presented by the Relay to
 be shared across many Clients.
 
-~~~
+~~~ aasvg
 +-------------------------------------------------------------------+
 | Client-to-Target Context                                          |
 |  +--------+                           +---------+     +--------+  |
 |  |        |                           |         |     |        |  |
-|  | Client |---------------------------| Gateway |-----| Target |  |
+|  | Client +---------------------------+ Gateway +-----+ Target |  |
 |  |        |                           |         |     |        |  |
 |  +--------+                           +---------+     +--------+  |
 |                                                                   |
@@ -351,7 +351,7 @@ be shared across many Clients.
 | Client-to-Gateway Context                                         |
 |  +--------+         +-------+         +---------+                 |
 |  |        |         |       |         |         |                 |
-|  | Client |---------| Relay |---------| Gateway |                 |
+|  | Client +---------+ Relay +---------+ Gateway |                 |
 |  |        |         |       |         |         |                 |
 |  +--------+         +-------+         +---------+                 |
 |                                                                   |
@@ -359,7 +359,7 @@ be shared across many Clients.
 | Client-to-Relay Context                                           |
 |  +--------+         +-------+                                     |
 |  |        |         |       |                                     |
-|  | Client |---------| Relay |                                     |
+|  | Client +---------+ Relay |                                     |
 |  |        |         |       |                                     |
 |  +--------+         +-------+                                     |
 |                                                                   |
@@ -387,12 +387,12 @@ a "redemption context" between clients an origins (servers that request and rece
 protection ensures that information revealed during the issuance context is separated from information
 revealed during the redemption context.
 
-~~~
+~~~ aasvg
 +-------------------------------------------------------------------+
 | Redemption Context                                                |
 |  +--------+         +--------+                                    |
 |  |        |         |        |                                    |
-|  | Origin |---------| Client |                                    |
+|  | Origin +---------+ Client |                                    |
 |  |        |         |        |                                    |
 |  +--------+         +--------+                                    |
 |                                                                   |
@@ -400,7 +400,7 @@ revealed during the redemption context.
 | Issuance Context                                                  |
 |                     +--------+      +----------+      +--------+  |
 |                     |        |      |          |      |        |  |
-|                     | Client |------| Attester |------| Issuer |  |
+|                     | Client +------+ Attester +------+ Issuer |  |
 |                     |        |      |          |      |        |  |
 |                     +--------+      +----------+      +--------+  |
 |                                                                   |
@@ -421,17 +421,17 @@ aggregation servers wherein aggregation servers possibly learn client identity b
 measurement reports, and a "collect context" wherein a collector learns aggregate measurement results and nothing
 about individual client data.
 
-~~~
+~~~ aasvg
 +-------------------------------------+--------------------+
 | Upload Context                      | Collect Context    |
 |                     +------------+  |                    |
-|              +------>   Helper   |  |                    |
-| +--------+   |      +------^-----+  |                    |
-| |        +---+             |        |   +-----------+    |
+|              +----->|   Helper   |  |                    |
+| +--------+   |      +------------+  |                    |
+| |        +---+             ^        |   +-----------+    |
 | | Client |                 |        |   | Collector |    |
-| |        +---+             |        |   +-----+-----+    |
-| +--------+   |      +------V-----+  |         |          |
-|              +------>   Leader   <------------+          |
+| |        +---+             v        |   +-----+-----+    |
+| +--------+   |      +------------+  |         |          |
+|              +----->|   Leader   |<-----------+          |
 |                     +------------+  |                    |
 +-------------------------------------+--------------------+
 ~~~

@@ -9,8 +9,10 @@
 .tags
 .targets.mk
 /*-[0-9][0-9].xml
+/node_modules/
+/package-lock.json
 archive.json
-draft-kuepau-iab-obliviousness.xml
+draft-kpw-iab-privacy-partitioning.xml
 lib
 report.xml
 venv/
