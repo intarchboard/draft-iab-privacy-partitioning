@@ -113,15 +113,16 @@ does not participate in more than one context where the information is visible.
 {{?RFC6973}} discusses the importance of identifiers in reducing correlation as a way
 of improving privacy:
 
-"Correlation is the combination of various pieces of information related to an individual
-or that obtain that characteristic when combined... Correlation is closely related to
-identification.  Internet protocols can facilitate correlation by allowing individuals'
-activities to be tracked and combined over time."
-
-"Pseudonymity is strengthened when less personal data can be linked to the pseudonym; when
-the same pseudonym is used less often and across fewer contexts; and when independently
-chosen pseudonyms are more frequently used for new actions (making them, from an observer's or
-attacker's perspective, unlinkable)."
+{:quote}
+> Correlation is the combination of various pieces of information related to an individual
+> or that obtain that characteristic when combined... Correlation is closely related to
+> identification.  Internet protocols can facilitate correlation by allowing individuals'
+> activities to be tracked and combined over time.
+>
+> Pseudonymity is strengthened when less personal data can be linked to the pseudonym; when
+> the same pseudonym is used less often and across fewer contexts; and when independently
+> chosen pseudonyms are more frequently used for new actions (making them, from an observer's or
+> attacker's perspective, unlinkable).
 
 Context separation is foundational to privacy partitioning and reducing correlation.
 As an example, consider an unencrypted HTTP session over TCP, wherein the context includes both the
