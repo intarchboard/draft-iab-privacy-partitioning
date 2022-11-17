@@ -203,7 +203,7 @@ in order to prevent correlation of user-specific information across contexts, pa
 to ensure that any single entity (other than the client itself) does not participate in contexts
 where both identities are visible.
 
-Context separation can be achieved in different ways, e.g. over time, across network paths, based
+Context separation can be achieved in different ways, for example, over time, across network paths, based
 on (en)coding, etc. The privacy-oriented protocols described in this document generally involve
 more complex partitioning, but the techniques to partition communication contexts still employ the
 same techniques:
@@ -543,7 +543,7 @@ and protocol). This has a number of practical implications, described below.
 
 1. Service operational or management challenges. Information that is traditionally passively observed in the
    network or metadata that has been unintentionally revealed to the service provider cannot be used anymore
-   for e.g. existing security procedures such as application rate limiting or DDoS mitigation.
+   for e.g., existing security procedures such as application rate limiting or DDoS mitigation.
    However, network management techniques deployed at present often rely on information that is exposed by
    most traffic but without any guarantees that the information is accurate. Privacy partitioning provides
    an opportunity for improvements in these management techniques by providing opportunities to actively
