@@ -370,7 +370,7 @@ be shared across many Clients.
 
 Oblivious DNS over HTTPS {{?ODOH=RFC9230}} applies the same principle as Oblivious HTTP, but operates on
 DNS messages only. As a precursor to the more generalized Oblivious HTTP, it relies on the same
-HPKE cryptographic primatives, and can be analyzed in the same way.
+HPKE cryptographic primitives, and can be analyzed in the same way.
 
 ## Privacy Pass
 
