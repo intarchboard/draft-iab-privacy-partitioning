@@ -447,10 +447,10 @@ Applying privacy partitioning to an existing or new system or protocol requires 
 
 The most impactful types of information to partition are (a) user identity or identities (such as an account name or IP address) that can be linked and (b) user data (such as the content a user is accessing), which can be often sensitive when combined with user identity. Note that user data can itself be user-identifying, in which case it should be treated as an identifier.
 For example, Oblivious DoH and Oblivious HTTP partition the client IP address and client request data into
-separate contexts, thereby ensuring that no entity beyond the client can observe both. Collusing across contexts
-may reverses this partition process, but can also promote non-user-identifying information to user-identifying.
+separate contexts, thereby ensuring that no entity beyond the client can observe both. Collusion across contexts
+could reverse this partitioning, but can also promote non-user-identifying information to user-identifying.
 For example, in CONNECT proxy systems that use QUIC, the QUIC connection ID is inherently non-user-identifying
-since it is generated randomly {{?QUIC=RFC9000, Section 5.1}}. However, if combined with another context that has user-identifying
+since it is generated randomly ({{?QUIC=RFC9000, Section 5.1}}). However, if combined with another context that has user-identifying
 information such as the client IP address, the QUIC connection ID can become user-identifying information.
 
 This partitioning process can be applied incorrectly or incompletely. Contexts may contain
