@@ -53,7 +53,7 @@ themselves. In recent years, privacy requirements have expanded beyond the need 
 between two endpoints. Some examples of this expansion include:
 
 - A user accessing a service on a website might not consent to reveal their location,
-but if that service is able to observe the client's IP address, it can learn inforamtion
+but if that service is able to observe the client's IP address, it can learn something
 about the user's location. This is problematic for privacy since the service can link
 user data to the user's location.
 
