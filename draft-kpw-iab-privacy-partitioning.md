@@ -53,7 +53,7 @@ themselves. In recent years, privacy requirements have expanded beyond the need 
 between two endpoints. Some examples of this expansion include:
 
 - A user accessing a service on a website might not consent to reveal their location,
-but if that service is able to observe the client's IP address, it can learn inforamtion
+but if that service is able to observe the client's IP address, it can learn something
 about the user's location. This is problematic for privacy since the service can link
 user data to the user's location.
 
@@ -113,15 +113,16 @@ does not participate in more than one context where the information is visible.
 {{?RFC6973}} discusses the importance of identifiers in reducing correlation as a way
 of improving privacy:
 
-"Correlation is the combination of various pieces of information related to an individual
-or that obtain that characteristic when combined... Correlation is closely related to
-identification.  Internet protocols can facilitate correlation by allowing individuals'
-activities to be tracked and combined over time."
-
-"Pseudonymity is strengthened when less personal data can be linked to the pseudonym; when
-the same pseudonym is used less often and across fewer contexts; and when independently
-chosen pseudonyms are more frequently used for new actions (making them, from an observer's or
-attacker's perspective, unlinkable)."
+{:quote}
+> Correlation is the combination of various pieces of information related to an individual
+> or that obtain that characteristic when combined... Correlation is closely related to
+> identification.  Internet protocols can facilitate correlation by allowing individuals'
+> activities to be tracked and combined over time.
+>
+> Pseudonymity is strengthened when less personal data can be linked to the pseudonym; when
+> the same pseudonym is used less often and across fewer contexts; and when independently
+> chosen pseudonyms are more frequently used for new actions (making them, from an observer's or
+> attacker's perspective, unlinkable).
 
 Context separation is foundational to privacy partitioning and reducing correlation.
 As an example, consider an unencrypted HTTP session over TCP, wherein the context includes both the
@@ -202,7 +203,7 @@ in order to prevent correlation of user-specific information across contexts, pa
 to ensure that any single entity (other than the client itself) does not participate in contexts
 where both identities are visible.
 
-Context separation can be achieved in different ways, e.g. over time, across network paths, based
+Context separation can be achieved in different ways, for example, over time, across network paths, based
 on (en)coding, etc. The privacy-oriented protocols described in this document generally involve
 more complex partitioning, but the techniques to partition communication contexts still employ the
 same techniques:
@@ -369,7 +370,7 @@ be shared across many Clients.
 
 Oblivious DNS over HTTPS {{?ODOH=RFC9230}} applies the same principle as Oblivious HTTP, but operates on
 DNS messages only. As a precursor to the more generalized Oblivious HTTP, it relies on the same
-HPKE cryptographic primatives, and can be analyzed in the same way.
+HPKE cryptographic primitives, and can be analyzed in the same way.
 
 ## Privacy Pass
 
@@ -446,10 +447,10 @@ Applying privacy partitioning to an existing or new system or protocol requires 
 
 The most impactful types of information to partition are (a) user identity or identities (such as an account name or IP address) that can be linked and (b) user data (such as the content a user is accessing), which can be often sensitive when combined with user identity. Note that user data can itself be user-identifying, in which case it should be treated as an identifier.
 For example, Oblivious DoH and Oblivious HTTP partition the client IP address and client request data into
-separate contexts, thereby ensuring that no entity beyond the client can observe both. Collusing across contexts
-may reverses this partition process, but can also promote non-user-identifying information to user-identifying.
+separate contexts, thereby ensuring that no entity beyond the client can observe both. Collusion across contexts
+could reverse this partitioning, but can also promote non-user-identifying information to user-identifying.
 For example, in CONNECT proxy systems that use QUIC, the QUIC connection ID is inherently non-user-identifying
-since it is generated randomly {{?QUIC=RFC9000, Section 5.1}}. However, if combined with another context that has user-identifying
+since it is generated randomly ({{?QUIC=RFC9000, Section 5.1}}). However, if combined with another context that has user-identifying
 information such as the client IP address, the QUIC connection ID can become user-identifying information.
 
 This partitioning process can be applied incorrectly or incompletely. Contexts may contain
@@ -542,7 +543,7 @@ and protocol). This has a number of practical implications, described below.
 
 1. Service operational or management challenges. Information that is traditionally passively observed in the
    network or metadata that has been unintentionally revealed to the service provider cannot be used anymore
-   for e.g. existing security procedures such as application rate limiting or DDoS mitigation.
+   for e.g., existing security procedures such as application rate limiting or DDoS mitigation.
    However, network management techniques deployed at present often rely on information that is exposed by
    most traffic but without any guarantees that the information is accurate. Privacy partitioning provides
    an opportunity for improvements in these management techniques by providing opportunities to actively
