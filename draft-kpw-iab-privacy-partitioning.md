@@ -248,7 +248,7 @@ e.g., the IP and UDP headers.
 | Client-to-Target Context                                          |
 |  +--------+                +-----------+              +--------+  |
 |  |        |                |           |              |        |  |
-|  | Client +----Proxied-----+   Proxy   +--------------+ Traget |  |
+|  | Client +----Proxied-----+   Proxy   +--------------+ Target |  |
 |  |        |      flow      |           |              |        |  |
 |  +--------+                +-----------+              +--------+  |
 |                                                                   |
@@ -282,7 +282,7 @@ metadata; or neither.
 | Client-to-Target Context                                          |
 |  +--------+                           +-------+       +--------+  |
 |  |        |                           |       |       |        |  |
-|  | Client +----------Proxied----------+ Proxy +-------+ Traget |  |
+|  | Client +----------Proxied----------+ Proxy +-------+ Target |  |
 |  |        |           flow            |   B   |       |        |  |
 |  +--------+                           +-------+       +--------+  |
 |                                                                   |
