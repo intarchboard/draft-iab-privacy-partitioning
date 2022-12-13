@@ -229,7 +229,8 @@ that is applying privacy partitioning.
 HTTP forward proxies, when using encryption, provide privacy partitioning by separating
 a connection into multiple segments. When connections over the proxy themselves are encrypted,
 the proxy cannot see the end-to-end content. HTTP has historically supported forward proxying
-for TCP-like streams via the CONNECT method. More recently, the MASQUE working group has developed
+for TCP-like streams via the CONNECT method. More recently, the Multiplexed Application
+Substrate over QUIC Encryption (MASQUE) working group has developed
 protocols to similarly proxy UDP {{?CONNECT-UDP=RFC9297}} and IP packets
 {{?CONNECT-IP=I-D.ietf-masque-connect-ip}} based on tunneling.
 
@@ -247,7 +248,7 @@ e.g., the IP and UDP headers.
 | Client-to-Target Context                                          |
 |  +--------+                +-----------+              +--------+  |
 |  |        |                |           |              |        |  |
-|  | Client +----Proxied-----+   Proxy   +--------------+ Server |  |
+|  | Client +----Proxied-----+   Proxy   +--------------+ Traget |  |
 |  |        |      flow      |           |              |        |  |
 |  +--------+                +-----------+              +--------+  |
 |                                                                   |
@@ -263,7 +264,7 @@ e.g., the IP and UDP headers.
 | Proxy-to-Target Context                                           |
 |                            +-----------+              +--------+  |
 |                            |           |              |        |  |
-|                            |   Proxy   +--Transport---+ Server |  |
+|                            |   Proxy   +--Transport---+ Target |  |
 |                            |           |    flow      |        |  |
 |                            +-----------+              +--------+  |
 |                                                                   |
@@ -281,7 +282,7 @@ metadata; or neither.
 | Client-to-Target Context                                          |
 |  +--------+                           +-------+       +--------+  |
 |  |        |                           |       |       |        |  |
-|  | Client +----------Proxied----------+ Proxy +-------+ Server |  |
+|  | Client +----------Proxied----------+ Proxy +-------+ Traget |  |
 |  |        |           flow            |   B   |       |        |  |
 |  +--------+                           +-------+       +--------+  |
 |                                                                   |
@@ -313,7 +314,7 @@ metadata; or neither.
 | Proxy B-to-Target Context                                         |
 |                                       +-------+       +--------+  |
 |                                       |       |       |        |  |
-|                                       | Proxy +-------+ Server |  |
+|                                       | Proxy +-------+ Target |  |
 |                                       |   B   |       |        |  |
 |                                       +-------+       +--------+  |
 |                                                                   |
@@ -326,7 +327,8 @@ separation of connections (via proxy hops that see only the next hop) to achieve
 
 ## Oblivious HTTP and DNS
 
-Oblivious HTTP {{?OHTTP=I-D.ietf-ohai-ohttp}}, developed in the OHAI working group, adds per-message
+Oblivious HTTP {{?OHTTP=I-D.ietf-ohai-ohttp}}, developed in the Oblivious HTTP Application
+Intermediation (OHAI) working group, adds per-message
 encryption to HTTP exchanges through a relay system. Clients send requests through an Oblivious Relay,
 which cannot read message contents, to an Oblivious Gateway, which can decrypt the messages but
 cannot communicate directly with the client or observe client metadata like IP address.
