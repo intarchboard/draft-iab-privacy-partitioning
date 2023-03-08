@@ -200,7 +200,7 @@ the ability of specific parties to correlate activity across contexts. However,
 any identifier at any layer that is common across different contexts can be
 used as a way to correlate activity. Beyond IP addresses, many other factors
 can be used together to create a fingerprint of a specific device (such as
-MAC addresses, device properties, software properties and behavior, etc).
+MAC addresses, device properties, software properties and behavior, application state, etc).
 
 ## Context Separation
 
