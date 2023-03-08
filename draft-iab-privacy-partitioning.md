@@ -564,7 +564,7 @@ and protocol). This has a number of practical implications, described below.
    optimized nature of proxy-to-proxy paths leads to improved perforamnce.
 
    Performance may also push back against the desire to apply privacy partitioning. For example, HTTPS
-   connection reuse {{?HTTP2=9113, Section 9.1.1}} allows clients to use an existing HTTPS session created
+   connection reuse {{?HTTP2=RFC9113, Section 9.1.1}} allows clients to use an existing HTTPS session created
    for one origin to interact with different origins (provided the original origin is authoritative for
    these alternative origins). Reusing connections saves the cost of connection establishment, but means that
    the server can now link the client's activity with these two or more origins together. Applying privacy
