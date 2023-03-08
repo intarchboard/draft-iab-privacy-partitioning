@@ -224,7 +224,7 @@ that would otherwise be used as an identifier.
 The following section discusses currently on-going work in the IETF
 that is applying privacy partitioning.
 
-## CONNECT Proxying and MASQUE
+## CONNECT Proxying and MASQUE {#masque}
 
 HTTP forward proxies, when using encryption on the connection between the client and the
 proxy, provide privacy partitioning by separating a connection into multiple segments.
@@ -536,7 +536,16 @@ remains an open problem to determine whether a certain set of information reveal
 specific user. There is ample evidence of data being assumed "private" or "anonymous" but, in hindsight,
 winds up revealing too much information such that it allows one to link back to individual
 clients; see {{?DataSetReconstruction=DOI.10.1109/SP.2008.33}} and {{CensusReconstruction}}
-for more examples of this in the real world, and see {{security-considerations}} for more discussion.
+for more examples of this in the real world.
+
+Beyond information that is intentionally revealed by applying privacy partitioning, it is also possible
+for information to be unintentionally revealed through side channels. For example, in the two-hop
+proxy arrangement described in {{masque}}, Proxy A sees and proxies TLS data between the client and
+Proxy B. While it does not directly learn information that Proxy B sees, it does learn information through
+metadata, such as the timing and size of encrypted data being proxied. Traffic analysis could be exploited
+to learn more information from such metadata, including, in some cases, application data that Proxy A was
+never meant to see. Although privacy partitioning does not obviate such attacks, it does increase the cost
+necessary to carry them out in practice. See {{security-considerations}} for more discussion on this topic.
 
 # Impacts of Partitioning
 
