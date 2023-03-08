@@ -195,6 +195,13 @@ including obvious identifiers like HTTP cookies across the requests.
 ~~~
 {: #diagram-dualconnect title="Diagram of making separate connections to generate separate contexts"}
 
+Using separate connections to create separate contexts can reduce or eliminate
+the ability of specific parties to correlate activity across contexts. However,
+any identifier at any layer that is common across different contexts can be
+used as a way to correlate activity. Beyond IP addresses, many other factors
+can be used together to create a fingerprint of a specific device (such as
+MAC addresses, device properties, software properties and behavior, etc).
+
 ## Context Separation
 
 In order to define and analyze how various partitioning techniques work, the boundaries of what is
