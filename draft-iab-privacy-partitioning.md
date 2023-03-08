@@ -226,8 +226,9 @@ that is applying privacy partitioning.
 
 ## CONNECT Proxying and MASQUE
 
-HTTP forward proxies, when using encryption, provide privacy partitioning by separating
-a connection into multiple segments. When connections over the proxy themselves are encrypted,
+HTTP forward proxies, when using encryption on the connection between the client and the
+proxy, provide privacy partitioning by separating a connection into multiple segments.
+When connections to targets via the proxy themselves are encrypted,
 the proxy cannot see the end-to-end content. HTTP has historically supported forward proxying
 for TCP-like streams via the CONNECT method. More recently, the Multiplexed Application
 Substrate over QUIC Encryption (MASQUE) working group has developed
