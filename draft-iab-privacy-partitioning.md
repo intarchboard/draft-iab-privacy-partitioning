@@ -73,7 +73,8 @@ separating the user-specific identity information from user-specific data is nec
 privacy. Thus, order to protect user privacy, it is important to keep identity (who) and data
 (what) separate.
 
-This document defines "privacy partitioning" as the general technique used to separate the data
+This document defines "privacy partitioning," sometimes also referred to as the "decoupling principle"
+{{?DECOUPLING=DOI.10.1145/3563766.3564112}}, as the general technique used to separate the data
 and metadata visible to various parties in network communication, with the aim of improving
 user privacy. Partitioning is a spectrum and not a panacea. It is difficult to guarantee there
 is no link between user-specific identity and user-specific data. However, applied properly,
