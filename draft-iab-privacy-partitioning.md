@@ -235,23 +235,38 @@ Substrate over QUIC Encryption (MASQUE) working group has developed
 protocols to similarly proxy UDP {{?CONNECT-UDP=RFC9297}} and IP packets
 {{?CONNECT-IP=I-D.ietf-masque-connect-ip}} based on tunneling.
 
-In a single-proxy setup there is a tunnel connection between the client and proxy and an end-to-end connection that is tunnelled between the client and target. This setup, as shown in the figure below, partitions
-communication into a Client-to-Proxy context (the transport
-metadata between the client and the target, and the request to the proxy to open a connection
-to the target),
-and a Client-to-Target context (the end-to-end data, which generally would be a TLS-encrypted
-connection). There is also a Proxy-to-Target context; for TCP and UDP proxying, this context
+In a single-proxy setup there is a tunnel connection between the client and proxy and
+an end-to-end connection that is tunnelled between the client and target. This setup,
+as shown in the figure below, partitions communication into:
+
+- a Client-to-Proxy context, which contains the transport metadata between the client
+and the target, and the request to the proxy to open a connection to the target;
+
+- a Client-to-Target proxied context, which is the end-to-end data to the target that is
+also visible to the proxy, such as a TLS session;
+
+- a Client-to-Target encrypted context, which contains the end-to-end content
+with the TLS session to the target, such as HTTP content;
+
+- and a Proxy-to-Target context, which for TCP and UDP proxying
 contains any packet header information that is added or modified by the proxy,
-e.g., the IP and TCP/UDP headers, along with the tunnelled content that is
-exchanged with the target over those TCP/UDP flows.
+e.g., the IP and TCP/UDP headers.
 
 ~~~ aasvg
 +-------------------------------------------------------------------+
-| Client-to-Target Context                                          |
+| Client-to-Target Encrypted Context                                |
+|  +--------+                                           +--------+  |
+|  |        |                                           |        |  |
+|  | Client +------------------HTTPS--------------------+ Target |  |
+|  |        |                 content                   |        |  |
+|  +--------+                                           +--------+  |
+|                                                                   |
++-------------------------------------------------------------------+
+| Client-to-Target Proxied Context                                  |
 |  +--------+                +-----------+              +--------+  |
 |  |        |                |           |              |        |  |
 |  | Client +----Proxied-----+   Proxy   +--------------+ Target |  |
-|  |        |      flow      |           |              |        |  |
+|  |        |    TLS flow    |           |              |        |  |
 |  +--------+                +-----------+              +--------+  |
 |                                                                   |
 +-------------------------------------------------------------------+
@@ -281,11 +296,19 @@ metadata; or neither.
 
 ~~~ aasvg
 +-------------------------------------------------------------------+
-| Client-to-Target Context                                          |
+| Client-to-Target Encrypted Context                                |
+|  +--------+                                           +--------+  |
+|  |        |                                           |        |  |
+|  | Client +------------------HTTPS--------------------+ Target |  |
+|  |        |                 content                   |        |  |
+|  +--------+                                           +--------+  |
+|                                                                   |
++-------------------------------------------------------------------+
+| Client-to-Target Proxied Context                                  |
 |  +--------+                           +-------+       +--------+  |
 |  |        |                           |       |       |        |  |
 |  | Client +----------Proxied----------+ Proxy +-------+ Target |  |
-|  |        |           flow            |   B   |       |        |  |
+|  |        |          TLS flow         |   B   |       |        |  |
 |  +--------+                           +-------+       +--------+  |
 |                                                                   |
 +-------------------------------------------------------------------+
