@@ -579,7 +579,7 @@ to learn more information from such metadata, including, in some cases, applicat
 never meant to see. Although privacy partitioning does not obviate such attacks, it does increase the cost
 necessary to carry them out in practice. See {{security-considerations}} for more discussion on this topic.
 
-# Impacts of Partitioning
+# Partitioning Impacts
 
 Applying privacy partitioning to communication protocols lead to a substantial change in communication patterns.
 For example, instead of sending traffic directly to a service, essentially all user traffic is routed through
@@ -590,19 +590,30 @@ and protocol). This has a number of practical implications, described below.
    network or metadata that has been unintentionally revealed to the service provider cannot be used anymore
    for e.g., existing security procedures such as application rate limiting or DDoS mitigation.
    However, network management techniques deployed at present often rely on information that is exposed by
-   most traffic but without any guarantees that the information is accurate. Privacy partitioning provides
-   an opportunity for improvements in these management techniques by providing opportunities to actively
-   exchange information with each entity in a privacy-preserving way and requesting exactly the information
-   needed for a specific task or function rather then relying on assumption that are derived on a limited
-   set of unintentionally revealed information which cannot be guaranteed to be present and may disappear
-   any time in future.
+   most traffic but without any guarantees that the information is accurate.
 
-1. Varying performance effects. Depending on how context separation is done, privacy partitioning may
+   Privacy partitioning provides an opportunity for improvements in these management techniques with
+   opportunities to actively exchange information with each entity in a privacy-preserving way and requesting
+   exactly the information needed for a specific task or function rather then relying on assumption that
+   are derived on a limited set of unintentionally revealed information which cannot be guaranteed to be
+   present and may disappear any time in future.
+
+1. Varying performance effects and costs. Depending on how context separation is done, privacy partitioning may
    affect application performance. As an example, Privacy Pass introduces an entire end-to-end round
    trip to issue a token before it can be redeemed, thereby decreasing performance. In contrast, while
    systems like CONNECT proxying may seem like they would regress performance, often times the highly
-   optimized nature of proxy-to-proxy paths leads to improved perforamnce. In general, while performance
-   and privacy tradeoffs are often cast as a zero sum game, in reality this is often not the case.
+   optimized nature of proxy-to-proxy paths leads to improved perforamnce.
+
+   Performance may also push back against the desire to apply privacy partitioning. For example, HTTPS
+   connection reuse {{?HTTP2=RFC9113, Section 9.1.1}} allows clients to use an existing HTTPS session created
+   for one origin to interact with different origins (provided the original origin is authoritative for
+   these alternative origins). Reusing connections saves the cost of connection establishment, but means that
+   the server can now link the client's activity with these two or more origins together. Applying privacy
+   partitioning would prevent this, while typically at the cost of less performance.
+
+   In general, while performance and privacy tradeoffs are often cast as a zero sum game, in practice this
+   is often not the case. The relationship between privacy and performance varies depending on a number
+   of related factors, such as application characteristics, network path properties, and so on.
 
 1. Increased attack surface. Even in the event that information is adequately partitioning across
    non-colluding parties, the resulting effects on the end-user may not always be positive. For example,
