@@ -446,10 +446,17 @@ about individual client data.
 
 Applying privacy partitioning to an existing or new system or protocol requires the following steps:
 
-1. Identify the types of information used or exposed in a system or protocol, some of which can be used to identify a user or correlate to other contexts.
-1.  Partition data to minimize the amount of user-identifying or correlatable information in any given context to only include what is necessary for that context, and prevent sharing of data across contexts wherever possible.
+1. Identify the types of information used or exposed in a system or protocol, some
+of which can be used to identify a user or correlate to other contexts.
+1.  Partition data to minimize the amount of user-identifying or correlatable
+information in any given context to only include what is necessary for that
+context, and prevent sharing of data across contexts wherever possible.
 
-The most impactful types of information to partition are (a) user identity or identities (such as an account name or IP address) that can be linked and (b) user data (such as the content a user is accessing), which can be often sensitive when combined with user identity. Note that user data can itself be user-identifying, in which case it should be treated as an identifier.
+The most impactful types of information to partition are (a) user identity or identities
+(such as an account name or IP address) that can be linked and (b) user data (such as the
+content a user is accessing), which can be often sensitive when combined with user identity.
+
+User data can itself be user-identifying, in which case it should be treated as an identifier.
 For example, Oblivious DoH and Oblivious HTTP partition the client IP address and client request data into
 separate contexts, thereby ensuring that no entity beyond the client can observe both. Collusion across contexts
 could reverse this partitioning, but can also promote non-user-identifying information to user-identifying.
@@ -457,9 +464,17 @@ For example, in CONNECT proxy systems that use QUIC, the QUIC connection ID is i
 since it is generated randomly ({{?QUIC=RFC9000, Section 5.1}}). However, if combined with another context that has user-identifying
 information such as the client IP address, the QUIC connection ID can become user-identifying information.
 
-This partitioning process can be applied incorrectly or incompletely. Contexts may contain
+Some information is innate to client user-agents, including includes details of implementation of
+protocols in hardware and software, and network location. This information can be used to construct
+user-identifying information, which is a process sometimes referred to as fingerprinting.
+Depending on the application and system constraints, users may not be able to prevent fingerprinting
+in privacy contexts. As a result, fingerprinting information, when combined with non-user-identifying
+user data, could promote user data to user-identifying information.
+
+Privacy partitioning can be applied incorrectly or incompletely. Contexts may contain
 more user-identifying information than desired, or some information in a context may be more user-identifying
-than intended. Moreover, splitting user-identifying information over multiple contexts has to be done with care, as creating more contexts can increase the number of entities that need to be trusted to not collude.
+than intended. Moreover, splitting user-identifying information over multiple contexts has to be done
+with care, as creating more contexts can increase the number of entities that need to be trusted to not collude.
 Nevertheless, partitions can help improve the client's privacy posture when applied carefully.
 
 Evaluating and qualifying the resulting privacy of a system or protocol that applies privacy partitioning depends
