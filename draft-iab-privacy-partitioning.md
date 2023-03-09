@@ -98,7 +98,7 @@ This is a simple application of the principle of least privilege, wherein every 
 a system only has access to the minimum amount of information needed to fulfill their
 function. Privacy partitioning advocates for this minimization by ensuring that protocols,
 applications, and systems only reveal user-specific information to parties that need access
-to the  information for their intended purpose.
+to the information for their intended purpose.
 
 Put simply, privacy partitioning aims to separate *who* someone is from *what* they do. In the
 rest of this section, we describe how privacy partitioning can be used to achieve this goal.
@@ -528,14 +528,15 @@ Privacy partitions ensure that only the client, i.e., the entity which is respon
 can link all user-specific information together up to collusion. No other entity individually
 knows how to link all the user-specific information as long as they do not collude with each other
 across contexts. This is why non-collusion is a fundamental requirement for privacy partitioning
-to offer meaningful privacy for end-users.
+to offer meaningful privacy for end-users. In particular, the trust relationships that users have
+with different parties affects the resulting impact on the user's privacy.
 
 As an example, consider OHTTP, wherein the Oblivious Relay knows the Client identity but not
 the Client data, and the Oblivious Gateway knows the Client data but not the Client identity.
 If the Oblivious Relay and Gateway collude, they can link Client identity and data together
-for each request and response transaction by simply observing the requests in transit.
+for each request and response transaction by simply observing requests in transit.
 
-It is not currently possible to guarantee with technical protocol measure that two
+It is not currently possible to guarantee with technical protocol measures that two
 entities are not colluding. However, there are some mitigations that can be applied
 to reduce the risk of collusion happening in practice:
 
@@ -602,6 +603,25 @@ and protocol). This has a number of practical implications, described below.
    systems like CONNECT proxying may seem like they would regress performance, often times the highly
    optimized nature of proxy-to-proxy paths leads to improved perforamnce. In general, while performance
    and privacy tradeoffs are often cast as a zero sum game, in reality this is often not the case.
+
+1. Increased attack surface. Even in the event that information is adequately partitioning across
+   non-colluding parties, the resulting effects on the end-user may not always be positive. For example,
+   using OHTTP as a basis for illustration, consider a hypothetical scenario where the Oblivious
+   Gateway has an implementation flaw that causes all of its decrypt requests to be
+   inappropriately logged to a public or otherwise compromised location. Moreover, assume
+   that the Target Resource for which these requests are destined does not have such an
+   implementation flaw. Applications which use OHTTP with this flawed Oblivious Gateway to
+   interact with the Target Resource risk their user request information being made public,
+   albeit in a way that is decoupled from user identifying information, whereas applications
+   that do not use OHTTP to interact with the Target Resource do not risk this type of disclosure.
+
+1. Centralization. Depending on the protocol and system, as well as the desired privacy properties, the
+   use of partitioning may inherently force centralization to a select set of trusted participants.
+   As an example, the impact of OHTTP on end user privacy generally increases proportionally to the
+   number of users that exist behind a given Oblivious Relay. That is, the probability of an Oblivious
+   Gateway determining the client associated with a request forwarded through an Oblivious Relay decreases
+   as the number of possible clients behind the Oblivious Relay increases. This tradeoff encourages
+   centralization of the Oblivious Relays.
 
 # Security Considerations
 
