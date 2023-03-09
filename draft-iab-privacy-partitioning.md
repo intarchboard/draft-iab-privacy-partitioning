@@ -452,9 +452,14 @@ of which can be used to identify a user or correlate to other contexts.
 information in any given context to only include what is necessary for that
 context, and prevent sharing of data across contexts wherever possible.
 
-The most impactful types of information to partition are (a) user identity or identities
-(such as an account name or IP address) that can be linked and (b) user data (such as the
+The most impactful types of information to partition are (a) user-identifying information,
+such as user identity or identities (including account names or IP addresses) that can be
+linked and (b) non-user-identifying information, or user data (including the
 content a user is accessing), which can be often sensitive when combined with user identity.
+
+In this section, we discuss considerations for partitioning these types of information.
+
+## Partitioning Considerations
 
 User data can itself be user-identifying, in which case it should be treated as an identifier.
 For example, Oblivious DoH and Oblivious HTTP partition the client IP address and client request data into
@@ -471,11 +476,15 @@ Depending on the application and system constraints, users may not be able to pr
 in privacy contexts. As a result, fingerprinting information, when combined with non-user-identifying
 user data, could promote user data to user-identifying information.
 
+## Incorrect or Incomplete Partitioning
+
 Privacy partitioning can be applied incorrectly or incompletely. Contexts may contain
 more user-identifying information than desired, or some information in a context may be more user-identifying
 than intended. Moreover, splitting user-identifying information over multiple contexts has to be done
 with care, as creating more contexts can increase the number of entities that need to be trusted to not collude.
 Nevertheless, partitions can help improve the client's privacy posture when applied carefully.
+
+## Incorrect or Incomplete Partitioning
 
 Evaluating and qualifying the resulting privacy of a system or protocol that applies privacy partitioning depends
 on the contexts that exist and types of user-identifying information in each context. Such evaluation is
@@ -483,6 +492,8 @@ helpful for identifying ways in which systems or protocols can improve their pri
 consider DNS-over-HTTPS {{?DOH=RFC8484}}, which produces a single context which contains both the client IP
 address and client query. One application of privacy partitioning results in ODoH, which produces two contexts,
 one with the client IP address and the other with the client query.
+
+## Identifying Information for Partitioning
 
 Recognizing potential appliations of privacy partitoning requires identifying the contexts in use, the information
 exposed in a context, and the intent of information exposed in a context. Unfortunately, determing what
