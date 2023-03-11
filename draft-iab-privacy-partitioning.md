@@ -227,6 +227,34 @@ from observing both identities and correlating them. As such, preventing correla
 requires separating contexts, such as by using proxying to conceal a client IP address
 that would otherwise be used as an identifier.
 
+## Approaches to Partitioning
+
+While all of the partitioning protocols described in this document use the
+basic techniques of encryption and connection separation, each one has a
+unique approach that results in different sets of contexts. Since many of
+these protocols are new, it is yet to be seen how each approach will be
+used at scale across the Internet, and what new models will emerge in the
+future.
+
+There are multiple factors that lead to a diversity in approaches to
+partitioning:
+
+- Adding privacy partitioning to existing protocol ecosystems places
+requirements and constraints on how contexts are constructed. CONNECT-style
+proxying is intended to work with servers that are unaware of privacy contexts,
+requiring more intermediaries to provide strong separation guarantees.
+Oblivious HTTP, on the other hand, assumes servers that cooperate with context
+separation, and thus reduces the overall number of elements in the solution.
+
+- Whether or not information exchange needs to happen bidirectionally in an
+interactive fashion determines how contexts can be separated. Some use cases,
+like metrics collection for PPM, can occur with information flowing only from
+clients to servers, and can function even when clients are no longer connected.
+Privacy Pass is an example of a case that can be either interactive or not,
+depending on if tokens can be cached and reused. CONNECT-style proxying and
+Oblivious HTTP require bidirectional and interactive communication.
+
+
 # A Survey of Protocols using Partitioning
 
 The following section discusses currently on-going work in the IETF
