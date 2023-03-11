@@ -469,7 +469,7 @@ For example, in CONNECT proxy systems that use QUIC, the QUIC connection ID is i
 since it is generated randomly ({{?QUIC=RFC9000, Section 5.1}}). However, if combined with another context that has user-identifying
 information such as the client IP address, the QUIC connection ID can become user-identifying information.
 
-Some information is innate to client user-agents, including includes details of implementation of
+Some information is innate to client user-agents, including details of implementation of
 protocols in hardware and software, and network location. This information can be used to construct
 user-identifying information, which is a process sometimes referred to as fingerprinting.
 Depending on the application and system constraints, users may not be able to prevent fingerprinting
