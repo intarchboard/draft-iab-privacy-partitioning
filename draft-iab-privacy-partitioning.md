@@ -254,7 +254,14 @@ Privacy Pass is an example of a case that can be either interactive or not,
 depending on if tokens can be cached and reused. CONNECT-style proxying and
 Oblivious HTTP often require bidirectional and interactive communication.
 
-
+- The degree to which contexts need to be partitioned depends in part
+on the client's threat models and level of trust in various protocol participants. For example,
+in Oblivious HTTP, clients allow relays to learn that clients are accessing a particular
+application-specific gateway. If clients do not trust relays with this information, they can
+instead use a multi-hop CONNECT-style proxy approach wherein no single party learns
+whether specific clients are accessing a specific application. This is the default trust model
+for systems like Tor, where multiple hops are used to drive down the probability of privacy
+violations due to collusion or related attacks.
 # A Survey of Protocols using Partitioning
 
 The following section discusses currently on-going work in the IETF
