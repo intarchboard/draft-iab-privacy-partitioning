@@ -93,7 +93,7 @@ service without revealing the user's identity by relying on the authentication a
 the identity provider (see {{Section 6.1.4 of RFC6973}}). This describes a specific form of
 privacy partitioning, similar as used for privacy pass (see Section {{privacypass}}).
 Privacy partitioning as defined in this document goes further, to consider different deployment
-models that can create multiple contexts where data is miminized in each context.
+models that can create multiple contexts where data is minimized in each context.
 
 # Privacy Partitioning
 
