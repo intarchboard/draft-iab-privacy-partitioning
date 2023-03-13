@@ -81,6 +81,11 @@ is no link between user-specific identity and user-specific data. However, appli
 privacy partitioning helps ensure that user privacy violations becomes more technically difficult
 to achieve over time.
 
+Several IETF working groups are working on protocols or systems that adhere to the principle
+of privacy partitioning, including OHAI, MASQUE, Privacy Pass, and PPM. This document summarizes
+work in those groups and describes a framework for reasoning about the resulting privacy posture of different
+endpoints in practice.
+
 RFC6973 discusses the use of identity management systems for data minimization.
 In these systems usually an identify provider issues credentials that can be used to access a
 service without revealing the user's identity by relying on the authentication assertion from
@@ -88,11 +93,6 @@ the identity provider (see {{Section 6.1.4 of RFC6973}}). This describes a speci
 privacy partitioning, simlarly as used for privacy pass (see Section {{privacypass}}).
 Privacy partitioning as defined in this document goes further, to consider different deployment
 models that can create multiple contexts where data is miminized in each context.
-
-Several IETF working groups are working on protocols or systems that adhere to the principle
-of privacy partitioning, including OHAI, MASQUE, Privacy Pass, and PPM. This document summarizes
-work in those groups and describes a framework for reasoning about the resulting privacy posture of different
-endpoints in practice.
 
 # Privacy Partitioning
 
