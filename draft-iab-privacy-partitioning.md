@@ -484,7 +484,6 @@ than intended. Moreover, splitting user-identifying information over multiple co
 with care, as creating more contexts can increase the number of entities that need to be trusted to not collude.
 Nevertheless, partitions can help improve the client's privacy posture when applied carefully.
 
-## Incorrect or Incomplete Partitioning
 
 Evaluating and qualifying the resulting privacy of a system or protocol that applies privacy partitioning depends
 on the contexts that exist and types of user-identifying information in each context. Such evaluation is
