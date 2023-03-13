@@ -81,6 +81,14 @@ is no link between user-specific identity and user-specific data. However, appli
 privacy partitioning helps ensure that user privacy violations becomes more technically difficult
 to achieve over time.
 
+RFC6973 already discusses the use of identity management systems for data minimization.
+In these systems usually an identify provider issues credentials that can be used to access a
+service without revealing the user's identity by relying on the authentication assertion from
+the identity provider (see {{Section 6.1.4 of RFC6973}}). This describes a specific form of
+privacy partitioning, simlarly as used for privacy pass (see Section {{privacypass}}).
+Privacy partitioning as defined in this document is broader by considering different deployment
+models that can create multiple contexts where data is miminized in each context.
+
 Several IETF working groups are working on protocols or systems that adhere to the principle
 of privacy partitioning, including OHAI, MASQUE, Privacy Pass, and PPM. This document summarizes
 work in those groups and describes a framework for reasoning about the resulting privacy posture of different
@@ -407,7 +415,7 @@ Oblivious DNS over HTTPS {{?ODOH=RFC9230}} applies the same principle as Oblivio
 DNS messages only. As a precursor to the more generalized Oblivious HTTP, it relies on the same
 HPKE cryptographic primitives, and can be analyzed in the same way.
 
-## Privacy Pass
+## Privacy Pass {#privacypass}
 
 Privacy Pass is an architecture {{?PRIVACYPASS=I-D.ietf-privacypass-architecture}} and set of protocols
 being developed in the Privacy Pass working group that allow clients to present proof of verification in
