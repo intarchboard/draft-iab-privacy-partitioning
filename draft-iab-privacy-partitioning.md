@@ -459,7 +459,7 @@ generates or accesses), which can be often sensitive when combined with user ide
 
 In this section, we discuss considerations for partitioning these types of information.
 
-## Partitioning Considerations
+## User-Identifying Information
 
 User data can itself be user-identifying, in which case it should be treated as an identifier.
 For example, Oblivious DoH and Oblivious HTTP partition the client IP address and client request data into
