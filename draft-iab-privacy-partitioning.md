@@ -86,7 +86,7 @@ In these systems usually an identify provider issues credentials that can be use
 service without revealing the user's identity by relying on the authentication assertion from
 the identity provider (see {{Section 6.1.4 of RFC6973}}). This describes a specific form of
 privacy partitioning, simlarly as used for privacy pass (see Section {{privacypass}}).
-Privacy partitioning as defined in this document is broader by considering different deployment
+Privacy partitioning as defined in this document goes further, to consider different deployment
 models that can create multiple contexts where data is miminized in each context.
 
 Several IETF working groups are working on protocols or systems that adhere to the principle
