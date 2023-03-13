@@ -237,7 +237,7 @@ used at scale across the Internet, and what new models will emerge in the
 future.
 
 There are multiple factors that lead to a diversity in approaches to
-partitioning:
+partitioning, including:
 
 - Adding privacy partitioning to existing protocol ecosystems places
 requirements and constraints on how contexts are constructed. CONNECT-style
@@ -252,7 +252,7 @@ like metrics collection for PPM, can occur with information flowing only from
 clients to servers, and can function even when clients are no longer connected.
 Privacy Pass is an example of a case that can be either interactive or not,
 depending on if tokens can be cached and reused. CONNECT-style proxying and
-Oblivious HTTP require bidirectional and interactive communication.
+Oblivious HTTP often require bidirectional and interactive communication.
 
 
 # A Survey of Protocols using Partitioning
