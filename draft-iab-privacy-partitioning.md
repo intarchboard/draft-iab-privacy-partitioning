@@ -86,7 +86,8 @@ of privacy partitioning, including OHAI, MASQUE, Privacy Pass, and PPM. This doc
 work in those groups and describes a framework for reasoning about the resulting privacy posture of different
 endpoints in practice.
 
-RFC6973 discusses the use of identity management systems for data minimization.
+{{?RFC6973}} discusses data minimization, especially in the context of
+user identity and identity management systems.
 In these systems usually an identify provider issues credentials that can be used to access a
 service without revealing the user's identity by relying on the authentication assertion from
 the identity provider (see {{Section 6.1.4 of RFC6973}}). This describes a specific form of
