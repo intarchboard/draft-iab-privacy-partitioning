@@ -262,6 +262,7 @@ instead use a multi-hop CONNECT-style proxy approach wherein no single party lea
 whether specific clients are accessing a specific application. This is the default trust model
 for systems like Tor, where multiple hops are used to drive down the probability of privacy
 violations due to collusion or related attacks.
+
 # A Survey of Protocols using Partitioning
 
 The following section discusses currently on-going work in the IETF
