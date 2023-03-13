@@ -454,8 +454,8 @@ context, and prevent sharing of data across contexts wherever possible.
 
 The most impactful types of information to partition are (a) user-identifying information,
 such as user identity or identities (including account names or IP addresses) that can be
-linked and (b) non-user-identifying information, or user data (including the
-content a user is accessing), which can be often sensitive when combined with user identity.
+linked and (b) non-user-identifying information (including content a user
+generates or accesses), which can be often sensitive when combined with user identity.
 
 In this section, we discuss considerations for partitioning these types of information.
 
