@@ -2,16 +2,16 @@
 
 This is the working area for the individual Internet-Draft, "Partitioning as an Architecture for Privacy".
 
-* [Editor's Copy](https://intarchboard.github.io/draft-obliviousness/#go.draft-iab-privacy-partitioning.html)
+* [Editor's Copy](https://intarchboard.github.io/draft-iab-privacy-partitioning/#go.draft-iab-privacy-partitioning.html)
 * [Datatracker Page](https://datatracker.ietf.org/doc/draft-iab-privacy-partitioning)
 * [Individual Draft](https://datatracker.ietf.org/doc/html/draft-iab-privacy-partitioning)
-* [Compare Editor's Copy to Individual Draft](https://intarchboard.github.io/draft-obliviousness/#go.draft-iab-privacy-partitioning.diff)
+* [Compare Editor's Copy to Individual Draft](https://intarchboard.github.io/draft-iab-privacy-partitioning/#go.draft-iab-privacy-partitioning.diff)
 
 
 ## Contributing
 
 See the
-[guidelines for contributions](https://github.com/intarchboard/draft-obliviousness/blob//CONTRIBUTING.md).
+[guidelines for contributions](https://github.com/intarchboard/draft-iab-privacy-partitioning/blob//CONTRIBUTING.md).
 
 Contributions can be made by creating pull requests.
 The GitHub interface supports creating pull requests using the Edit (✏) button.
