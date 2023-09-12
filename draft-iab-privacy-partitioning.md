@@ -623,14 +623,18 @@ If the Oblivious Relay and Gateway collude, they can link Client identity and da
 for each request and response transaction by simply observing requests in transit.
 
 It is not currently possible to guarantee with technical protocol measures that two
-entities are not colluding. However, there are some mitigations that can be applied
+entities are not colluding. Further even if entities do not collude directly, if information
+is revealed to another party, there might be no control about further collusion of data.
+However, there are some mitigations that can be applied
 to reduce the risk of collusion happening in practice:
 
-- Policy and contractual agreements between entities involved in partitioning, to disallow
-logging or sharing of data, or to require auditing.
+- Policy and contractual agreements between entities involved in partitioning to disallow
+logging or sharing of data, as well as careful data minimization or annoymization when auditing is required.
 - Protocol requirements to make collusion or data sharing more difficult.
 - Adding more partitions and contexts, to make it increasingly difficult to collude with
 enough parties to recover identities.
+
+
 
 ## Violations by Insufficient Partitioning
 
