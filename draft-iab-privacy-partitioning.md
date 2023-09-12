@@ -86,14 +86,16 @@ of privacy partitioning, including OHAI, MASQUE, Privacy Pass, and PPM. This doc
 work in those groups and describes a framework for reasoning about the resulting privacy posture of different
 endpoints in practice.
 
-{{?RFC6973}} discusses data minimization, especially in the context of
-user identity and identity management systems.
-In these systems usually an identify provider issues credentials that can be used to access a
-service without revealing the user's identity by relying on the authentication assertion from
-the identity provider (see {{Section 6.1.4 of RFC6973}}). This describes a specific form of
-privacy partitioning, similar as used for Privacy Pass (see Section {{privacypass}}).
-Privacy partitioning as defined in this document goes further, to consider different deployment
-models that can create multiple contexts where data is minimized in each context.
+Privacy partitioning is particularly relevant as a tool for data minimization, which is described
+in {{Section 6.1 of ?RFC6973}}. {{RFC6973}} provides guidance for privacy considerations in
+Internet protocols, along with a set of questions on how to evaluate the data minimization
+of a protocol in {{Section 7.1 of ?RFC6973}}. Protocols that employ privacy partitioning
+ought to consider the questions in that section when evaluating their design, particularly
+with regards to how identifiers and data can be correlated by protocol participants and
+observers in each context that has been partitioned. Privacy partitioning can also be
+used as a way to separate identity providers from relying parties
+(see {{Section 6.1.4 of RFC6973}}), as in the case of Privacy Pass
+(see Section {{privacypass}}).
 
 # Privacy Partitioning
 
