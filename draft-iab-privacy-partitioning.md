@@ -634,8 +634,6 @@ logging or sharing of data, as well as careful data minimization or annoymizatio
 - Adding more partitions and contexts, to make it increasingly difficult to collude with
 enough parties to recover identities.
 
-
-
 ## Violations by Insufficient Partitioning
 
 It is possible to define contexts that contain more than one type of user-specific information,
