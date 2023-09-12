@@ -489,6 +489,22 @@ revealed during the redemption context.
 ~~~
 {: #diagram-privacypass title="Diagram of contexts in Privacy Pass"}
 
+Since the redemption context and issuance context are separate connections
+that involve separate entities, they can also be further decoupled by
+running those parts of the protocols at different times. Clients can
+fetch tokens through the issuance context early, and cache the tokens
+to later use in redemption contexts. This can aid in partitioning identifiers
+and data.
+
+{{PRIVACYPASS}} describes different deployment models for which entities operate
+origins, attesters, and issuers; in some models, they are all separate
+entities, but in others, they can be operated by the same entity. The
+model impacts the effectiveness of partitioning, and some models
+(such as when all three are operated by the same entity) only provide
+effective partitioning when the timing of connections on the two
+contexts are not correlated, and when the client uses different
+identifiers (such as different IP addresses) on each context.
+
 ## Privacy Preserving Measurement
 
 The Privacy Preserving Measurement (PPM) working group is chartered to develop protocols and systems
