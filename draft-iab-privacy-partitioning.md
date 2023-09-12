@@ -629,7 +629,9 @@ be combined. However, there are some mitigations that can be applied
 to reduce the risk of collusion happening in practice:
 
 - Policy and contractual agreements between entities involved in partitioning to disallow
-logging or sharing of data, as well as careful data minimization or annoymization when auditing is required.
+logging or sharing of data, along with auditing to validate that the policies are being followed.
+For cases where logging is required (such as for service operation), such logged data should
+be minimized and anonymized to prevent it from being useful for collusion.
 - Protocol requirements to make collusion or data sharing more difficult.
 - Adding more partitions and contexts, to make it increasingly difficult to collude with
 enough parties to recover identities.
