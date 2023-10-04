@@ -63,7 +63,7 @@ read on their account being recorded. This is problematic for privacy since the 
 can link user activity to the user's account.
 
 - A client device that needs to upload metrics to an aggregation service might want to be
-able to contribute data to the system without having their specific contributions 
+able to contribute data to the system without having their specific contributions
 attributed to them. This is problematic for privacy since the service can link client
 contributions to the specific client.
 
@@ -227,7 +227,7 @@ on (en)coding, etc. The privacy-oriented protocols described in this document ge
 more complex partitioning, but the techniques to partition communication contexts still employ the
 same techniques:
 
-1. Encryption allows the partitioning of contexts within a given network path.
+1. Encryption allows partitioning of contexts within a given network path.
 1. Using separate connections across time or space allows partitioning of contexts for different
 application transactions.
 
@@ -459,7 +459,7 @@ HPKE cryptographic primitives, and can be analyzed in the same way.
 Privacy Pass is an architecture {{?PRIVACYPASS=I-D.ietf-privacypass-architecture}} and a set of protocols
 being developed in the Privacy Pass working group that allows clients to present proof of verification in
 an anonymous and unlinkable fashion, via tokens. These tokens originally were designed as a way to prove
-that a client had solved a Completely Automated Public Turing test to tell Computers and Humans Apart (CAPTCHA), but can be applied to other types of user or device attestation checks
+that a client had solved a CAPTCHA, but can be applied to other types of user or device attestation checks
 as well. In Privacy Pass, clients interact with an attester and issuer for the purposes of issuing a token,
 and clients then interact with an origin server to redeem said token.
 
@@ -549,7 +549,7 @@ context, and prevent the sharing of data across contexts wherever possible.
 The most impactful types of information to partition are (a) user-identifying information,
 such as user identity or identities (including account names or IP addresses) that can be
 linked and (b) non-user-identifying information (including content a user
-generates or accesses), which can be often sensitive when combined with the user identity.
+generates or accesses), which can be often sensitive when combined with a user identity.
 
 In this section, we discuss considerations for partitioning these types of information.
 
@@ -561,7 +561,7 @@ separate contexts, thereby ensuring that no entity beyond the client can observe
 could reverse this partitioning, but can also promote non-user-identifying information to user-identifying.
 For example, in CONNECT proxy systems that use QUIC, the QUIC connection ID is inherently non-user-identifying
 since it is generated randomly ({{?QUIC=RFC9000, Section 5.1}}). However, if combined with another context that has user-identifying
-information such as the client IP address, and the QUIC connection ID can become user-identifying information.
+information such as the client IP address, the QUIC connection ID can become user-identifying information.
 
 Some information is innate to client user-agents, including details of implementation of
 protocols in hardware and software, and network location. This information can be used to construct
