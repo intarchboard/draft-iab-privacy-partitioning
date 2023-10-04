@@ -82,7 +82,7 @@ privacy partitioning helps ensure that user privacy violations become more techn
 to achieve over time.
 
 Several IETF working groups are working on protocols or systems that adhere to the principle
-of privacy partitioning, including OHAI, MASQUE, Privacy Pass, and PPM. This document summarizes
+of privacy partitioning, including Oblivious HTTP Application Intermediation (OHAI), Multiplexed Application Substrate over QUIC Encryption (MASQUE), Privacy Pass, and Privacy Preserving Measurement (PPM). This document summarizes
 work in those groups and describes a framework for reasoning about the resulting privacy posture of different
 endpoints in practice.
 
@@ -117,7 +117,7 @@ rest of this section, we describe how privacy partitioning can be used to achiev
 ## Privacy Contexts
 
 Each piece of user-specific information exists within some context, where a context
-is abstractly defined as a set of data and metadata and the entities that share access
+is abstractly defined as a set of data, metadata, and the entities that share access
 to that information. In order to prevent the correlation of user-specific information across
 contexts, partitions need to ensure that any single entity (other than the client itself)
 does not participate in more than one context where the information is visible.
@@ -459,13 +459,13 @@ HPKE cryptographic primitives, and can be analyzed in the same way.
 Privacy Pass is an architecture {{?PRIVACYPASS=I-D.ietf-privacypass-architecture}} and a set of protocols
 being developed in the Privacy Pass working group that allows clients to present proof of verification in
 an anonymous and unlinkable fashion, via tokens. These tokens originally were designed as a way to prove
-that a client had solved a CAPTCHA, but can be applied to other types of user or device attestation checks
+that a client had solved a Completely Automated Public Turing test to tell Computers and Humans Apart (CAPTCHA), but can be applied to other types of user or device attestation checks
 as well. In Privacy Pass, clients interact with an attester and issuer for the purposes of issuing a token,
 and clients then interact with an origin server to redeem said token.
 
 In Privacy Pass, privacy partitioning is achieved with cryptographic protection (in the form of blind
 signature protocols or similar) and separation of connections across two contexts:
-a "redemption context" between clients an origins (servers that request and receive tokens), and an
+a "redemption context" between clients and origins (servers that request and receive tokens), and an
 "issuance context" between clients, attestation servers, and token issuance servers. The cryptographic
 protection ensures that information revealed during the issuance context is separated from information
 revealed during the redemption context.
@@ -602,7 +602,7 @@ solutions to the anti-abuse problem.
 
 # Limits of Privacy Partitioning {#limits}
 
-Privacy Partitioning aims to increase user privacy, though as stated is not a panacea.
+Privacy Partitioning aims to increase user privacy, though as stated, it is not a panacea.
 The privacy properties depend on numerous factors, including, though not limited to:
 
 - Non-collusion across contexts; and
@@ -648,8 +648,8 @@ about their specific browser instance, as well as client-identifying inforamtion
 location or IP address. Even though OHTTP separates the client IP address from the server via
 a relay, the server still learns this directly from the client.
 
-Other relevant examples of insufficient partitioning include TLS and Encrypted Client Hello (ECH) {{?I-D.ietf-tls-esni}}
-and VPNs. TLS and ECH use cryptographic protection (encryption) to hide information from unauthorized parties,
+Other relevant examples of insufficient partitioning include TLS Encrypted Client Hello (ECH) {{?I-D.ietf-tls-esni}}
+and VPNs. ECH use cryptographic protection (encryption) to hide information from unauthorized parties,
 but both clients and servers (two entities) can link user-specific data to user-specific identity (IP address).
 Similarly, while VPNs hide identity from end servers, the VPN server has still can see the identity of both the
 client and server. Applying privacy partitioning would advocate for at least two additional entities to avoid
