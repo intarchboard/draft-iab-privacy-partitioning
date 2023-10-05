@@ -295,7 +295,7 @@ an end-to-end connection that is tunnelled between the client and target. This s
 as shown in the figure below, partitions communication into:
 
 - a Client-to-Target encrypted context, which contains the end-to-end content
-with the TLS session to the target, such as HTTP content;
+within the TLS session to the target, such as HTTP content;
 
 - a Client-to-Target proxied context, which is the end-to-end data to the target that is
 also visible to the proxy, such as a TLS session;
