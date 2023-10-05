@@ -294,14 +294,14 @@ In a single-proxy setup, there is a tunnel connection between the client and pro
 an end-to-end connection that is tunnelled between the client and target. This setup,
 as shown in the figure below, partitions communication into:
 
-- a Client-to-Proxy context, which contains the transport metadata between the client
-and the target, and the request to the proxy to open a connection to the target;
+- a Client-to-Target encrypted context, which contains the end-to-end content
+with the TLS session to the target, such as HTTP content;
 
 - a Client-to-Target proxied context, which is the end-to-end data to the target that is
 also visible to the proxy, such as a TLS session;
 
-- a Client-to-Target encrypted context, which contains the end-to-end content
-with the TLS session to the target, such as HTTP content;
+- a Client-to-Proxy context, which contains the transport metadata between the client
+and the target, and the request to the proxy to open a connection to the target;
 
 - and a Proxy-to-Target context, which for TCP and UDP proxying
 contains any packet header information that is added or modified by the proxy,
@@ -348,6 +348,21 @@ e.g., the IP and TCP/UDP headers.
 Using two (or more) proxies provides better privacy partitioning. In particular, with two proxies,
 each proxy sees the Client metadata, but not the Target; the Target, but not the Client
 metadata; or neither.
+
+In addition to the contexts described above for the single proxy case,
+the two-hop proxy case shown in the figure below changes the contexts
+in several ways:
+
+- the Client-to-Target proxied context only includes the second proxy
+(referred to here as "Proxy B");
+
+- a new Client-to-Proxy B context is added, which is the TLS session
+from the client to Proxy B that is also visible to the first proxy
+(referred to here as "Proxy A");
+
+- the contexts that see transport data only (TCP or UDP over IP)
+are separated out into three separate contexts, a Client-to-Proxy A
+context, a Proxy A-to-Proxy B context, and a Proxy B-to-Target context.
 
 ~~~ aasvg
 +-------------------------------------------------------------------+
@@ -415,11 +430,21 @@ cannot communicate directly with the client or observe client metadata like IP a
 Oblivious HTTP relies on Hybrid Public Key Encryption {{?HPKE=RFC9180}} to perform encryption.
 
 Oblivious HTTP uses both encryption and separation of connections to achieve privacy partitioning.
-The end-to-end messages are encrypted between the Client and Gateway (forming a Client-to-Gateway context),
-and the connections are separated into a Client-to-Relay context and a Relay-to-Gateway context. It is also important
-to note that the Relay-to-Gateway connection can be a single connection, even if the Relay has many
-separate Clients. This provides better anonymity by making the pseudonym presented by the Relay to
-be shared across many Clients.
+
+- End-to-end messages are encrypted between the Client and Gateway. The
+content of these inner messages are visible to the Client, Gateway, and
+Target. This is the Client-to-Target context.
+
+- The encrypted messages exchanged between the Client and Gateway
+are visible to the Relay, but the Relay cannot decrypt the messages.
+This is the Client-to-Gateway context.
+
+- The transport (such as TCP and TLS) connections between the Client,
+Relay, and Gateway form two separate contexts: a Client-to-Relay
+context and a Relay-to-Gateway context. It is important
+to note that the Relay-to-Gateway connection can be a single connection,
+even if the Relay has many separate Clients. This provides better anonymity
+by making the pseudonym presented by the Relay to be shared across many Clients.
 
 ~~~ aasvg
 +-------------------------------------------------------------------+
@@ -445,6 +470,14 @@ be shared across many Clients.
 |  | Client +---------+ Relay |                                     |
 |  |        |         |       |                                     |
 |  +--------+         +-------+                                     |
+|                                                                   |
++-------------------------------------------------------------------+
+| Relay-to-Gateway Context                                          |
+|                     +-------+         +---------+                 |
+|                     |       |         |         |                 |
+|                     + Relay +---------+ Gateway |                 |
+|                     |       |         |         |                 |
+|                     +-------+         +---------+                 |
 |                                                                   |
 +-------------------------------------------------------------------+
 ~~~
@@ -516,8 +549,9 @@ Protocol (DAP) is the primary working item of the group.
 
 At a high level, DAP uses a combination of cryptographic protection (in the form of secret sharing amongst
 non-colluding servers) to establish two contexts: an "upload context" between clients and non-colluding
-aggregation servers wherein aggregation servers possibly learn client identity but nothing about their individual
-measurement reports, and a "collect context" wherein a collector learns aggregate measurement results and nothing
+aggregation servers (in which the servers are separated into "Helper" and "Leader" roles) wherein aggregation
+servers possibly learn client identity but nothing about their individual measurement reports, and
+a "collect context" wherein a collector learns aggregate measurement results and nothing
 about individual client data.
 
 ~~~ aasvg
