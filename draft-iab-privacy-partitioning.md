@@ -687,7 +687,7 @@ and VPNs. ECH use cryptographic protection (encryption) to hide information from
 but both clients and servers (two entities) can link user-specific data to user-specific identity (IP address).
 Similarly, while VPNs hide identity from end servers, the VPN server has still can see the identity of both the
 client and server. Applying privacy partitioning would advocate for at least two additional entities to avoid
-revealing both (identity (who) and user actions (what)) from each involved party.
+revealing both identity (who) and user actions (what) from each involved party.
 
 While straightforward violations of user privacy like this may seem straightforward to mitigate, it
 remains an open problem to determine whether a certain set of information reveals "too much" about a
