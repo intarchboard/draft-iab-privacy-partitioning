@@ -647,9 +647,9 @@ We elaborate on each below.
 ## Violations by Collusion
 
 Privacy partitions ensure that only the client, i.e., the entity which is responsible for partitioning,
-can link all user-specific information together up to collusion. No other entity individually
+can independently link all user-specific information. No other entity individually
 knows how to link all the user-specific information as long as they do not collude with each other
-across contexts. This is why non-collusion is a fundamental requirement for privacy partitioning
+across contexts. Thus, non-collusion is a fundamental requirement for privacy partitioning
 to offer meaningful privacy for end-users. In particular, the trust relationships that users have
 with different parties affect the resulting impact on the user's privacy.
 
