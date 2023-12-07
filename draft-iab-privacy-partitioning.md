@@ -139,6 +139,10 @@ Context separation is foundational to privacy partitioning and reducing correlat
 As an example, consider an unencrypted HTTP session over TCP, wherein the context includes both the
 content of the transaction as well as any metadata from the transport and IP headers; and the
 participants include the client, routers, other network middleboxes, intermediaries, and server.
+Middlboxes or intermediaries might simply forward traffic, or might terminate the
+traffic at any layer (such as terminating the TCP connection from the client and creating another
+TCP connection to the server). Regardless of how the middlebox interacts with the traffic,
+for the purposes of privacy partitioning, it is able to observe all of the data in the context.
 
 ~~~ aasvg
 +-------------------------------------------------------------------+
