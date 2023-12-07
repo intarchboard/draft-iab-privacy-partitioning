@@ -753,7 +753,7 @@ and protocol). This has a number of practical implications, described below.
    that do not use OHTTP to interact with the Target Resource do not risk this type of disclosure.
 
 1. Centralization. Depending on the protocol and system, as well as the desired privacy properties, the
-   use of partitioning may inherently force centralization to a select set of trusted participants.
+   use of partitioning may inherently force centralization to a selected set of trusted participants.
    As an example, the impact of OHTTP on end-user privacy generally increases proportionally to the
    number of users that exist behind a given Oblivious Relay. That is, the probability of an Oblivious
    Gateway determining the client associated with a request forwarded through an Oblivious Relay decreases
