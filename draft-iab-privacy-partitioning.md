@@ -678,7 +678,7 @@ It is possible to define contexts that contain more than one type of user-specif
 despite efforts to do otherwise. As an example, consider OHTTP used for the purposes of hiding
 client-identifying information for a browser telemetry system. It is entirely possible for reports
 in such a telemetry system to contain both client-specific telemetry data, such as information
-about their specific browser instance, as well as client-identifying inforamtion, such as the client's
+about their specific browser instance, as well as client-identifying information, such as the client's
 location or IP address. Even though OHTTP separates the client IP address from the server via
 a relay, the server still learns this directly from the client.
 
