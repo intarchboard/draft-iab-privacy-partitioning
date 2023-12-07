@@ -718,8 +718,8 @@ and protocol). This has a number of practical implications, described below.
    However, network management techniques deployed at present often rely on information that is exposed by
    most traffic but without any guarantees that the information is accurate.
 
-   Privacy partitioning provides an opportunity for improvements in these management techniques with
-   opportunities to actively exchange information with each entity in a privacy-preserving way and requesting
+   Privacy partitioning provides an opportunity for improvements in these management techniques by
+   enabling active exchange of information with each entity in a privacy-preserving way and requesting
    exactly the information needed for a specific task or function rather than relying on the assumption that
    are derived from a limited set of unintentionally revealed information which cannot be guaranteed to be
    present and may disappear at any time in future.
