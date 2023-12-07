@@ -1,0 +1,3883 @@
+{
+  "magic": "E!vIA5L86J2I",
+  "timestamp": "2023-03-14T00:35:35.604490+00:00",
+  "repo": "intarchboard/draft-obliviousness",
+  "labels": [
+    {
+      "name": "bug",
+      "description": "Something isn't working",
+      "color": "d73a4a"
+    },
+    {
+      "name": "documentation",
+      "description": "Improvements or additions to documentation",
+      "color": "0075ca"
+    },
+    {
+      "name": "duplicate",
+      "description": "This issue or pull request already exists",
+      "color": "cfd3d7"
+    },
+    {
+      "name": "enhancement",
+      "description": "New feature or request",
+      "color": "a2eeef"
+    },
+    {
+      "name": "good first issue",
+      "description": "Good for newcomers",
+      "color": "7057ff"
+    },
+    {
+      "name": "help wanted",
+      "description": "Extra attention is needed",
+      "color": "008672"
+    },
+    {
+      "name": "invalid",
+      "description": "This doesn't seem right",
+      "color": "e4e669"
+    },
+    {
+      "name": "question",
+      "description": "Further information is requested",
+      "color": "d876e3"
+    },
+    {
+      "name": "wontfix",
+      "description": "This will not be worked on",
+      "color": "ffffff"
+    },
+    {
+      "name": "discuss",
+      "description": "",
+      "color": "e99695"
+    }
+  ],
+  "issues": [
+    {
+      "number": 1,
+      "id": "I_kwDOHPOG-85KCArQ",
+      "title": "Document structure",
+      "url": "https://github.com/intarchboard/draft-obliviousness/issues/1",
+      "state": "CLOSED",
+      "author": "tfpauly",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "Intro: What is obliviousness?\r\n- Should the main term be obliviousness? Separation of contexts (identity from what is being accessed)\r\n- Is obliviousness just half of the problem? What's the name for the overall concept? Partitioning?\r\n\r\nWhy is it important? What problem is it solving?\r\n- User privacy\r\n- Reduce liability of entities holding too much data, reduce consolidation of data\r\n- Make sure data is only shared with parties that make sense for a given item\r\n\r\nCommon trend emerging:\r\n- ODoH\r\n- OHTTP\r\n- MASQUE (see also generic proxying and VPN)\r\n- PrivacyPass\r\n- PPM/PRIO\r\n\r\nDefinition and terminology\r\n- Different parties involved\r\n- Different types of contexts\r\n- Types of communication\r\n- Trust relationships\r\n\r\nPartitioned architectures\r\n- Different models of how to arrange the parties\r\n- Framework for how to analyze privacy properties of an partitioned model\r\n- Ways to analyze trust, how privacy breaks down if assumptions are violated (collapses to non-partitioned model)\r\n\r\nImpacts on existing deployments\r\n- Network management and visibility; can network elements become involved to fix this\r\n- Server visibility of data changes",
+      "createdAt": "2022-05-19T16:39:53Z",
+      "updatedAt": "2022-10-07T23:33:23Z",
+      "closedAt": "2022-10-07T23:33:23Z",
+      "comments": [
+        {
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "body": "Maybe name: \"Dissociation\"?",
+          "createdAt": "2022-05-19T16:58:24Z",
+          "updatedAt": "2022-05-19T16:58:24Z"
+        },
+        {
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "body": "PPM is calling its document \"Distributed Aggregation\" \u2014 so \"distributed\" is another useful word here.",
+          "createdAt": "2022-05-19T18:37:39Z",
+          "updatedAt": "2022-05-19T18:37:39Z"
+        },
+        {
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "body": "\"Partitioning\", \"Privacy Partitions\", \"Privacy Partitioning\"?",
+          "createdAt": "2022-05-19T18:43:41Z",
+          "updatedAt": "2022-05-19T18:43:41Z"
+        },
+        {
+          "author": "DavidSchinazi",
+          "authorAssociation": "NONE",
+          "body": "\"Private Data Partitioning\"?",
+          "createdAt": "2022-05-19T18:55:09Z",
+          "updatedAt": "2022-05-19T18:55:09Z"
+        },
+        {
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "body": "For grouping the specific protocols:\r\n\r\n- Partitioning along a network path: OHTTP/ODoH, MASQUE\r\n- Transitive identifiers across partitions: Privacy Pass\r\n- Data transformation across partitions: PPM",
+          "createdAt": "2022-05-19T20:08:19Z",
+          "updatedAt": "2022-05-19T20:08:19Z"
+        },
+        {
+          "author": "mirjak",
+          "authorAssociation": "MEMBER",
+          "body": "I added some more text but I think we want to discuss a bit more about these general models before we submit -00",
+          "createdAt": "2022-07-04T18:00:07Z",
+          "updatedAt": "2022-07-04T18:00:07Z"
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "id": "I_kwDOHPOG-85L3LtU",
+      "title": "Rename to \"Decoupling\"?",
+      "url": "https://github.com/intarchboard/draft-obliviousness/issues/2",
+      "state": "CLOSED",
+      "author": "tfpauly",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "Another term instead of partitioning is Decoupling. The Principle of Decoupling, The Decoupling Principle, etc.",
+      "createdAt": "2022-06-15T21:14:57Z",
+      "updatedAt": "2022-10-07T23:33:10Z",
+      "closedAt": "2022-10-07T23:33:09Z",
+      "comments": [
+        {
+          "author": "mirjak",
+          "authorAssociation": "MEMBER",
+          "body": "I like privacy partitioning more...",
+          "createdAt": "2022-07-04T17:06:32Z",
+          "updatedAt": "2022-07-04T17:06:32Z"
+        },
+        {
+          "author": "fluffy",
+          "authorAssociation": "MEMBER",
+          "body": "I prefer the partitioning over decoupling ",
+          "createdAt": "2022-09-28T16:13:26Z",
+          "updatedAt": "2022-09-28T16:13:26Z"
+        },
+        {
+          "author": "mirjak",
+          "authorAssociation": "MEMBER",
+          "body": "if you look for privacy and data partitioning, you sooner or later will end up discussing k-anonymity where I believe this is the appropriate reference: https://dl.acm.org/doi/10.1142/S0218488502001648",
+          "createdAt": "2022-09-28T16:42:32Z",
+          "updatedAt": "2022-09-28T16:42:32Z"
+        },
+        {
+          "author": "mirjak",
+          "authorAssociation": "MEMBER",
+          "body": "Also note that there is also privacy preserving data mining (PPDM) as a term of art (what is exactly what is used in PPM). Some example survey papers that might provide some overview (didn't read them yet fully):\r\nhttps://www.ncbi.nlm.nih.gov/pmc/articles/PMC4643068/\r\nhttps://www.ijert.org/research/techniques-for-privacy-preservation-in-data-mining-IJERTV4IS100473.pdf\r\n",
+          "createdAt": "2022-09-28T16:55:49Z",
+          "updatedAt": "2022-09-28T16:55:49Z"
+        },
+        {
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "body": "Closing based on discussion.",
+          "createdAt": "2022-10-07T23:33:09Z",
+          "updatedAt": "2022-10-07T23:33:09Z"
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "id": "I_kwDOHPOG-85L3NXi",
+      "title": "Layers of decoupling",
+      "url": "https://github.com/intarchboard/draft-obliviousness/issues/3",
+      "state": "CLOSED",
+      "author": "tfpauly",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "MASQUE / OHTTP decouple data on a network path. Decoupling in space, effectively.\r\n\r\nOther decoupling strategies necessarily have to build on top of that.\r\n\r\nPPM decouples based on computation, but relies on separate servers / network paths.\r\n\r\nPrivacy Pass decouples trust/attestation using blinding, and also relies on decoupled paths.",
+      "createdAt": "2022-06-15T21:23:43Z",
+      "updatedAt": "2023-03-06T20:37:12Z",
+      "closedAt": "2023-03-06T20:37:12Z",
+      "comments": []
+    },
+    {
+      "number": 4,
+      "id": "I_kwDOHPOG-85MBcQ9",
+      "title": "Partitioning/decoupling relies on only one party knowing the joined set",
+      "url": "https://github.com/intarchboard/draft-obliviousness/issues/4",
+      "state": "CLOSED",
+      "author": "tfpauly",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "In these models, only the client knows the fully joined set of information. No server individually knows how to join all the data.\r\n\r\nTLS and ECH are good examples of using encryption to hide information from most parties, but in that case clients and servers (two entities) still can join all informations. VPNs were like that too.",
+      "createdAt": "2022-06-17T20:45:57Z",
+      "updatedAt": "2022-10-07T23:32:39Z",
+      "closedAt": "2022-10-07T23:32:39Z",
+      "comments": [
+        {
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@tfpauly I think we can close this now.",
+          "createdAt": "2022-10-07T15:51:50Z",
+          "updatedAt": "2022-10-07T15:51:50Z"
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "id": "I_kwDOHPOG-85MBf5U",
+      "title": "Everything is more explicit",
+      "url": "https://github.com/intarchboard/draft-obliviousness/issues/5",
+      "state": "CLOSED",
+      "author": "tfpauly",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "Clients want to be able to be explicit about what data they share \u2014 location, etc.\r\n\r\nIn order to do this, they need to explicitly select different entities and hops over which to partition data.\r\n\r\nAs a result, these entities need to actively/more explicitly collude in order to rejoin data.",
+      "createdAt": "2022-06-17T20:57:23Z",
+      "updatedAt": "2023-03-06T20:37:19Z",
+      "closedAt": "2023-03-06T20:37:19Z",
+      "comments": []
+    },
+    {
+      "number": 6,
+      "id": "I_kwDOHPOG-85MBkiq",
+      "title": "Partitioning/decoupling doesn't prevent side-channel attacks",
+      "url": "https://github.com/intarchboard/draft-obliviousness/issues/6",
+      "state": "CLOSED",
+      "author": "tfpauly",
+      "authorAssociation": "MEMBER",
+      "assignees": [
+        "tfpauly"
+      ],
+      "labels": [],
+      "body": "Timing side-channels, etc, are still possible. They can of course be mitigated in very expensive ways to fuzz the data, but it's important to point out that this general architecture doesn't prevent these attacks.\r\n\r\nIt does, however, move the threat model to this kind of analysis rather than just looking at direct metadata.",
+      "createdAt": "2022-06-17T21:11:03Z",
+      "updatedAt": "2023-03-06T20:33:14Z",
+      "closedAt": "2023-03-06T20:33:14Z",
+      "comments": [
+        {
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "body": "We do have text on this:\r\n\"For example, side channels such as traffic analysis [[I-D.irtf-pearg-website-fingerprinting](https://intarchboard.github.io/draft-obliviousness/draft-iab-privacy-partitioning.html#I-D.irtf-pearg-website-fingerprinting)] or timing analysis are still possible and can allow an unauthorized entity to learn information about a context they are not a participant of.\"",
+          "createdAt": "2023-03-06T20:33:14Z",
+          "updatedAt": "2023-03-06T20:33:14Z"
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "id": "I_kwDOHPOG-85OxNPX",
+      "title": "Notation for analyzing partitioning",
+      "url": "https://github.com/intarchboard/draft-obliviousness/issues/9",
+      "state": "CLOSED",
+      "author": "tfpauly",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "The decoupling paper charts out:\r\n- Sensitive identity\r\n- Non-sensitive identity\r\n- Sensitive data/metadata\r\n- Non-sensitive data/metadata\r\n\r\nHowever, it may be simpler to just track the sensitive things.\r\n\r\nLike in ODoH, the relay sees sensitive identity but not data, and target sees sensitive data but not identity.",
+      "createdAt": "2022-07-28T21:38:40Z",
+      "updatedAt": "2023-03-06T20:37:44Z",
+      "closedAt": "2023-03-06T20:37:44Z",
+      "comments": []
+    },
+    {
+      "number": 10,
+      "id": "I_kwDOHPOG-85OxQX4",
+      "title": "Fill out definitions section",
+      "url": "https://github.com/intarchboard/draft-obliviousness/issues/10",
+      "state": "CLOSED",
+      "author": "tfpauly",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "tfpauly"
+      ],
+      "labels": [],
+      "body": "",
+      "createdAt": "2022-07-28T21:52:11Z",
+      "updatedAt": "2022-09-23T17:25:59Z",
+      "closedAt": "2022-09-23T17:25:59Z",
+      "comments": [
+        {
+          "author": "tfpauly",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Different parties involved\r\nDifferent types of contexts\r\nTypes of communication\r\nTrust relationships",
+          "createdAt": "2022-07-28T21:52:45Z",
+          "updatedAt": "2022-07-28T21:52:45Z"
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "id": "I_kwDOHPOG-85OxQk_",
+      "title": "Add pictures / diagrams",
+      "url": "https://github.com/intarchboard/draft-obliviousness/issues/11",
+      "state": "CLOSED",
+      "author": "tfpauly",
+      "authorAssociation": "MEMBER",
+      "assignees": [
+        "mirjak"
+      ],
+      "labels": [],
+      "body": "Generic one as well as per-protocol",
+      "createdAt": "2022-07-28T21:53:29Z",
+      "updatedAt": "2022-09-26T22:07:42Z",
+      "closedAt": "2022-09-26T22:07:42Z",
+      "comments": []
+    },
+    {
+      "number": 12,
+      "id": "I_kwDOHPOG-85OxQ0C",
+      "title": "Describe analysis of models",
+      "url": "https://github.com/intarchboard/draft-obliviousness/issues/12",
+      "state": "CLOSED",
+      "author": "tfpauly",
+      "authorAssociation": "MEMBER",
+      "assignees": [
+        "tfpauly"
+      ],
+      "labels": [],
+      "body": "- Different models of how to arrange the parties\r\n- Framework for how to analyze privacy properties of an partitioned model\r\n- Ways to analyze trust, how privacy breaks down if assumptions are violated (collapses to non-partitioned model)",
+      "createdAt": "2022-07-28T21:54:57Z",
+      "updatedAt": "2023-03-11T04:05:48Z",
+      "closedAt": "2023-03-11T04:05:48Z",
+      "comments": [
+        {
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "body": "This is where we should define the notation for #9 ?",
+          "createdAt": "2022-07-28T21:59:34Z",
+          "updatedAt": "2022-07-28T21:59:34Z"
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "id": "I_kwDOHPOG-85PVznG",
+      "title": "Add references to RFC 6973",
+      "url": "https://github.com/intarchboard/draft-obliviousness/issues/13",
+      "state": "CLOSED",
+      "author": "tfpauly",
+      "authorAssociation": "MEMBER",
+      "assignees": [
+        "mirjak"
+      ],
+      "labels": [],
+      "body": "We should explain the relationship to RFC 6973, the previous IAB document on privacy.",
+      "createdAt": "2022-08-07T20:34:05Z",
+      "updatedAt": "2023-03-13T17:51:19Z",
+      "closedAt": "2023-03-13T17:51:19Z",
+      "comments": [
+        {
+          "author": "mirjak",
+          "authorAssociation": "MEMBER",
+          "body": "Yes, need to say something here. This is the respective text from RFC6973:\r\nsee https://www.rfc-editor.org/rfc/rfc6973#section-6.1.4\r\n\r\n```\r\n6.1.4  Data Minimization within Identity Management\r\n\r\n   Modern systems are increasingly relying on multi-party transactions\r\n   to authenticate individuals.  Many of these systems make use of an\r\n   identity provider that is responsible for providing AAA functionality\r\n   to relying parties that offer some protected resources.  To\r\n   facilitate these functions, an identity provider will usually go\r\n   through a process of verifying the individual's identity and issuing\r\n   credentials to the individual.  When an individual seeks to make use\r\n   of a service provided by the relying party, the relying party relies\r\n   on the authentication assertions provided by its identity provider.\r\n   Note that in more sophisticated scenarios the authentication\r\n   assertions are traits that demonstrate the individual's capabilities\r\n   and roles.  The authorization responsibility may also be shared\r\n   between the identity provider and the relying party and does not\r\n   necessarily need to reside only with the identity provider.\r\n\r\n   Such systems have the ability to support a number of properties that\r\n   minimize data collection in different ways:\r\n\r\n      In certain use cases, relying parties do not need to know the real\r\n      name or date of birth of an individual (for example, when the\r\n      individual's age is the only attribute that needs to be\r\n      authenticated).\r\n\r\n      Relying parties that collude can be prevented from using an\r\n      individual's credentials to track the individual.  That is, two\r\n      different relying parties can be prevented from determining that\r\n      the same individual has authenticated to both of them.  This\r\n      typically requires identity management protocol support as well as\r\n      support by both the relying party and the identity provider.\r\n\r\n      The identity provider can be prevented from knowing which relying\r\n      parties an individual interacted with.  This requires, at a\r\n      minimum, avoiding direct communication between the identity\r\n      provider and the relying party at the time when access to a\r\n      resource by the initiator is made.\r\n```",
+          "createdAt": "2022-08-08T14:35:14Z",
+          "updatedAt": "2022-08-08T14:35:42Z"
+        },
+        {
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "body": "Partly done with #14 ",
+          "createdAt": "2022-09-12T18:38:02Z",
+          "updatedAt": "2022-09-12T18:38:02Z"
+        },
+        {
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@mirjak do you want to take this one?",
+          "createdAt": "2023-03-06T20:33:19Z",
+          "updatedAt": "2023-03-06T20:33:19Z"
+        }
+      ]
+    },
+    {
+      "number": 15,
+      "id": "I_kwDOHPOG-85ScPM7",
+      "title": "Discuss attestation bit more?",
+      "url": "https://github.com/intarchboard/draft-obliviousness/issues/15",
+      "state": "OPEN",
+      "author": "tfpauly",
+      "authorAssociation": "MEMBER",
+      "assignees": [
+        "mirjak"
+      ],
+      "labels": [
+        "discuss"
+      ],
+      "body": "The impacts section should talk about attestation, etc.\r\n\r\n> ## Attestation (and identity management)\r\n> \r\n> Simple techniques like encryption or a more flexible use of IP addresses, e.g. based on proxying, gives the user more control about its data and is a prerequisite for practical partitioning. This is especially important for metadata which have unintentionally been spread to more entities than functionally needed in the past. \r\n> \r\n> Looking further at the data that is requested by a service to function, and not only unintentionally revealed metadata, different services of course have different requirements. Some services do require a user identity, e.g. by creating a user account. Other services currently use existing identifiers like the IP address to create a notion of identity, e.g. to rate-limit access to a certain service or track their service usage. Particularly, in these cases there is a desire to minimize the number of entities that can identify the user. However, just concealing any identifying data by partitioning can impact the service function.\r\n> \r\n> In these cases privacy partitioning can be \u201cused\u201d together with attestation where a known trusted entity that can access a user\u2019s identity can attest a certain characteristic or property of the user without revealing the identity.\r\n> \r\n> ToDo: Given an example?\r\n> ",
+      "createdAt": "2022-09-22T23:51:35Z",
+      "updatedAt": "2023-03-13T17:51:15Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "mirjak",
+          "authorAssociation": "MEMBER",
+          "body": "Not sure this belongs in the impact section.",
+          "createdAt": "2022-09-28T16:33:18Z",
+          "updatedAt": "2022-09-28T16:33:18Z"
+        },
+        {
+          "author": "mirjak",
+          "authorAssociation": "MEMBER",
+          "body": "I think the W3C verifiable credentials work (see https://www.w3.org/2017/vc/WG/), that @fluffy mentioned in the IAB call today, might fit here as well.",
+          "createdAt": "2022-09-28T16:34:10Z",
+          "updatedAt": "2022-09-28T16:34:10Z"
+        },
+        {
+          "author": "mirjak",
+          "authorAssociation": "MEMBER",
+          "body": "Actually I don't think we need this anymore. I mainly thought it would be useful to also define attestation in the context of this draft but I guess that is covered by the privacy pass section.\r\n\r\nThe interesting difference for privacy pass compared to the other approach is maybe that you have a \"new\" entity that is not on-path. A) this enables you to also do time partitioning, and b) this is something that can be combined with the other approaches. So I have the feeling the is something more we need to discuss here... ",
+          "createdAt": "2023-03-13T16:47:12Z",
+          "updatedAt": "2023-03-13T16:47:12Z"
+        }
+      ]
+    },
+    {
+      "number": 18,
+      "id": "I_kwDOHPOG-85S0_h5",
+      "title": "Perhaps add SIP example",
+      "url": "https://github.com/intarchboard/draft-obliviousness/issues/18",
+      "state": "OPEN",
+      "author": "fluffy",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "explain how SIP privacy works and particularly caller ID while still being able to deal with CSAM ",
+      "createdAt": "2022-09-28T16:14:21Z",
+      "updatedAt": "2022-09-28T16:14:21Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 19,
+      "id": "I_kwDOHPOG-85S0_rC",
+      "title": "Talk about timing attacks on things like TOR",
+      "url": "https://github.com/intarchboard/draft-obliviousness/issues/19",
+      "state": "CLOSED",
+      "author": "fluffy",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "and solutions like CBR ",
+      "createdAt": "2022-09-28T16:14:50Z",
+      "updatedAt": "2022-10-13T22:22:36Z",
+      "closedAt": "2022-10-13T22:22:36Z",
+      "comments": [
+        {
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@tfpauly I think we can close this now that #21 has been merged. It mentions traffic analysis.",
+          "createdAt": "2022-10-07T15:51:04Z",
+          "updatedAt": "2022-10-07T15:51:04Z"
+        }
+      ]
+    },
+    {
+      "number": 22,
+      "id": "I_kwDOHPOG-85TUfpi",
+      "title": "Performance and privacy tussle",
+      "url": "https://github.com/intarchboard/draft-obliviousness/issues/22",
+      "state": "CLOSED",
+      "author": "chris-wood",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "chris-wood"
+      ],
+      "labels": [],
+      "body": "Do we want to say something about connection coalescing as an example of the (often present) performance and privacy? See [this comment](https://github.com/intarchboard/draft-obliviousness/pull/21#discussion_r987974304) for more context.",
+      "createdAt": "2022-10-05T14:24:40Z",
+      "updatedAt": "2023-03-09T18:58:33Z",
+      "closedAt": "2023-03-09T18:58:33Z",
+      "comments": []
+    },
+    {
+      "number": 25,
+      "id": "I_kwDOHPOG-85Uks1e",
+      "title": "Use SVG",
+      "url": "https://github.com/intarchboard/draft-obliviousness/issues/25",
+      "state": "CLOSED",
+      "author": "tfpauly",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "Currently, the SVG diagrams have bad text alignment. We need to fix that before we use it.",
+      "createdAt": "2022-10-21T22:09:57Z",
+      "updatedAt": "2022-11-16T01:07:23Z",
+      "closedAt": "2022-11-16T01:07:23Z",
+      "comments": [
+        {
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "body": "Fixed by #27 ",
+          "createdAt": "2022-11-16T01:07:23Z",
+          "updatedAt": "2022-11-16T01:07:23Z"
+        }
+      ]
+    },
+    {
+      "number": 26,
+      "id": "I_kwDOHPOG-85Vo29T",
+      "title": "Acknowledge and cite Decoupling Principle paper",
+      "url": "https://github.com/intarchboard/draft-obliviousness/issues/26",
+      "state": "CLOSED",
+      "author": "tfpauly",
+      "authorAssociation": "MEMBER",
+      "assignees": [
+        "chris-wood"
+      ],
+      "labels": [],
+      "body": "",
+      "createdAt": "2022-11-05T02:12:53Z",
+      "updatedAt": "2023-03-09T00:23:45Z",
+      "closedAt": "2023-03-09T00:23:45Z",
+      "comments": []
+    },
+    {
+      "number": 28,
+      "id": "I_kwDOHPOG-85WlmdC",
+      "title": "Multiple disjoint contexts need to be truly disjoint",
+      "url": "https://github.com/intarchboard/draft-obliviousness/issues/28",
+      "state": "CLOSED",
+      "author": "martinthomson",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "tfpauly"
+      ],
+      "labels": [],
+      "body": "[Section 2.1](https://intarchboard.github.io/draft-obliviousness/draft-kpw-iab-privacy-partitioning.html#section-2.1-9) says:\r\n\r\n> Another way to create a partition is to simply use separate connections. For example, to split two separate HTTP requests from one another, a client could issue the requests on separate TCP connections, each on a different network, and at different times; and avoid including obvious identifiers like HTTP cookies across the requests.\r\n\r\nThis could probably be improved by pointing out that all identifiers that might be shared across contexts might be used to correlate activity.  This acts at all layers of the stack, with some layers providing less linkability as a result of them maybe being shared with others (IP address, MAC address maybe, device fingerprints, based on hardware and software choices) that might be unique when considered in totality, whereas others provide absolute linkability (per-client cookies).\r\n\r\nI don't know how much existing work can be pointed to on this point, but it's a central piece of the overall thesis you are tackling here.\r\n",
+      "createdAt": "2022-11-17T04:47:44Z",
+      "updatedAt": "2023-03-09T00:24:39Z",
+      "closedAt": "2023-03-09T00:24:39Z",
+      "comments": []
+    },
+    {
+      "number": 30,
+      "id": "I_kwDOHPOG-85WloMc",
+      "title": "Is MASQUE different than CONNECT?",
+      "url": "https://github.com/intarchboard/draft-obliviousness/issues/30",
+      "state": "CLOSED",
+      "author": "martinthomson",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "tfpauly"
+      ],
+      "labels": [],
+      "body": "[Section 3.1](https://intarchboard.github.io/draft-obliviousness/draft-kpw-iab-privacy-partitioning.html#section-3.1-2) says:\r\n\r\n> There is also a Proxy-to-Target context; in case of MASQUE this context only contains any (unprotected) packet header information that is added or modified by the proxy, e.g., the IP and UDP headers.\r\n\r\nThis implies that the HTTP CONNECT case is materially different.  I don't think that is true.\r\n\r\nSecondarily, you should say \"UDP/TCP\" here.",
+      "createdAt": "2022-11-17T04:55:59Z",
+      "updatedAt": "2023-03-08T15:54:47Z",
+      "closedAt": "2023-03-08T15:54:47Z",
+      "comments": []
+    },
+    {
+      "number": 31,
+      "id": "I_kwDOHPOG-85Wlo2t",
+      "title": "CONNECT and encryption",
+      "url": "https://github.com/intarchboard/draft-obliviousness/issues/31",
+      "state": "CLOSED",
+      "author": "martinthomson",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "tfpauly"
+      ],
+      "labels": [],
+      "body": "[Section 3.1](https://intarchboard.github.io/draft-obliviousness/draft-kpw-iab-privacy-partitioning.html#section-3.1-1) says:\r\n\r\n> HTTP forward proxies, when using encryption, provide privacy partitioning by separating a connection into multiple segments. \r\n\r\nI think that you need to be explicit here about what is encrypted.  Traditionally, there is no encryption on the client-proxy connection.  However, some browsers support HTTPS proxies, which adds encryption to that link.\r\n\r\nI don't know which of these modes this section refers to.  This will be relevant in my next issue.",
+      "createdAt": "2022-11-17T04:59:09Z",
+      "updatedAt": "2023-03-08T16:01:39Z",
+      "closedAt": "2023-03-08T16:01:39Z",
+      "comments": []
+    },
+    {
+      "number": 32,
+      "id": "I_kwDOHPOG-85WlpcM",
+      "title": "End-to-end context for CONNECT/MASQUE",
+      "url": "https://github.com/intarchboard/draft-obliviousness/issues/32",
+      "state": "CLOSED",
+      "author": "martinthomson",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "tfpauly"
+      ],
+      "labels": [],
+      "body": "Isn't there an end-to-end context for CONNECT/MASQUE?  If the tunneled connection is encrypted, then the content of that connection is not visible to the proxy.\r\n\r\nAll the diagrams in [Section 3.1](https://intarchboard.github.io/draft-obliviousness/draft-kpw-iab-privacy-partitioning.html#section-3.1) show the proxy in this context, but [Figure 2](https://intarchboard.github.io/draft-obliviousness/draft-kpw-iab-privacy-partitioning.html#figure-2) doesn't.\r\n\r\n(I infer that you aren't concerned about any leakage out of a context at this level.  Leakage is a concern, but it's probably OK to leave that to a later section of the document.)",
+      "createdAt": "2022-11-17T05:01:46Z",
+      "updatedAt": "2023-03-09T00:23:34Z",
+      "closedAt": "2023-03-09T00:23:34Z",
+      "comments": []
+    },
+    {
+      "number": 33,
+      "id": "I_kwDOHPOG-85Wlpst",
+      "title": "Secondary contexts",
+      "url": "https://github.com/intarchboard/draft-obliviousness/issues/33",
+      "state": "CLOSED",
+      "author": "martinthomson",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "tfpauly"
+      ],
+      "labels": [],
+      "body": "[Figure 4](https://intarchboard.github.io/draft-obliviousness/draft-kpw-iab-privacy-partitioning.html#figure-4) and [Figure 5](https://intarchboard.github.io/draft-obliviousness/draft-kpw-iab-privacy-partitioning.html#figure-5) shows a bunch of contexts in which the client does not participate.  Are those really helpful to include?",
+      "createdAt": "2022-11-17T05:03:04Z",
+      "updatedAt": "2023-03-11T04:06:12Z",
+      "closedAt": "2023-03-11T04:06:12Z",
+      "comments": [
+        {
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "body": "I think these are useful to include, personally, since they show the contexts across the entire flow. While client privacy is the goal, partitioning works in general. Happy to hear other opinions, though!",
+          "createdAt": "2023-03-08T16:01:02Z",
+          "updatedAt": "2023-03-08T16:01:02Z"
+        },
+        {
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Yeah, I think we ought to include them. Maybe we should add text that actually references them though? For example, we might say that, in the two hop arrangement, Proxy B sees: context is shares with the Client (TLS session), context it shares with Proxy A (IP address and transport bits), and context it shares with the Target (transport and TLS session).",
+          "createdAt": "2023-03-08T23:18:38Z",
+          "updatedAt": "2023-03-08T23:18:38Z"
+        },
+        {
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "body": "We do talk about them a bit, and my new text from #32 may help make it clearer by having a separate bullet?",
+          "createdAt": "2023-03-09T00:33:03Z",
+          "updatedAt": "2023-03-09T00:33:03Z"
+        }
+      ]
+    },
+    {
+      "number": 34,
+      "id": "I_kwDOHPOG-85Wlre9",
+      "title": "Fingerprinting",
+      "url": "https://github.com/intarchboard/draft-obliviousness/issues/34",
+      "state": "CLOSED",
+      "author": "martinthomson",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "chris-wood"
+      ],
+      "labels": [],
+      "body": "A more thorough treatment of this subject might be helpful in [Section 4](https://intarchboard.github.io/draft-obliviousness/draft-kpw-iab-privacy-partitioning.html#section-4).  Fingerprinting exploits characteristics of a client that are innate and therefore difficult to remove.  This includes details of implementation of protocols in hardware and software, and network location.  This manifests in patterns that can, when combined, produce a value that can be used to re-identify clients across contexts.",
+      "createdAt": "2022-11-17T05:12:03Z",
+      "updatedAt": "2023-03-13T17:24:05Z",
+      "closedAt": "2023-03-13T17:24:05Z",
+      "comments": []
+    },
+    {
+      "number": 35,
+      "id": "I_kwDOHPOG-85XOd5F",
+      "title": "Trust is important",
+      "url": "https://github.com/intarchboard/draft-obliviousness/issues/35",
+      "state": "CLOSED",
+      "author": "chris-wood",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "chris-wood"
+      ],
+      "labels": [],
+      "body": "From the list: \n\n> The document should state very clearly that the net effect of \nthese architectures on user privacy will be positive or negative \ndepending on who is in control of the choice of where the traffic goes. \n\nThis seems reasonable to do!",
+      "createdAt": "2022-11-24T14:12:26Z",
+      "updatedAt": "2023-03-09T18:58:01Z",
+      "closedAt": "2023-03-09T18:58:01Z",
+      "comments": [
+        {
+          "author": "mirjak",
+          "authorAssociation": "MEMBER",
+          "body": "Related this discussion we could maybe also add a note on centralisation risks (if there is no user choice in the deployment) in the impacts section but need to figure out more clearly what is useful to say in this document (or what should be left to other docs on centralization).",
+          "createdAt": "2022-12-13T16:35:35Z",
+          "updatedAt": "2022-12-13T16:35:35Z"
+        }
+      ]
+    },
+    {
+      "number": 36,
+      "id": "I_kwDOHPOG-85ZE5B-",
+      "title": "Section: Violations by Collusion",
+      "url": "https://github.com/intarchboard/draft-obliviousness/issues/36",
+      "state": "OPEN",
+      "author": "mirjak",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [
+        "discuss"
+      ],
+      "body": "Jari by email:\r\n\r\n> Perhaps you should describe the possibility that outside parties -- such\r\n> as authorities -- force collusion by law or authoritative requests.\r\n> This seems like a quite likely danger.\r\n> \r\n> (Given how central the assumptions around collusion are on this,\r\n> I\u2019d like to see a deeper discussion on this.)",
+      "createdAt": "2022-12-13T15:08:54Z",
+      "updatedAt": "2023-03-13T17:48:26Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "mirjak",
+          "authorAssociation": "MEMBER",
+          "body": "Not sure. Seems like a separate topic on its own for me. But maybe we can mention it somewhere?\r\n\r\nMaybe just say something like: \"Even if entities don't collude directly, if information is revealed to another party, which e.g. could be required by legal obligations, there is no control about further collusion of data.\"",
+          "createdAt": "2023-03-13T17:48:26Z",
+          "updatedAt": "2023-03-13T17:48:26Z"
+        }
+      ]
+    },
+    {
+      "number": 37,
+      "id": "I_kwDOHPOG-85ZE7M1",
+      "title": "Expand security considerations",
+      "url": "https://github.com/intarchboard/draft-obliviousness/issues/37",
+      "state": "CLOSED",
+      "author": "mirjak",
+      "authorAssociation": "MEMBER",
+      "assignees": [
+        "chris-wood"
+      ],
+      "labels": [],
+      "body": "Comment by Jari:\r\n\r\n> Besides collusion, timing attacks and traffic analysis continue to be concerns. \r\n> I think these methods have issues that are more specific than general issues\r\n> In this space, and would perhaps be useful to describe in more detail.\r\n> \r\n> It is also seems to be not just a purely matter of server1 and server2 colluding.\r\n> Even observation of traffic on some leg(s) and inside knowledge from server2\r\n> seems sufficient for determining correlation. FWIW, I don\u2019t claim to fully\r\n> understand what the issues are (despite working on similar things for something\r\n> slightly different in the past), but my point is that the draft is really brief on this,\r\n> and I think there\u2019s more to unpack.",
+      "createdAt": "2022-12-13T15:13:20Z",
+      "updatedAt": "2023-03-09T00:31:39Z",
+      "closedAt": "2023-03-09T00:31:38Z",
+      "comments": []
+    },
+    {
+      "number": 38,
+      "id": "I_kwDOHPOG-85ZFALK",
+      "title": "Do we need/want a privacy considerations section per RFC6973?",
+      "url": "https://github.com/intarchboard/draft-obliviousness/issues/38",
+      "state": "OPEN",
+      "author": "mirjak",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "(Question raised by Niels via mail)",
+      "createdAt": "2022-12-13T15:22:40Z",
+      "updatedAt": "2023-03-13T17:50:15Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Given that the whole document is about privacy considerations, I think we can probably close this without action. @mirjak, @tfpauly, what do you think?",
+          "createdAt": "2023-03-06T20:37:04Z",
+          "updatedAt": "2023-03-06T20:37:04Z"
+        },
+        {
+          "author": "mirjak",
+          "authorAssociation": "MEMBER",
+          "body": "Generally I agree but I guess we could say exactly this in one sentence.",
+          "createdAt": "2023-03-13T17:50:15Z",
+          "updatedAt": "2023-03-13T17:50:15Z"
+        }
+      ]
+    },
+    {
+      "number": 40,
+      "id": "I_kwDOHPOG-85ZFkWP",
+      "title": "talk about why a diversity of approaches have been developed",
+      "url": "https://github.com/intarchboard/draft-obliviousness/issues/40",
+      "state": "CLOSED",
+      "author": "mirjak",
+      "authorAssociation": "MEMBER",
+      "assignees": [
+        "tfpauly"
+      ],
+      "labels": [],
+      "body": "By MT via mail:\r\n\r\n> There are clearly parts of the draft that are more refined than others and I'm not sure that it always stays neatly within its implied scope.  I'm also interested in whether that scope might be expanded to talk about why a diversity of approaches have been developed.  That might provide some basis for understanding the properties of each approach so that people might understand where each applies best.",
+      "createdAt": "2022-12-13T16:26:00Z",
+      "updatedAt": "2023-03-13T17:23:05Z",
+      "closedAt": "2023-03-13T17:23:05Z",
+      "comments": []
+    },
+    {
+      "number": 50,
+      "id": "I_kwDOHPOG-85gVVJv",
+      "title": "Add text on linkable identifiers",
+      "url": "https://github.com/intarchboard/draft-obliviousness/issues/50",
+      "state": "OPEN",
+      "author": "chris-wood",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "chris-wood"
+      ],
+      "labels": [],
+      "body": "Linkability may happen by looking at information across different layers of the stack, e.g., as discussed in [this old draft](https://datatracker.ietf.org/doc/draft-wood-linkable-identifiers/).",
+      "createdAt": "2023-03-09T00:44:24Z",
+      "updatedAt": "2023-03-09T00:44:30Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 53,
+      "id": "I_kwDOHPOG-85grdGK",
+      "title": "Generalize beyond encryption",
+      "url": "https://github.com/intarchboard/draft-obliviousness/issues/53",
+      "state": "OPEN",
+      "author": "chris-wood",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "chris-wood"
+      ],
+      "labels": [],
+      "body": "Encryption isn't the only cryptographic tool at our disposal for separating contexts, though it is the most obvious and easy-to-use one. ",
+      "createdAt": "2023-03-13T18:09:21Z",
+      "updatedAt": "2023-03-13T18:09:26Z",
+      "closedAt": null,
+      "comments": []
+    }
+  ],
+  "pulls": [
+    {
+      "number": 7,
+      "id": "PR_kwDOHPOG-846z1cw",
+      "title": "Proposed edits in intro",
+      "url": "https://github.com/intarchboard/draft-obliviousness/pull/7",
+      "state": "MERGED",
+      "author": "mirjak",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2022-07-04T16:59:07Z",
+      "updatedAt": "2022-07-28T21:28:27Z",
+      "baseRepository": "intarchboard/draft-obliviousness",
+      "baseRefName": "main",
+      "baseRefOid": "845bc82bf3b87ff3fb64bf98326a370a9a02a5f1",
+      "headRepository": "intarchboard/draft-obliviousness",
+      "headRefName": "mirjak-patch-1",
+      "headRefOid": "a557b3aabb9753ed27322d41de064c6208db899e",
+      "closedAt": "2022-07-28T21:28:27Z",
+      "mergedAt": "2022-07-28T21:28:27Z",
+      "mergedBy": "tfpauly",
+      "mergeCommit": {
+        "oid": "b3a356e98b41da4859aa95bf8872662c82311a44"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOHPOG-849QmyC",
+          "commit": {
+            "abbreviatedOid": "eaeff0b"
+          },
+          "author": "mirjak",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-07-04T17:01:23Z",
+          "updatedAt": "2022-07-04T17:01:24Z",
+          "comments": [
+            {
+              "originalPosition": 22,
+              "body": "```suggestion\r\nread by passively observing traffic and therefore giving the control of its data back to the user.\r\n```",
+              "createdAt": "2022-07-04T17:01:24Z",
+              "updatedAt": "2022-07-04T17:01:54Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-849Qm0D",
+          "commit": {
+            "abbreviatedOid": "eaeff0b"
+          },
+          "author": "mirjak",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-07-04T17:01:39Z",
+          "updatedAt": "2022-07-04T17:01:39Z",
+          "comments": [
+            {
+              "originalPosition": 25,
+              "body": "```suggestion\r\nHowever, this is not sufficient to ensure good or the best possible user privacy.\r\n```",
+              "createdAt": "2022-07-04T17:01:39Z",
+              "updatedAt": "2022-07-04T17:01:39Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-849Qm5Z",
+          "commit": {
+            "abbreviatedOid": "eaeff0b"
+          },
+          "author": "mirjak",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-07-04T17:02:16Z",
+          "updatedAt": "2022-07-04T17:02:16Z",
+          "comments": [
+            {
+              "originalPosition": 36,
+              "body": "```suggestion\r\nimportant to separate user identity (who) from user actions (what) whenever possible.\r\n```",
+              "createdAt": "2022-07-04T17:02:16Z",
+              "updatedAt": "2022-07-04T17:02:16Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-849Qn06",
+          "commit": {
+            "abbreviatedOid": "0ae54c6"
+          },
+          "author": "mirjak",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-07-04T17:09:38Z",
+          "updatedAt": "2022-07-04T17:09:38Z",
+          "comments": [
+            {
+              "originalPosition": 22,
+              "body": "```suggestion\r\nread by passively observing traffic and thereby giving the control of its data back to the user.\r\n```",
+              "createdAt": "2022-07-04T17:09:38Z",
+              "updatedAt": "2022-07-04T17:09:38Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-849V3q9",
+          "commit": {
+            "abbreviatedOid": "bb9a06f"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-07-05T19:59:11Z",
+          "updatedAt": "2022-07-05T20:00:55Z",
+          "comments": [
+            {
+              "originalPosition": 8,
+              "body": "```suggestion\r\nmultiple parties as a means to improve the privacy by separating user identity from user actions.\r\n```",
+              "createdAt": "2022-07-05T19:59:11Z",
+              "updatedAt": "2022-07-05T20:00:55Z"
+            },
+            {
+              "originalPosition": 22,
+              "body": "Could we make this extra thought a separate sentence? It seems to run on.\r\n\r\n```suggestion\r\nread by passively observing traffic.\r\n```",
+              "createdAt": "2022-07-05T20:00:04Z",
+              "updatedAt": "2022-07-05T20:00:55Z"
+            },
+            {
+              "originalPosition": 25,
+              "body": "```suggestion\r\nHowever, this is not sufficient to provide a complete user privacy solution.\r\n```",
+              "createdAt": "2022-07-05T20:00:39Z",
+              "updatedAt": "2022-07-05T20:00:55Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-84-3qFv",
+          "commit": {
+            "abbreviatedOid": "a557b3a"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2022-07-28T21:28:13Z",
+          "updatedAt": "2022-07-28T21:28:13Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "id": "PR_kwDOHPOG-846z1sF",
+      "title": "new paragraph on identity management",
+      "url": "https://github.com/intarchboard/draft-obliviousness/pull/8",
+      "state": "OPEN",
+      "author": "mirjak",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2022-07-04T17:00:32Z",
+      "updatedAt": "2022-07-28T21:43:20Z",
+      "baseRepository": "intarchboard/draft-obliviousness",
+      "baseRefName": "main",
+      "baseRefOid": "845bc82bf3b87ff3fb64bf98326a370a9a02a5f1",
+      "headRepository": "intarchboard/draft-obliviousness",
+      "headRefName": "mirjak-patch-2",
+      "headRefOid": "269191f2966b9ecf07573bfea5478cb172d058e7",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "mirjak",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "This was just and idea that this topic is highly related (after reading Jana's/chris' paper). However, it might be out of scope, therefore I left it in a separate PR for now. Please review!",
+          "createdAt": "2022-07-04T17:57:46Z",
+          "updatedAt": "2022-07-04T17:57:46Z"
+        },
+        {
+          "author": "tfpauly",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Probably better as a separate section from the intro.\r\n\r\nIdentity brokers (like sign-in with apple, etc) do things to hide direct identity from end services, but the brokers can see the real and anonymized identity still. We could try to apply the split here. It's a similar and related area, and maybe could benefit from this analysis.",
+          "createdAt": "2022-07-28T21:43:20Z",
+          "updatedAt": "2022-07-28T21:43:20Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOHPOG-849QnD8",
+          "commit": {
+            "abbreviatedOid": "fc99b25"
+          },
+          "author": "mirjak",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-07-04T17:03:32Z",
+          "updatedAt": "2022-07-04T17:03:33Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "```suggestion\r\nThese works mainly focus one communication protocol support for privacy partitioning.\r\nA remaining challenging also lives in identity management itself. Today, mainly services\r\nimplement their own identify management (requiring separate account of each service) or\r\n```",
+              "createdAt": "2022-07-04T17:03:32Z",
+              "updatedAt": "2022-07-04T17:03:33Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-849WAiC",
+          "commit": {
+            "abbreviatedOid": "67cf459"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-07-05T20:37:26Z",
+          "updatedAt": "2022-07-05T20:37:26Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "I'm having trouble parsing this sentence... what specifically are you wanting to say here?",
+              "createdAt": "2022-07-05T20:37:26Z",
+              "updatedAt": "2022-07-05T20:37:26Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-849WApp",
+          "commit": {
+            "abbreviatedOid": "67cf459"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-07-05T20:37:59Z",
+          "updatedAt": "2022-07-05T20:38:01Z",
+          "comments": [
+            {
+              "originalPosition": 12,
+              "body": "```suggestion\r\nimplement their own identity management (requiring separate account of each service) or\r\nrely on a small number of large identity providers. The use of a third party identity\r\nprovider would allow for privacy partitioning by having the identity provider attesting service\r\naccess rights or other relevant user characteristics in an anonymous way. However, today use of\r\nthe centralized system rather lead to an even larger centralization of data as user activity is\r\nnot sufficiently revealed from the identity management system, and identity is not anonymized by\r\nthe management system.\r\n```",
+              "createdAt": "2022-07-05T20:37:59Z",
+              "updatedAt": "2022-07-05T20:38:01Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-849XxjT",
+          "commit": {
+            "abbreviatedOid": "67cf459"
+          },
+          "author": "mirjak",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-07-06T07:43:13Z",
+          "updatedAt": "2022-07-06T07:43:13Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "that on-going work is looking at protocols but not identify management...",
+              "createdAt": "2022-07-06T07:43:13Z",
+              "updatedAt": "2022-07-06T07:43:13Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "id": "PR_kwDOHPOG-84-zefQ",
+      "title": "Discuss partitioning, contexts, and identities",
+      "url": "https://github.com/intarchboard/draft-obliviousness/pull/14",
+      "state": "MERGED",
+      "author": "tfpauly",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Closes #10 ",
+      "createdAt": "2022-09-12T17:39:43Z",
+      "updatedAt": "2022-09-23T17:25:59Z",
+      "baseRepository": "intarchboard/draft-obliviousness",
+      "baseRefName": "main",
+      "baseRefOid": "b3a356e98b41da4859aa95bf8872662c82311a44",
+      "headRepository": "intarchboard/draft-obliviousness",
+      "headRefName": "tfp/contexts-and-identities",
+      "headRefOid": "3a0b852410d6823cc6868ae4b88d356c8d617831",
+      "closedAt": "2022-09-23T17:25:59Z",
+      "mergedAt": "2022-09-23T17:25:59Z",
+      "mergedBy": "tfpauly",
+      "mergeCommit": {
+        "oid": "075b7ea312508811bfa510dd3894f7ced773f7b2"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOHPOG-85CUMP7",
+          "commit": {
+            "abbreviatedOid": "76dbb43"
+          },
+          "author": "mirjak",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-09-19T17:03:48Z",
+          "updatedAt": "2022-09-19T17:03:49Z",
+          "comments": [
+            {
+              "originalPosition": 26,
+              "body": "```suggestion\r\nThis document defines \"partitioning\" as the general technique used to separate the data\r\n```",
+              "createdAt": "2022-09-19T17:03:49Z",
+              "updatedAt": "2022-09-19T17:03:49Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85Cm_Ev",
+          "commit": {
+            "abbreviatedOid": "c51154b"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-09-22T18:36:17Z",
+          "updatedAt": "2022-09-22T18:54:48Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\r\nThis document describes the principle of privacy partitioning, which selectively spreads data and communication across\r\n```",
+              "createdAt": "2022-09-22T18:36:17Z",
+              "updatedAt": "2022-09-22T18:54:48Z"
+            },
+            {
+              "originalPosition": 20,
+              "body": "```suggestion\r\n# Privacy Partitioning\r\n```",
+              "createdAt": "2022-09-22T18:36:31Z",
+              "updatedAt": "2022-09-22T18:54:48Z"
+            },
+            {
+              "originalPosition": 26,
+              "body": "```suggestion\r\nThis document defines \"privacy partitioning\" as the general technique used to separate the data\r\n```",
+              "createdAt": "2022-09-22T18:36:40Z",
+              "updatedAt": "2022-09-22T18:54:48Z"
+            },
+            {
+              "originalPosition": 30,
+              "body": "```suggestion\r\nAt a high level, privacy partitioning can be described as separating *who* someone is\r\n```",
+              "createdAt": "2022-09-22T18:37:08Z",
+              "updatedAt": "2022-09-22T18:54:48Z"
+            },
+            {
+              "originalPosition": 101,
+              "body": "```suggestion\r\nThe \"anonymity level\" of a given identity exists on a scale, not a clear line between real\r\n```",
+              "createdAt": "2022-09-22T18:37:48Z",
+              "updatedAt": "2022-09-22T18:54:48Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85CoBMR",
+          "commit": {
+            "abbreviatedOid": "5866abc"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-09-22T23:40:34Z",
+          "updatedAt": "2022-09-22T23:40:35Z",
+          "comments": [
+            {
+              "originalPosition": 30,
+              "body": "```suggestion\r\n\r\nData partitioning can be achieved in different ways, e.g. over time, across network paths, based on (en)coding, etc. However, in order to improve user privacy, partitioning needs to be performed carefully to reduce the set of entities that have access to a user\u2019s identity,\r\nor the ability to correlate traffic to a user.\r\n\r\nAt a high level, privacy partitioning can be described as separating *who* someone is\r\n```",
+              "createdAt": "2022-09-22T23:40:35Z",
+              "updatedAt": "2022-09-22T23:40:35Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85CoBZS",
+          "commit": {
+            "abbreviatedOid": "71e248d"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-09-22T23:42:24Z",
+          "updatedAt": "2022-09-22T23:42:24Z",
+          "comments": [
+            {
+              "originalPosition": 78,
+              "body": "The markdown format automatically numbers, and the right style is to use \"1.\" for each item.",
+              "createdAt": "2022-09-22T23:42:24Z",
+              "updatedAt": "2022-09-22T23:42:24Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85CoBeF",
+          "commit": {
+            "abbreviatedOid": "71e248d"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-09-22T23:43:06Z",
+          "updatedAt": "2022-09-22T23:43:06Z",
+          "comments": [
+            {
+              "originalPosition": 124,
+              "body": "```suggestion\r\nrequires making contexts more disjoint, such as by using proxying to\r\nconceal a client IP address that would otherwise be used as an identifier.\r\n```",
+              "createdAt": "2022-09-22T23:43:06Z",
+              "updatedAt": "2022-09-22T23:43:06Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 16,
+      "id": "PR_kwDOHPOG-84_lt_-",
+      "title": "diagrams - first try",
+      "url": "https://github.com/intarchboard/draft-obliviousness/pull/16",
+      "state": "MERGED",
+      "author": "mirjak",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "fixes #11",
+      "createdAt": "2022-09-26T09:23:31Z",
+      "updatedAt": "2022-09-26T22:07:41Z",
+      "baseRepository": "intarchboard/draft-obliviousness",
+      "baseRefName": "main",
+      "baseRefOid": "a684b9fed39ebb8f9974c5ed6c55ae688d03d3b9",
+      "headRepository": "intarchboard/draft-obliviousness",
+      "headRefName": "mirjak-patch-3",
+      "headRefOid": "521dad808341b404898359d45541363f667fb84d",
+      "closedAt": "2022-09-26T22:07:41Z",
+      "mergedAt": "2022-09-26T22:07:41Z",
+      "mergedBy": "tfpauly",
+      "mergeCommit": {
+        "oid": "b7cee8893a3c7dc5496dcc5d2f61982975c8bc3d"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOHPOG-85Czj-A",
+          "commit": {
+            "abbreviatedOid": "49739f5"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-09-26T19:50:26Z",
+          "updatedAt": "2022-09-26T19:50:26Z",
+          "comments": [
+            {
+              "originalPosition": 98,
+              "body": "```suggestion\r\n{: #diagram-2hop title=\"Diagram of two-hop contexts.\"}\r\n```",
+              "createdAt": "2022-09-26T19:50:26Z",
+              "updatedAt": "2022-09-26T19:50:26Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85CzkJL",
+          "commit": {
+            "abbreviatedOid": "49739f5"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-09-26T19:50:46Z",
+          "updatedAt": "2022-09-26T19:50:46Z",
+          "comments": [
+            {
+              "originalPosition": 115,
+              "body": "```suggestion\r\n{: #diagram-ohttp title=\"Diagram of oblivious contexts.\"}\r\n```",
+              "createdAt": "2022-09-26T19:50:46Z",
+              "updatedAt": "2022-09-26T19:50:46Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85CzkQF",
+          "commit": {
+            "abbreviatedOid": "49739f5"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-09-26T19:51:11Z",
+          "updatedAt": "2022-09-26T19:51:11Z",
+          "comments": [
+            {
+              "originalPosition": 34,
+              "body": "```suggestion\r\n```",
+              "createdAt": "2022-09-26T19:51:11Z",
+              "updatedAt": "2022-09-26T19:51:11Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85CzkaS",
+          "commit": {
+            "abbreviatedOid": "49739f5"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-09-26T19:51:37Z",
+          "updatedAt": "2022-09-26T19:51:37Z",
+          "comments": [
+            {
+              "originalPosition": 119,
+              "body": "```suggestion\r\n\r\n```",
+              "createdAt": "2022-09-26T19:51:37Z",
+              "updatedAt": "2022-09-26T19:51:38Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 17,
+      "id": "PR_kwDOHPOG-84_l55c",
+      "title": "Proposed smaller text updates",
+      "url": "https://github.com/intarchboard/draft-obliviousness/pull/17",
+      "state": "MERGED",
+      "author": "mirjak",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2022-09-26T10:04:22Z",
+      "updatedAt": "2022-10-13T22:22:27Z",
+      "baseRepository": "intarchboard/draft-obliviousness",
+      "baseRefName": "main",
+      "baseRefOid": "d57c95baeeed7577c1e9a7cc20345bc2c5165ddf",
+      "headRepository": "intarchboard/draft-obliviousness",
+      "headRefName": "mirjak-patch-4",
+      "headRefOid": "470a4051cd5cfe712a2dfac4b1fa51d98615d19b",
+      "closedAt": "2022-10-13T22:22:27Z",
+      "mergedAt": "2022-10-13T22:22:27Z",
+      "mergedBy": "chris-wood",
+      "mergeCommit": {
+        "oid": "f347a4fe212e44b98252e73cd4c03ec6d4b41ea6"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOHPOG-85Cx7zv",
+          "commit": {
+            "abbreviatedOid": "1b4414d"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "Build fixes",
+          "createdAt": "2022-09-26T14:55:48Z",
+          "updatedAt": "2022-09-26T14:56:27Z",
+          "comments": [
+            {
+              "originalPosition": 32,
+              "body": "```suggestion\r\nit was never designed to act as identifier and does not provide any stability guarantees.\r\n```",
+              "createdAt": "2022-09-26T14:55:48Z",
+              "updatedAt": "2022-09-26T14:56:27Z"
+            },
+            {
+              "originalPosition": 47,
+              "body": "```suggestion\r\nto the target),\r\n```",
+              "createdAt": "2022-09-26T14:56:04Z",
+              "updatedAt": "2022-09-26T14:56:27Z"
+            },
+            {
+              "originalPosition": 54,
+              "body": "```suggestion\r\nconnection).\r\n```",
+              "createdAt": "2022-09-26T14:56:22Z",
+              "updatedAt": "2022-09-26T14:56:27Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85CzlPa",
+          "commit": {
+            "abbreviatedOid": "ecc2f27"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-09-26T19:54:36Z",
+          "updatedAt": "2022-09-26T19:54:36Z",
+          "comments": [
+            {
+              "originalPosition": 11,
+              "body": "```suggestion\r\nbe performed carefully to reduce the set of entities that have access to a user\u2019s identity and\r\nactivity, or have the ability to correlate traffic across different contexts, which allows entities\r\nto correlate identities and actions.\r\n```",
+              "createdAt": "2022-09-26T19:54:36Z",
+              "updatedAt": "2022-09-26T19:54:36Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85CzleM",
+          "commit": {
+            "abbreviatedOid": "ecc2f27"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-09-26T19:55:28Z",
+          "updatedAt": "2022-09-26T19:55:29Z",
+          "comments": [
+            {
+              "originalPosition": 20,
+              "body": "```suggestion\r\nto completely guarantee that no data or metadata is linkable across various actions. Instead, as protocols\r\n```",
+              "createdAt": "2022-09-26T19:55:28Z",
+              "updatedAt": "2022-09-26T19:55:29Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85CzlmP",
+          "commit": {
+            "abbreviatedOid": "ecc2f27"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-09-26T19:55:57Z",
+          "updatedAt": "2022-09-26T19:55:58Z",
+          "comments": [
+            {
+              "originalPosition": 22,
+              "body": "```suggestion\r\ndevelop new techniques to partition data and metadata, it becomes easier to prevent entities\r\nfrom being able to correlate information about a user and thereby reduce their privacy.\r\n```",
+              "createdAt": "2022-09-26T19:55:57Z",
+              "updatedAt": "2022-09-26T19:55:58Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85CzmGJ",
+          "commit": {
+            "abbreviatedOid": "19d0b15"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-09-26T19:57:48Z",
+          "updatedAt": "2022-09-26T19:57:48Z",
+          "comments": [
+            {
+              "originalPosition": 31,
+              "body": "```suggestion\r\npartitioning is. For example, IP addresses are often used as pseudonyms, even though\r\nthey were not designed to act as user identifiers and do not provide stability guarantees.\r\n```",
+              "createdAt": "2022-09-26T19:57:48Z",
+              "updatedAt": "2022-09-26T19:57:48Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85CzmT5",
+          "commit": {
+            "abbreviatedOid": "90baa8a"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-09-26T19:58:37Z",
+          "updatedAt": "2022-09-26T19:58:37Z",
+          "comments": [
+            {
+              "originalPosition": 72,
+              "body": "```suggestion\r\nseparation of connections (via proxy hops that see only the next hop) to achieve privacy partitioning.\r\n```",
+              "createdAt": "2022-09-26T19:58:37Z",
+              "updatedAt": "2022-09-26T19:58:37Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85D_kRt",
+          "commit": {
+            "abbreviatedOid": "8ac62cf"
+          },
+          "author": "mirjak",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-13T12:56:54Z",
+          "updatedAt": "2022-10-13T12:56:55Z",
+          "comments": [
+            {
+              "originalPosition": 42,
+              "body": "```suggestion\r\nUse of a single proxy based on a tunnel connection between the client and proxy as well\r\n```",
+              "createdAt": "2022-10-13T12:56:54Z",
+              "updatedAt": "2022-10-13T12:56:55Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85D_lg4",
+          "commit": {
+            "abbreviatedOid": "da24b7e"
+          },
+          "author": "mirjak",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-13T12:59:43Z",
+          "updatedAt": "2022-10-13T12:59:43Z",
+          "comments": [
+            {
+              "originalPosition": 46,
+              "body": "```suggestion\r\nIn a single-proxy setup there is a tunnel connection between the client and proxy and an end-to-end connection that is tunnelled between the client and target. This setup, as shown in the figure below, partitions\r\ncommunication into a Client-to-Proxy context (the transport\r\nmetadata between the client and the target, and the request to the proxy to open a connection\r\nto the target),\r\n```",
+              "createdAt": "2022-10-13T12:59:43Z",
+              "updatedAt": "2022-10-13T12:59:43Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85D_pRo",
+          "commit": {
+            "abbreviatedOid": "8ef0a0b"
+          },
+          "author": "mirjak",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-13T13:08:21Z",
+          "updatedAt": "2022-10-13T13:08:22Z",
+          "comments": [
+            {
+              "originalPosition": 52,
+              "body": "```suggestion\r\nconnection). There is also a Proxy-to-Target context; in case of MASQUE this context only \r\ncontains any (unprotected) packet header information that is added or modified by the proxy,\r\ne.g. potentially the IP und UDP headers or only the source IP address depending on the MASQUE setup. \r\n```",
+              "createdAt": "2022-10-13T13:08:21Z",
+              "updatedAt": "2022-10-13T13:08:22Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85EBf0U",
+          "commit": {
+            "abbreviatedOid": "8561789"
+          },
+          "author": "mirjak",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-13T17:42:37Z",
+          "updatedAt": "2022-10-13T17:42:38Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "```suggestion\r\n\r\n```",
+              "createdAt": "2022-10-13T17:42:37Z",
+              "updatedAt": "2022-10-13T17:42:38Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85EBf_N",
+          "commit": {
+            "abbreviatedOid": "7ca3683"
+          },
+          "author": "mirjak",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-13T17:43:12Z",
+          "updatedAt": "2022-10-13T17:43:13Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\r\n\r\n## Privacy Contexts\r\n```",
+              "createdAt": "2022-10-13T17:43:12Z",
+              "updatedAt": "2022-10-13T17:43:13Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85EBwnN",
+          "commit": {
+            "abbreviatedOid": "3f09e35"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-13T18:34:29Z",
+          "updatedAt": "2022-10-13T18:34:43Z",
+          "comments": [
+            {
+              "originalPosition": 17,
+              "body": "```suggestion\r\nconnection). There is also a Proxy-to-Target context; in case of MASQUE this context only\r\n```",
+              "createdAt": "2022-10-13T18:34:29Z",
+              "updatedAt": "2022-10-13T18:34:43Z"
+            },
+            {
+              "originalPosition": 19,
+              "body": "```suggestion\r\ne.g. potentially the IP und UDP headers or only the source IP address depending on the MASQUE setup.\r\n```",
+              "createdAt": "2022-10-13T18:34:37Z",
+              "updatedAt": "2022-10-13T18:34:43Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85EBxTW",
+          "commit": {
+            "abbreviatedOid": "1716176"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-13T18:37:01Z",
+          "updatedAt": "2022-10-13T18:37:02Z",
+          "comments": [
+            {
+              "originalPosition": 19,
+              "body": "```suggestion\r\ne.g., the IP and UDP headers.\r\n```",
+              "createdAt": "2022-10-13T18:37:01Z",
+              "updatedAt": "2022-10-13T18:37:02Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85EBxU1",
+          "commit": {
+            "abbreviatedOid": "1716176"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2022-10-13T18:37:06Z",
+          "updatedAt": "2022-10-13T18:37:06Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOHPOG-85EBxZF",
+          "commit": {
+            "abbreviatedOid": "470a405"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2022-10-13T18:37:22Z",
+          "updatedAt": "2022-10-13T18:37:22Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 20,
+      "id": "PR_kwDOHPOG-85AJEQa",
+      "title": "Refactor the partitioning flow",
+      "url": "https://github.com/intarchboard/draft-obliviousness/pull/20",
+      "state": "MERGED",
+      "author": "chris-wood",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2022-10-04T14:38:01Z",
+      "updatedAt": "2022-10-07T15:21:43Z",
+      "baseRepository": "intarchboard/draft-obliviousness",
+      "baseRefName": "main",
+      "baseRefOid": "0f444e3915e53746590c76feead41f26b8a89c06",
+      "headRepository": "intarchboard/draft-obliviousness",
+      "headRefName": "caw/refactor-flow",
+      "headRefOid": "756e8ed83cb9f52cfc61471808d7798078d1a007",
+      "closedAt": "2022-10-07T15:21:43Z",
+      "mergedAt": "2022-10-07T15:21:42Z",
+      "mergedBy": "tfpauly",
+      "mergeCommit": {
+        "oid": "b6e3c73103a538ae26cfc86b3eb669efc85a46b3"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOHPOG-85DXc5T",
+          "commit": {
+            "abbreviatedOid": "01b8c89"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-04T15:49:19Z",
+          "updatedAt": "2022-10-04T15:49:20Z",
+          "comments": [
+            {
+              "originalPosition": 21,
+              "body": "```suggestion\r\nother than the intended protocol participants. As such, this kind of security is necessary for ensuring that\r\n```\r\n\r\nSaying \"it\" didn't make sense, since we are referring to \"encryption and authentication\", I think",
+              "createdAt": "2022-10-04T15:49:20Z",
+              "updatedAt": "2022-10-04T15:49:20Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85DXdNd",
+          "commit": {
+            "abbreviatedOid": "01b8c89"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-04T15:50:08Z",
+          "updatedAt": "2022-10-04T15:50:09Z",
+          "comments": [
+            {
+              "originalPosition": 29,
+              "body": "```suggestion\r\nthemselves. In recent years, privacy requirements have expanded beyond the need to protect data in transit\r\n```",
+              "createdAt": "2022-10-04T15:50:08Z",
+              "updatedAt": "2022-10-04T15:50:09Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85DXdjB",
+          "commit": {
+            "abbreviatedOid": "01b8c89"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-04T15:50:59Z",
+          "updatedAt": "2022-10-04T15:51:00Z",
+          "comments": [
+            {
+              "originalPosition": 78,
+              "body": "```suggestion\r\nis no link between user-specific identity and user-specific data. However, applied properly,\r\n```",
+              "createdAt": "2022-10-04T15:51:00Z",
+              "updatedAt": "2022-10-04T15:51:00Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85DXdth",
+          "commit": {
+            "abbreviatedOid": "01b8c89"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-04T15:51:25Z",
+          "updatedAt": "2022-10-04T15:51:25Z",
+          "comments": [
+            {
+              "originalPosition": 84,
+              "body": "```suggestion\r\nwork in those groups and describes a framework for reasoning about the resulting privacy posture of different\r\n```",
+              "createdAt": "2022-10-04T15:51:25Z",
+              "updatedAt": "2022-10-04T15:51:25Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85DXeBK",
+          "commit": {
+            "abbreviatedOid": "01b8c89"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-04T15:52:14Z",
+          "updatedAt": "2022-10-04T15:52:15Z",
+          "comments": [
+            {
+              "originalPosition": 110,
+              "body": "```suggestion\r\nrest of this section, we describe how privacy partitioning can be used to achieve this goal.\r\n```",
+              "createdAt": "2022-10-04T15:52:15Z",
+              "updatedAt": "2022-10-04T15:52:15Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85DXeR4",
+          "commit": {
+            "abbreviatedOid": "01b8c89"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-04T15:52:54Z",
+          "updatedAt": "2022-10-04T15:52:54Z",
+          "comments": [
+            {
+              "originalPosition": 119,
+              "body": "```suggestion\r\nto that information. In order to prevent correlation of user-specific information across\r\n```\r\nSince this is both data and metadata...",
+              "createdAt": "2022-10-04T15:52:54Z",
+              "updatedAt": "2022-10-04T15:52:54Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85DXeph",
+          "commit": {
+            "abbreviatedOid": "01b8c89"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-04T15:53:51Z",
+          "updatedAt": "2022-10-04T15:53:51Z",
+          "comments": [
+            {
+              "originalPosition": 147,
+              "body": "```suggestion\r\nIn order to define and analyze how various partitioning techniques work, the boundaries of what is\r\n```",
+              "createdAt": "2022-10-04T15:53:51Z",
+              "updatedAt": "2022-10-04T15:53:51Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85DXe-7",
+          "commit": {
+            "abbreviatedOid": "01b8c89"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-04T15:54:40Z",
+          "updatedAt": "2022-10-04T15:54:41Z",
+          "comments": [
+            {
+              "originalPosition": 189,
+              "body": "I think it's still useful to have a subsection that mentions identity as seen within a context?",
+              "createdAt": "2022-10-04T15:54:40Z",
+              "updatedAt": "2022-10-04T15:54:41Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85DXflR",
+          "commit": {
+            "abbreviatedOid": "01b8c89"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-04T15:56:14Z",
+          "updatedAt": "2022-10-04T15:56:15Z",
+          "comments": [
+            {
+              "originalPosition": 189,
+              "body": "I don't know if it's useful to zero in on identity since it's just one type of user-specific information. I think it's more helpful to just say that \"each context has at most one type of user-specific information.\"",
+              "createdAt": "2022-10-04T15:56:14Z",
+              "updatedAt": "2022-10-04T15:56:15Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85DZBvH",
+          "commit": {
+            "abbreviatedOid": "01b8c89"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-04T21:27:20Z",
+          "updatedAt": "2022-10-04T21:27:21Z",
+          "comments": [
+            {
+              "originalPosition": 189,
+              "body": "(Discussed offline) Pushed back some text from RFC6973.",
+              "createdAt": "2022-10-04T21:27:20Z",
+              "updatedAt": "2022-10-04T21:27:21Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85DZDVb",
+          "commit": {
+            "abbreviatedOid": "756e8ed"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2022-10-04T21:34:53Z",
+          "updatedAt": "2022-10-04T21:34:53Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 21,
+      "id": "PR_kwDOHPOG-85ANDc2",
+      "title": "Pass over the back half",
+      "url": "https://github.com/intarchboard/draft-obliviousness/pull/21",
+      "state": "MERGED",
+      "author": "chris-wood",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2022-10-05T10:41:06Z",
+      "updatedAt": "2022-10-07T15:21:59Z",
+      "baseRepository": "intarchboard/draft-obliviousness",
+      "baseRefName": "main",
+      "baseRefOid": "0f444e3915e53746590c76feead41f26b8a89c06",
+      "headRepository": "intarchboard/draft-obliviousness",
+      "headRefName": "caw/back-pass",
+      "headRefOid": "8e417da07213d0ad10d9f4fa053fca9d573e7462",
+      "closedAt": "2022-10-07T15:21:59Z",
+      "mergedAt": "2022-10-07T15:21:59Z",
+      "mergedBy": "tfpauly",
+      "mergeCommit": {
+        "oid": "d57c95baeeed7577c1e9a7cc20345bc2c5165ddf"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOHPOG-85DcVLd",
+          "commit": {
+            "abbreviatedOid": "de9e707"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-05T14:10:13Z",
+          "updatedAt": "2022-10-05T14:10:14Z",
+          "comments": [
+            {
+              "originalPosition": 93,
+              "body": "I'd still like to have a section for analysis, and not _just_ limits. I quite like the limits section, but I think there's still room for some general comments about \"as new protocols come out, here's a guide to think about their use of partitioning\".\r\n\r\nSo, could we add the stub back for now?",
+              "createdAt": "2022-10-05T14:10:13Z",
+              "updatedAt": "2022-10-05T14:10:14Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85DcVcF",
+          "commit": {
+            "abbreviatedOid": "de9e707"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-05T14:10:51Z",
+          "updatedAt": "2022-10-05T14:10:51Z",
+          "comments": [
+            {
+              "originalPosition": 172,
+              "body": "```suggestion\r\nfor more examples of this in the real world, and see {{security-considerations}} for more discussion.\r\n```",
+              "createdAt": "2022-10-05T14:10:51Z",
+              "updatedAt": "2022-10-05T14:10:51Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85DcVqi",
+          "commit": {
+            "abbreviatedOid": "de9e707"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-05T14:11:24Z",
+          "updatedAt": "2022-10-05T14:11:26Z",
+          "comments": [
+            {
+              "originalPosition": 198,
+              "body": "Are you thinking of how it is harder to coalesce over a proxy, or easier?",
+              "createdAt": "2022-10-05T14:11:24Z",
+              "updatedAt": "2022-10-05T14:11:26Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85DcWxj",
+          "commit": {
+            "abbreviatedOid": "de9e707"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-05T14:14:04Z",
+          "updatedAt": "2022-10-05T14:14:04Z",
+          "comments": [
+            {
+              "originalPosition": 198,
+              "body": "I was more thinking that coalescing is interesting because it improves performance but allows the server to link multiple origin connections to the same client. That might not have previously been possible if the client used separate connections for those origins. The tradeoff is... interesting (to me).",
+              "createdAt": "2022-10-05T14:14:04Z",
+              "updatedAt": "2022-10-05T14:14:04Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85DcYFU",
+          "commit": {
+            "abbreviatedOid": "d837fe8"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-05T14:17:16Z",
+          "updatedAt": "2022-10-05T14:17:17Z",
+          "comments": [
+            {
+              "originalPosition": 93,
+              "body": "I added back a stub with a slightly different title to better match what you have in mind. Have a look?",
+              "createdAt": "2022-10-05T14:17:16Z",
+              "updatedAt": "2022-10-05T14:17:17Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85DcZdG",
+          "commit": {
+            "abbreviatedOid": "0e64487"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-05T14:20:31Z",
+          "updatedAt": "2022-10-05T14:20:32Z",
+          "comments": [
+            {
+              "originalPosition": 198,
+              "body": "Ah, I see. Maybe remove this in the text and file an issue for us to discuss?",
+              "createdAt": "2022-10-05T14:20:31Z",
+              "updatedAt": "2022-10-05T14:20:32Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85DcaDr",
+          "commit": {
+            "abbreviatedOid": "0e64487"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2022-10-05T14:22:00Z",
+          "updatedAt": "2022-10-05T14:22:00Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOHPOG-85DcbNv",
+          "commit": {
+            "abbreviatedOid": "de9e707"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-05T14:24:43Z",
+          "updatedAt": "2022-10-05T14:24:43Z",
+          "comments": [
+            {
+              "originalPosition": 198,
+              "body": "Done!",
+              "createdAt": "2022-10-05T14:24:43Z",
+              "updatedAt": "2022-10-05T14:24:43Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 23,
+      "id": "PR_kwDOHPOG-85Av6uq",
+      "title": "Add author",
+      "url": "https://github.com/intarchboard/draft-obliviousness/pull/23",
+      "state": "MERGED",
+      "author": "chris-wood",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2022-10-13T15:46:37Z",
+      "updatedAt": "2022-10-13T15:59:41Z",
+      "baseRepository": "intarchboard/draft-obliviousness",
+      "baseRefName": "main",
+      "baseRefOid": "d57c95baeeed7577c1e9a7cc20345bc2c5165ddf",
+      "headRepository": "intarchboard/draft-obliviousness",
+      "headRefName": "caw/hello",
+      "headRefOid": "a4c90b12b44ad33bfb811749618552f4896f821d",
+      "closedAt": "2022-10-13T15:59:41Z",
+      "mergedAt": "2022-10-13T15:59:41Z",
+      "mergedBy": "mirjak",
+      "mergeCommit": {
+        "oid": "624f9ae8c50f505aaa679dd6ad3933cd2fecfa32"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOHPOG-85EA1Fn",
+          "commit": {
+            "abbreviatedOid": "a4c90b1"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2022-10-13T15:47:04Z",
+          "updatedAt": "2022-10-13T15:47:04Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 24,
+      "id": "PR_kwDOHPOG-85AwCF9",
+      "title": "Analysis and applications of partitioning",
+      "url": "https://github.com/intarchboard/draft-obliviousness/pull/24",
+      "state": "MERGED",
+      "author": "chris-wood",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "I think more can probably be said here. In no particular order:\r\n\r\n1. How one recognizes possible applications of the principle.\r\n2. How one applies the principle to new systems or protocols. \r\n\r\nI couldn't come up with a concise yet useful way to articulate these, so I'd be happy to hear suggestions!",
+      "createdAt": "2022-10-13T16:06:45Z",
+      "updatedAt": "2022-10-21T21:38:17Z",
+      "baseRepository": "intarchboard/draft-obliviousness",
+      "baseRefName": "main",
+      "baseRefOid": "624f9ae8c50f505aaa679dd6ad3933cd2fecfa32",
+      "headRepository": "intarchboard/draft-obliviousness",
+      "headRefName": "caw/analysis-apps",
+      "headRefOid": "c2b25d03382dd86dde97e4090ba05ab8790dc3b3",
+      "closedAt": "2022-10-21T21:38:17Z",
+      "mergedAt": "2022-10-21T21:38:17Z",
+      "mergedBy": "chris-wood",
+      "mergeCommit": {
+        "oid": "6c3ad5cc3b87b78bff113fbf48b49a189af0e9e0"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOHPOG-85EBuQf",
+          "commit": {
+            "abbreviatedOid": "bafa4a2"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-13T18:26:31Z",
+          "updatedAt": "2022-10-13T18:26:31Z",
+          "comments": [
+            {
+              "originalPosition": 30,
+              "body": "Saying it's straightforward makes it sound a bit trivial... which maybe is good to make it sound easy, but it also does have large impacts =)",
+              "createdAt": "2022-10-13T18:26:31Z",
+              "updatedAt": "2022-10-13T18:26:31Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85EBucg",
+          "commit": {
+            "abbreviatedOid": "bafa4a2"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-13T18:27:08Z",
+          "updatedAt": "2022-10-13T18:27:09Z",
+          "comments": [
+            {
+              "originalPosition": 36,
+              "body": "```suggestion\r\nThe most impactful types of user-identifying information to partition are (a) user identity or identities that can be linked and (b) user data.\r\n```",
+              "createdAt": "2022-10-13T18:27:09Z",
+              "updatedAt": "2022-10-13T18:27:09Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85EByYB",
+          "commit": {
+            "abbreviatedOid": "bafa4a2"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-13T18:40:46Z",
+          "updatedAt": "2022-10-13T18:40:47Z",
+          "comments": [
+            {
+              "originalPosition": 30,
+              "body": "Maybe we say it's a conceptually simple process? As in, \"easier said than done\"?",
+              "createdAt": "2022-10-13T18:40:46Z",
+              "updatedAt": "2022-10-13T18:40:47Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85EVyE6",
+          "commit": {
+            "abbreviatedOid": "e983db3"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-18T21:48:08Z",
+          "updatedAt": "2022-10-18T22:08:59Z",
+          "comments": [
+            {
+              "originalPosition": 74,
+              "body": "```suggestion\r\nIt is not currently possible to guarantee with technical protocol measure that two\r\nentities are not colluding. However, there are some mitigations that can be applied\r\nto reduce the risk of collusion happening in practice:\r\n```",
+              "createdAt": "2022-10-18T21:48:08Z",
+              "updatedAt": "2022-10-18T22:08:59Z"
+            },
+            {
+              "originalPosition": 30,
+              "body": "```suggestion\r\nApplying privacy partitioning to an existing or new system or protocol requires the following steps:\r\n```",
+              "createdAt": "2022-10-18T22:04:05Z",
+              "updatedAt": "2022-10-18T22:08:59Z"
+            },
+            {
+              "originalPosition": 32,
+              "body": "```suggestion\r\n1. Identify the types of information used or exposed in a system or protocol, some of which can be used to identity a user or correlate to other contexts.\r\n```",
+              "createdAt": "2022-10-18T22:04:56Z",
+              "updatedAt": "2022-10-18T22:08:59Z"
+            },
+            {
+              "originalPosition": 33,
+              "body": "I'm concerned that just partitioning out the data that is obviously user-identifying isn't enough; how can we capture the correlation angle too?",
+              "createdAt": "2022-10-18T22:05:44Z",
+              "updatedAt": "2022-10-18T22:08:59Z"
+            },
+            {
+              "originalPosition": 35,
+              "body": "```suggestion\r\n1. Partition different types of user-identifying or correlatable information across contexts to minimize the amount of\r\nuser-identifying or correlatable information in any single context.\r\n\r\n```",
+              "createdAt": "2022-10-18T22:07:18Z",
+              "updatedAt": "2022-10-18T22:08:59Z"
+            },
+            {
+              "originalPosition": 44,
+              "body": "```suggestion\r\nThis partitioning process can be applied incorrectly or incompletely. Partitions may contain\r\n```",
+              "createdAt": "2022-10-18T22:08:00Z",
+              "updatedAt": "2022-10-18T22:08:59Z"
+            },
+            {
+              "originalPosition": 46,
+              "body": "```suggestion\r\nthan intended. Nevertheless, partitions can help improve the client's privacy posture when applied carefully.\r\n```",
+              "createdAt": "2022-10-18T22:08:14Z",
+              "updatedAt": "2022-10-18T22:08:59Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85EWJCl",
+          "commit": {
+            "abbreviatedOid": "e983db3"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-19T00:08:35Z",
+          "updatedAt": "2022-10-19T00:08:35Z",
+          "comments": [
+            {
+              "originalPosition": 33,
+              "body": "I think your suggested text probably covers it, which states that two contexts must not be trivially correlated through any shared or common info.",
+              "createdAt": "2022-10-19T00:08:35Z",
+              "updatedAt": "2022-10-19T00:08:36Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85EWrUV",
+          "commit": {
+            "abbreviatedOid": "d369bfa"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2022-10-19T03:24:26Z",
+          "updatedAt": "2022-10-19T03:25:21Z",
+          "comments": [
+            {
+              "originalPosition": 32,
+              "body": "\n```suggestion\n1. Identify the types of information used or exposed in a system or protocol, some of which can be used to identify a user or correlate to other contexts.\n```\n",
+              "createdAt": "2022-10-19T03:24:27Z",
+              "updatedAt": "2022-10-19T03:25:22Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85EZTiJ",
+          "commit": {
+            "abbreviatedOid": "42861ee"
+          },
+          "author": "mirjak",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-19T12:42:01Z",
+          "updatedAt": "2022-10-19T12:42:02Z",
+          "comments": [
+            {
+              "originalPosition": 36,
+              "body": "> (a) user identity or identities that can be linked and (b) user data.\r\n\r\nI think I still don't understand the difference here. Isn't the case of Oblivious HTTP actually that you separate user-identifying information (IP address) from other usually non-user-identifying information (http request)?",
+              "createdAt": "2022-10-19T12:42:01Z",
+              "updatedAt": "2022-10-19T12:46:55Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85EZVfL",
+          "commit": {
+            "abbreviatedOid": "42861ee"
+          },
+          "author": "mirjak",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-19T12:46:37Z",
+          "updatedAt": "2022-10-19T12:46:38Z",
+          "comments": [
+            {
+              "originalPosition": 34,
+              "body": "> minimize the amount of  user-identifying or correlatable information in any single context.\r\n\r\nPer discussion slack, I actually think this is not fully correct and also not what we say earlier. Earlier we talk about separate the who from the what and minimising amount of information needed to fulfill a function to only reveal user-specific information to parties that need access to the information for their intended purpose.",
+              "createdAt": "2022-10-19T12:46:37Z",
+              "updatedAt": "2022-10-19T12:46:48Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85EZW5c",
+          "commit": {
+            "abbreviatedOid": "42861ee"
+          },
+          "author": "mirjak",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-19T12:50:09Z",
+          "updatedAt": "2022-10-19T12:50:13Z",
+          "comments": [
+            {
+              "originalPosition": 34,
+              "body": "```suggestion\r\n1.  Separate user-identifying information from other user data in different contexts and reduce the amount of\r\nuser-identifying or correlatable information in each context to the minimum needed to fulfil the intended function.\r\n```",
+              "createdAt": "2022-10-19T12:50:10Z",
+              "updatedAt": "2022-10-19T12:50:13Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85EaPIn",
+          "commit": {
+            "abbreviatedOid": "42861ee"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-19T14:40:40Z",
+          "updatedAt": "2022-10-19T14:40:41Z",
+          "comments": [
+            {
+              "originalPosition": 36,
+              "body": "I'm not sure I follow you, since that's exactly what the text here says. That is, it says the most important things to separate are information relating to user identity (IP address) and user data (HTTP request). ",
+              "createdAt": "2022-10-19T14:40:40Z",
+              "updatedAt": "2022-10-19T14:40:41Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85EZa2A",
+          "commit": {
+            "abbreviatedOid": "42861ee"
+          },
+          "author": "mirjak",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-19T12:59:27Z",
+          "updatedAt": "2022-10-19T14:52:45Z",
+          "comments": [
+            {
+              "originalPosition": 46,
+              "body": "```suggestion\r\nthan intended. Moreover, splitting user-identifying information over multiple contexts has to be done with care, as creating more contexts can increase the number of entities that need to be trusted to not collude.\r\nNevertheless, partitions can help improve the client's privacy posture when applied carefully.\r\n```",
+              "createdAt": "2022-10-19T12:59:27Z",
+              "updatedAt": "2022-10-19T16:32:05Z"
+            },
+            {
+              "originalPosition": 44,
+              "body": "Here we use the term \"partition\". I guess that actually the same as context, no? I think it like partition actually more as it's the natural term and probably needs actually less explanation.",
+              "createdAt": "2022-10-19T13:00:45Z",
+              "updatedAt": "2022-10-19T14:52:45Z"
+            },
+            {
+              "originalPosition": 49,
+              "body": "```suggestion\r\non the entities that participate in each context that exist and types of user-identifying information as well as other data in each context. Such evaluation is\r\n```",
+              "createdAt": "2022-10-19T13:03:24Z",
+              "updatedAt": "2022-10-19T14:52:45Z"
+            },
+            {
+              "originalPosition": 36,
+              "body": "```suggestion\r\nThe most impactful partitioning is separating user-identifying information from other user data.\r\n```",
+              "createdAt": "2022-10-19T14:50:53Z",
+              "updatedAt": "2022-10-19T14:52:45Z"
+            },
+            {
+              "originalPosition": 36,
+              "body": "it's not quite what the text says because it currently says that user data (b) is also user-identifying information which is confusing.",
+              "createdAt": "2022-10-19T14:51:51Z",
+              "updatedAt": "2022-10-19T14:52:45Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85EaWk4",
+          "commit": {
+            "abbreviatedOid": "42861ee"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-19T14:56:30Z",
+          "updatedAt": "2022-10-19T14:56:30Z",
+          "comments": [
+            {
+              "originalPosition": 36,
+              "body": "User data _can_ be user-identifying, since it's data about or generated by the user. This is an important point I don't think we can omit. How about the following?\r\n\r\n```\r\nThe most impactful types of information to partition are (a) user identity or identities that can be linked and (b) user data, which can be user-identifying for certain applications.\r\n```",
+              "createdAt": "2022-10-19T14:56:30Z",
+              "updatedAt": "2022-10-19T14:56:30Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85EadnV",
+          "commit": {
+            "abbreviatedOid": "42861ee"
+          },
+          "author": "mirjak",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-19T15:12:13Z",
+          "updatedAt": "2022-10-19T15:12:13Z",
+          "comments": [
+            {
+              "originalPosition": 36,
+              "body": "I guess this sentence is not wrong but not sure it's the point. E.g. if I visit videosofcats.com with my IP address, someone who observes the traffic knows that I love cats. So separating this information is useful. If I visit myprivatepageofcatvideos.org where I'm the only user ever visiting this page, an observer can identify me no matter if they see my IP address or not. Hiding the IP address might still be important to not correlate this traffic with other traffic. But isn't the first case the most/more important one, where the user data in itself in not user-identifying?",
+              "createdAt": "2022-10-19T15:12:13Z",
+              "updatedAt": "2022-10-19T15:12:13Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85Eae_L",
+          "commit": {
+            "abbreviatedOid": "42861ee"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-19T15:15:18Z",
+          "updatedAt": "2022-10-19T15:15:19Z",
+          "comments": [
+            {
+              "originalPosition": 36,
+              "body": "Yep, and that's an example of how this principle, even if applied correctly, is insufficient in many cases. This PR does acknowledge this limitation, so I don't think further changes are needed here.",
+              "createdAt": "2022-10-19T15:15:18Z",
+              "updatedAt": "2022-10-19T15:15:19Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85EaizW",
+          "commit": {
+            "abbreviatedOid": "42861ee"
+          },
+          "author": "mirjak",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-19T15:23:15Z",
+          "updatedAt": "2022-10-19T15:23:16Z",
+          "comments": [
+            {
+              "originalPosition": 36,
+              "body": "So why is \u201cwhich can be user-identifying for certain applications\u201d needed?",
+              "createdAt": "2022-10-19T15:23:15Z",
+              "updatedAt": "2022-10-19T15:23:16Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85EajSy",
+          "commit": {
+            "abbreviatedOid": "42861ee"
+          },
+          "author": "mirjak",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-19T15:24:22Z",
+          "updatedAt": "2022-10-19T15:24:22Z",
+          "comments": [
+            {
+              "originalPosition": 36,
+              "body": "isn't the most impactful partition to separate user-identifying data from non-user-identifying data?",
+              "createdAt": "2022-10-19T15:24:22Z",
+              "updatedAt": "2022-10-19T15:24:22Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85Ea_34",
+          "commit": {
+            "abbreviatedOid": "42861ee"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-19T16:28:25Z",
+          "updatedAt": "2022-10-19T16:28:26Z",
+          "comments": [
+            {
+              "originalPosition": 36,
+              "body": "```suggestion\r\nThe most impactful types of information to partition are (a) user identity or identities (such as an account name or IP address) that can be linked and (b) user data (such as the content a user is accessing), which can be often sensitive when combined with user identity. Note that user data can itself be user-identifying, in which case it should be treated as an identifier.\r\n```",
+              "createdAt": "2022-10-19T16:28:25Z",
+              "updatedAt": "2022-10-19T16:28:26Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85EbAPE",
+          "commit": {
+            "abbreviatedOid": "34bb8fd"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-19T16:29:28Z",
+          "updatedAt": "2022-10-19T16:29:29Z",
+          "comments": [
+            {
+              "originalPosition": 44,
+              "body": "Yeah, but I'll change this to \"context\" for now. We can converge on a standard term later.",
+              "createdAt": "2022-10-19T16:29:28Z",
+              "updatedAt": "2022-10-19T16:29:29Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85EbARD",
+          "commit": {
+            "abbreviatedOid": "34bb8fd"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-19T16:29:34Z",
+          "updatedAt": "2022-10-19T16:29:34Z",
+          "comments": [
+            {
+              "originalPosition": 44,
+              "body": "```suggestion\r\nThis partitioning process can be applied incorrectly or incompletely. Contexts may contain\r\n```",
+              "createdAt": "2022-10-19T16:29:34Z",
+              "updatedAt": "2022-10-19T16:29:34Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85EbAnc",
+          "commit": {
+            "abbreviatedOid": "7038e1a"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-19T16:30:33Z",
+          "updatedAt": "2022-10-19T16:30:34Z",
+          "comments": [
+            {
+              "originalPosition": 49,
+              "body": "The entities are part of the context, so I think it's simpler as-is.",
+              "createdAt": "2022-10-19T16:30:33Z",
+              "updatedAt": "2022-10-19T16:30:34Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85EbBSM",
+          "commit": {
+            "abbreviatedOid": "c26e21a"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-19T16:32:33Z",
+          "updatedAt": "2022-10-19T16:32:33Z",
+          "comments": [
+            {
+              "originalPosition": 34,
+              "body": "(Is this now resolved?)",
+              "createdAt": "2022-10-19T16:32:33Z",
+              "updatedAt": "2022-10-19T16:32:33Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85EbBbI",
+          "commit": {
+            "abbreviatedOid": "c26e21a"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-19T16:32:57Z",
+          "updatedAt": "2022-10-19T16:32:58Z",
+          "comments": [
+            {
+              "originalPosition": 34,
+              "body": "I think this is now resolved based on the change below?",
+              "createdAt": "2022-10-19T16:32:57Z",
+              "updatedAt": "2022-10-19T16:32:58Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85EbFVc",
+          "commit": {
+            "abbreviatedOid": "c26e21a"
+          },
+          "author": "mirjak",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-19T16:44:02Z",
+          "updatedAt": "2022-10-19T16:44:02Z",
+          "comments": [
+            {
+              "originalPosition": 49,
+              "body": "I proposing this change because it is not at all clear what is means to evaluate the context that exists. I would say this evaluation is actually to identify the contexts itself, which means you identify all entities that below to a context and the information that is shared in this context.",
+              "createdAt": "2022-10-19T16:44:02Z",
+              "updatedAt": "2022-10-19T16:44:02Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85EbGMw",
+          "commit": {
+            "abbreviatedOid": "c26e21a"
+          },
+          "author": "mirjak",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-19T16:46:40Z",
+          "updatedAt": "2022-10-19T16:46:40Z",
+          "comments": [
+            {
+              "originalPosition": 34,
+              "body": "No, this is a separate point: \"minimising amount of user-identifying or correlatable information in any single context\" is a too strong goal. Earlier we say you want to \"minimise to the information needed to fulfil a certain function\". That's something different.",
+              "createdAt": "2022-10-19T16:46:40Z",
+              "updatedAt": "2022-10-19T16:46:41Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85Eo5IN",
+          "commit": {
+            "abbreviatedOid": "a66aecf"
+          },
+          "author": "mirjak",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-21T21:27:07Z",
+          "updatedAt": "2022-10-21T21:27:07Z",
+          "comments": [
+            {
+              "originalPosition": 34,
+              "body": "```suggestion\r\n1. Partition user data such that the amount of user-identifying or correlatable information in each context is reduced to the minimum needed to fulfil the intended function.\r\n```",
+              "createdAt": "2022-10-21T21:27:07Z",
+              "updatedAt": "2022-10-21T21:27:07Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85Eo6Tu",
+          "commit": {
+            "abbreviatedOid": "a66aecf"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-10-21T21:33:40Z",
+          "updatedAt": "2022-10-21T21:33:40Z",
+          "comments": [
+            {
+              "originalPosition": 34,
+              "body": "```suggestion\r\n1.  Partition data to minimize the amount of user-identifying or correlatable information in any given context to only include what is necessary for that context, and prevent sharing of data across contexts wherever possible.\r\n```",
+              "createdAt": "2022-10-21T21:33:40Z",
+              "updatedAt": "2022-10-21T21:33:40Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 27,
+      "id": "PR_kwDOHPOG-85C-Bxr",
+      "title": "Use aasvg for diagrams",
+      "url": "https://github.com/intarchboard/draft-obliviousness/pull/27",
+      "state": "MERGED",
+      "author": "martinthomson",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "These look better as SVG.",
+      "createdAt": "2022-11-15T23:42:49Z",
+      "updatedAt": "2022-11-16T00:31:53Z",
+      "baseRepository": "intarchboard/draft-obliviousness",
+      "baseRefName": "main",
+      "baseRefOid": "14368f0374e9bd418e84c08b63bb7b160597a5a0",
+      "headRepository": "martinthomson/iab-obliviousness",
+      "headRefName": "aasvg",
+      "headRefOid": "a30243887a2b4761df573437255f151773ec8db4",
+      "closedAt": "2022-11-16T00:31:53Z",
+      "mergedAt": "2022-11-16T00:31:52Z",
+      "mergedBy": "tfpauly",
+      "mergeCommit": {
+        "oid": "648eb91911e3fe468ce9cfe253480d59d7cc5413"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOHPOG-85Gb6mw",
+          "commit": {
+            "abbreviatedOid": "a302438"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2022-11-16T00:28:49Z",
+          "updatedAt": "2022-11-16T00:28:49Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 29,
+      "id": "PR_kwDOHPOG-85DFNJD",
+      "title": "Typos",
+      "url": "https://github.com/intarchboard/draft-obliviousness/pull/29",
+      "state": "MERGED",
+      "author": "martinthomson",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "And other minor things.",
+      "createdAt": "2022-11-17T04:51:49Z",
+      "updatedAt": "2022-11-17T18:15:26Z",
+      "baseRepository": "intarchboard/draft-obliviousness",
+      "baseRefName": "main",
+      "baseRefOid": "648eb91911e3fe468ce9cfe253480d59d7cc5413",
+      "headRepository": "martinthomson/iab-obliviousness",
+      "headRefName": "typos",
+      "headRefOid": "8b0acdf9dceb2833c4b6dcd91c37581d6c934e80",
+      "closedAt": "2022-11-17T18:15:26Z",
+      "mergedAt": "2022-11-17T18:15:26Z",
+      "mergedBy": "tfpauly",
+      "mergeCommit": {
+        "oid": "839e22a0ed82fdf3eadba293143f4d792a1de11e"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOHPOG-85GnwSf",
+          "commit": {
+            "abbreviatedOid": "8b0acdf"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2022-11-17T18:15:22Z",
+          "updatedAt": "2022-11-17T18:15:22Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 39,
+      "id": "PR_kwDOHPOG-85FVW7J",
+      "title": "Acronyms and Target",
+      "url": "https://github.com/intarchboard/draft-obliviousness/pull/39",
+      "state": "MERGED",
+      "author": "mirjak",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "Thanks to Dhruv!",
+      "createdAt": "2022-12-13T15:32:10Z",
+      "updatedAt": "2022-12-13T16:55:42Z",
+      "baseRepository": "intarchboard/draft-obliviousness",
+      "baseRefName": "main",
+      "baseRefOid": "839e22a0ed82fdf3eadba293143f4d792a1de11e",
+      "headRepository": "intarchboard/draft-obliviousness",
+      "headRefName": "mirjak-patch-5",
+      "headRefOid": "7d99cf6a7357723e1f73d5677dcdf0d1c32410b9",
+      "closedAt": "2022-12-13T16:55:42Z",
+      "mergedAt": "2022-12-13T16:55:42Z",
+      "mergedBy": "tfpauly",
+      "mergeCommit": {
+        "oid": "a49e169f9b525888e958dd888e22535a55602ff5"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOHPOG-85IecBc",
+          "commit": {
+            "abbreviatedOid": "05530fe"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2022-12-13T16:52:41Z",
+          "updatedAt": "2022-12-13T16:53:02Z",
+          "comments": [
+            {
+              "originalPosition": 15,
+              "body": "```suggestion\r\n|  | Client +----Proxied-----+   Proxy   +--------------+ Target |  |\r\n```",
+              "createdAt": "2022-12-13T16:52:41Z",
+              "updatedAt": "2022-12-13T16:53:02Z"
+            },
+            {
+              "originalPosition": 33,
+              "body": "```suggestion\r\n|  | Client +----------Proxied----------+ Proxy +-------+ Target |  |\r\n```",
+              "createdAt": "2022-12-13T16:52:51Z",
+              "updatedAt": "2022-12-13T16:53:02Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 41,
+      "id": "PR_kwDOHPOG-85LlK4d",
+      "title": "Separate contexts are only useful if other factors are disjoint",
+      "url": "https://github.com/intarchboard/draft-obliviousness/pull/41",
+      "state": "MERGED",
+      "author": "tfpauly",
+      "authorAssociation": "MEMBER",
+      "assignees": [
+        "tfpauly"
+      ],
+      "labels": [],
+      "body": "Closes #28",
+      "createdAt": "2023-03-08T15:20:01Z",
+      "updatedAt": "2023-03-09T00:24:38Z",
+      "baseRepository": "intarchboard/draft-obliviousness",
+      "baseRefName": "main",
+      "baseRefOid": "176127b1639c11381d99e99a135c6825f3ab954c",
+      "headRepository": "intarchboard/draft-obliviousness",
+      "headRefName": "tfpauly-patch-1",
+      "headRefOid": "2d60694ce2ce085d448fb4f151e347996b2e99b5",
+      "closedAt": "2023-03-09T00:24:38Z",
+      "mergedAt": "2023-03-09T00:24:38Z",
+      "mergedBy": "tfpauly",
+      "mergeCommit": {
+        "oid": "5fe0cb1971dcbac397639aeda3cdda4264450773"
+      },
+      "comments": [
+        {
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "body": "@chris-wood want to file a new issue for pulling over more of that linkable identifier text?",
+          "createdAt": "2023-03-09T00:24:33Z",
+          "updatedAt": "2023-03-09T00:24:33Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOHPOG-85PU9GY",
+          "commit": {
+            "abbreviatedOid": "456330c"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "This reminds me of [this draft](https://datatracker.ietf.org/doc/html/draft-wood-linkable-identifiers-01#section-3), which had some text about the threat model. I wonder if we can pull some of that over?",
+          "createdAt": "2023-03-08T15:22:43Z",
+          "updatedAt": "2023-03-08T15:23:02Z",
+          "comments": [
+            {
+              "originalPosition": 9,
+              "body": "```suggestion\r\nMAC addresses, device properties, software properties and behavior, application state, etc).\r\n```",
+              "createdAt": "2023-03-08T15:22:43Z",
+              "updatedAt": "2023-03-08T15:23:02Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 42,
+      "id": "PR_kwDOHPOG-85LlPMf",
+      "title": "Cite decoupling paper",
+      "url": "https://github.com/intarchboard/draft-obliviousness/pull/42",
+      "state": "MERGED",
+      "author": "chris-wood",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Closes #26",
+      "createdAt": "2023-03-08T15:32:25Z",
+      "updatedAt": "2023-03-09T00:23:44Z",
+      "baseRepository": "intarchboard/draft-obliviousness",
+      "baseRefName": "main",
+      "baseRefOid": "176127b1639c11381d99e99a135c6825f3ab954c",
+      "headRepository": "intarchboard/draft-obliviousness",
+      "headRefName": "chris-wood-patch-1",
+      "headRefOid": "55958c27bd1e11a454e9e65cc9c86f7513683f4a",
+      "closedAt": "2023-03-09T00:23:44Z",
+      "mergedAt": "2023-03-09T00:23:44Z",
+      "mergedBy": "tfpauly",
+      "mergeCommit": {
+        "oid": "10e9fc0418b783ebbdfab858f51571fb871c8b02"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOHPOG-85PVCeg",
+          "commit": {
+            "abbreviatedOid": "55958c2"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-03-08T15:33:59Z",
+          "updatedAt": "2023-03-08T15:33:59Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 43,
+      "id": "PR_kwDOHPOG-85LlR5x",
+      "title": "Proxy-to-target context",
+      "url": "https://github.com/intarchboard/draft-obliviousness/pull/43",
+      "state": "MERGED",
+      "author": "tfpauly",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "Closes #30",
+      "createdAt": "2023-03-08T15:40:05Z",
+      "updatedAt": "2023-03-08T15:54:46Z",
+      "baseRepository": "intarchboard/draft-obliviousness",
+      "baseRefName": "main",
+      "baseRefOid": "176127b1639c11381d99e99a135c6825f3ab954c",
+      "headRepository": "intarchboard/draft-obliviousness",
+      "headRefName": "tfpauly-patch-2",
+      "headRefOid": "a0c920ca209535b4d0d81b3429b2172251a1762b",
+      "closedAt": "2023-03-08T15:54:46Z",
+      "mergedAt": "2023-03-08T15:54:46Z",
+      "mergedBy": "tfpauly",
+      "mergeCommit": {
+        "oid": "89bd667dd9bf8cee871055f1c25eb7ef1e6b0686"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOHPOG-85PVJaJ",
+          "commit": {
+            "abbreviatedOid": "a0c920c"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-03-08T15:49:12Z",
+          "updatedAt": "2023-03-08T15:49:12Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 44,
+      "id": "PR_kwDOHPOG-85LlSyb",
+      "title": "Clarify proxy encryption",
+      "url": "https://github.com/intarchboard/draft-obliviousness/pull/44",
+      "state": "MERGED",
+      "author": "tfpauly",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "Closes #31",
+      "createdAt": "2023-03-08T15:42:40Z",
+      "updatedAt": "2023-03-08T16:01:38Z",
+      "baseRepository": "intarchboard/draft-obliviousness",
+      "baseRefName": "main",
+      "baseRefOid": "176127b1639c11381d99e99a135c6825f3ab954c",
+      "headRepository": "intarchboard/draft-obliviousness",
+      "headRefName": "tfpauly-patch-3",
+      "headRefOid": "9d36ea8c0c31947fee60ff1e55e2210d1622401a",
+      "closedAt": "2023-03-08T16:01:38Z",
+      "mergedAt": "2023-03-08T16:01:38Z",
+      "mergedBy": "tfpauly",
+      "mergeCommit": {
+        "oid": "5b6b9ecca21efeb20d2c54c6a5d87bd78b7f8363"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOHPOG-85PVJrT",
+          "commit": {
+            "abbreviatedOid": "9d36ea8"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-03-08T15:49:42Z",
+          "updatedAt": "2023-03-08T15:49:42Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 45,
+      "id": "PR_kwDOHPOG-85LlY46",
+      "title": "Explicitly show TLS over CONNECT proxies",
+      "url": "https://github.com/intarchboard/draft-obliviousness/pull/45",
+      "state": "MERGED",
+      "author": "tfpauly",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "Closes #32",
+      "createdAt": "2023-03-08T16:00:06Z",
+      "updatedAt": "2023-03-09T00:23:33Z",
+      "baseRepository": "intarchboard/draft-obliviousness",
+      "baseRefName": "main",
+      "baseRefOid": "89bd667dd9bf8cee871055f1c25eb7ef1e6b0686",
+      "headRepository": "intarchboard/draft-obliviousness",
+      "headRefName": "tfpauly-patch-4",
+      "headRefOid": "fce0091809769f46f9f35a57d809916b91c58e83",
+      "closedAt": "2023-03-09T00:23:33Z",
+      "mergedAt": "2023-03-09T00:23:33Z",
+      "mergedBy": "tfpauly",
+      "mergeCommit": {
+        "oid": "688ab7477845fde0acec366980a7c472fb828a5c"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOHPOG-85PX4pD",
+          "commit": {
+            "abbreviatedOid": "fce0091"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-03-08T23:14:53Z",
+          "updatedAt": "2023-03-08T23:14:53Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 46,
+      "id": "PR_kwDOHPOG-85LnXVg",
+      "title": "Trust and centralization",
+      "url": "https://github.com/intarchboard/draft-obliviousness/pull/46",
+      "state": "MERGED",
+      "author": "chris-wood",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Closes #35 ",
+      "createdAt": "2023-03-08T23:13:28Z",
+      "updatedAt": "2023-03-09T18:58:00Z",
+      "baseRepository": "intarchboard/draft-obliviousness",
+      "baseRefName": "main",
+      "baseRefOid": "5b6b9ecca21efeb20d2c54c6a5d87bd78b7f8363",
+      "headRepository": "intarchboard/draft-obliviousness",
+      "headRefName": "caw/trust-and-centralization",
+      "headRefOid": "080e998643f556652062d68c2dacfbf3128c5457",
+      "closedAt": "2023-03-09T18:58:00Z",
+      "mergedAt": "2023-03-09T18:58:00Z",
+      "mergedBy": "tfpauly",
+      "mergeCommit": {
+        "oid": "88fda23b397b5e5e123e7069ee52089383c1e1ef"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOHPOG-85PYZwl",
+          "commit": {
+            "abbreviatedOid": "080e998"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-03-09T00:25:54Z",
+          "updatedAt": "2023-03-09T00:25:54Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 47,
+      "id": "PR_kwDOHPOG-85Lng1B",
+      "title": "Elaborate on tradeoffs",
+      "url": "https://github.com/intarchboard/draft-obliviousness/pull/47",
+      "state": "MERGED",
+      "author": "chris-wood",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Closes #22 ",
+      "createdAt": "2023-03-08T23:36:10Z",
+      "updatedAt": "2023-03-09T18:58:31Z",
+      "baseRepository": "intarchboard/draft-obliviousness",
+      "baseRefName": "main",
+      "baseRefOid": "5b6b9ecca21efeb20d2c54c6a5d87bd78b7f8363",
+      "headRepository": "intarchboard/draft-obliviousness",
+      "headRefName": "caw/tradeoffs",
+      "headRefOid": "bf65f06f3daec8a554739b1dd8d16dfe37e5cfb2",
+      "closedAt": "2023-03-09T18:58:31Z",
+      "mergedAt": "2023-03-09T18:58:31Z",
+      "mergedBy": "tfpauly",
+      "mergeCommit": {
+        "oid": "87dff76c033c1904a8c5baa95e8f01c9be875e64"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOHPOG-85PYaKF",
+          "commit": {
+            "abbreviatedOid": "bf65f06"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-03-09T00:26:54Z",
+          "updatedAt": "2023-03-09T00:26:54Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 48,
+      "id": "PR_kwDOHPOG-85LniFI",
+      "title": "Say more about traffic analysis in the main doc",
+      "url": "https://github.com/intarchboard/draft-obliviousness/pull/48",
+      "state": "MERGED",
+      "author": "chris-wood",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Closes #37 ",
+      "createdAt": "2023-03-08T23:43:19Z",
+      "updatedAt": "2023-03-09T00:31:38Z",
+      "baseRepository": "intarchboard/draft-obliviousness",
+      "baseRefName": "main",
+      "baseRefOid": "5b6b9ecca21efeb20d2c54c6a5d87bd78b7f8363",
+      "headRepository": "intarchboard/draft-obliviousness",
+      "headRefName": "caw/traffic-analysis",
+      "headRefOid": "9e242a1d8a74ac7c30b90f766d682576505125fa",
+      "closedAt": "2023-03-09T00:31:37Z",
+      "mergedAt": "2023-03-09T00:31:37Z",
+      "mergedBy": "tfpauly",
+      "mergeCommit": {
+        "oid": "a00889346633243ca235406f8659ccf879f38517"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOHPOG-85PYb-Y",
+          "commit": {
+            "abbreviatedOid": "9e242a1"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-03-09T00:31:31Z",
+          "updatedAt": "2023-03-09T00:31:31Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 49,
+      "id": "PR_kwDOHPOG-85Lnscb",
+      "title": "Add fingerprinting text and clean up application section flow",
+      "url": "https://github.com/intarchboard/draft-obliviousness/pull/49",
+      "state": "MERGED",
+      "author": "chris-wood",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Closes #34 ",
+      "createdAt": "2023-03-09T00:41:04Z",
+      "updatedAt": "2023-03-13T17:24:04Z",
+      "baseRepository": "intarchboard/draft-obliviousness",
+      "baseRefName": "main",
+      "baseRefOid": "a00889346633243ca235406f8659ccf879f38517",
+      "headRepository": "intarchboard/draft-obliviousness",
+      "headRefName": "caw/fingerprinting",
+      "headRefOid": "af71a8f913de8ab333aad5e213ff2d5010f410b0",
+      "closedAt": "2023-03-13T17:24:04Z",
+      "mergedAt": "2023-03-13T17:24:04Z",
+      "mergedBy": "tfpauly",
+      "mergeCommit": {
+        "oid": "7c1d77c4bb9fa2db4ddd70117899db691e2d4be2"
+      },
+      "comments": [
+        {
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "body": "@mirjak what do you think of the text now?",
+          "createdAt": "2023-03-13T16:41:10Z",
+          "updatedAt": "2023-03-13T16:41:10Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOHPOG-85Pl-WF",
+          "commit": {
+            "abbreviatedOid": "8624a79"
+          },
+          "author": "mirjak",
+          "authorAssociation": "MEMBER",
+          "state": "CHANGES_REQUESTED",
+          "body": "",
+          "createdAt": "2023-03-10T17:55:56Z",
+          "updatedAt": "2023-03-10T17:59:32Z",
+          "comments": [
+            {
+              "originalPosition": 31,
+              "body": "```suggestion\r\nSome information is innate to client user-agents, including details of implementation of\r\n```",
+              "createdAt": "2023-03-10T17:55:57Z",
+              "updatedAt": "2023-03-10T17:59:32Z"
+            },
+            {
+              "originalPosition": 47,
+              "body": "```suggestion\r\n```\r\nDo you have this heading twice or am I not able to read the diff correctly?",
+              "createdAt": "2023-03-10T17:58:21Z",
+              "updatedAt": "2023-03-10T17:59:32Z"
+            },
+            {
+              "originalPosition": 20,
+              "body": "this heading is not saying much. Would we be able to find a more meaningful heading for this part?",
+              "createdAt": "2023-03-10T17:59:12Z",
+              "updatedAt": "2023-03-10T17:59:32Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85Pnu68",
+          "commit": {
+            "abbreviatedOid": "d864fd0"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-11T04:02:05Z",
+          "updatedAt": "2023-03-11T04:02:05Z",
+          "comments": [
+            {
+              "originalPosition": 47,
+              "body": "I also see a duplicate heading. @chris-wood What was the intention?",
+              "createdAt": "2023-03-11T04:02:05Z",
+              "updatedAt": "2023-03-11T04:02:05Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85Pnu9c",
+          "commit": {
+            "abbreviatedOid": "d864fd0"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-11T04:03:51Z",
+          "updatedAt": "2023-03-11T04:05:00Z",
+          "comments": [
+            {
+              "originalPosition": 15,
+              "body": "I think I liked the old phrasing here better, of just calling the second chunk the user data. Maybe user-generated or user-selected data?",
+              "createdAt": "2023-03-11T04:03:52Z",
+              "updatedAt": "2023-03-11T04:05:01Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85PsAYd",
+          "commit": {
+            "abbreviatedOid": "d864fd0"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-13T12:23:23Z",
+          "updatedAt": "2023-03-13T12:23:24Z",
+          "comments": [
+            {
+              "originalPosition": 15,
+              "body": "We distinguish between user-identifying and non-user-identifying, so I think it's better to keep this distinction here.",
+              "createdAt": "2023-03-13T12:23:23Z",
+              "updatedAt": "2023-03-13T12:23:24Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85PsEzq",
+          "commit": {
+            "abbreviatedOid": "ae921e8"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-13T12:34:05Z",
+          "updatedAt": "2023-03-13T12:34:05Z",
+          "comments": [
+            {
+              "originalPosition": 20,
+              "body": "Probably, but it's not obvious to me what that would be.",
+              "createdAt": "2023-03-13T12:34:05Z",
+              "updatedAt": "2023-03-13T12:34:05Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85PscHi",
+          "commit": {
+            "abbreviatedOid": "ae921e8"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-13T13:26:46Z",
+          "updatedAt": "2023-03-13T13:26:46Z",
+          "comments": [
+            {
+              "originalPosition": 15,
+              "body": "It sounds odd to have that be \u201cor user data\u201d. Perhaps we can say \u201cnon-user-identifying content the user is accessing or generating\u201d?",
+              "createdAt": "2023-03-13T13:26:46Z",
+              "updatedAt": "2023-03-13T13:26:46Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85PsdqJ",
+          "commit": {
+            "abbreviatedOid": "ae921e8"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-13T13:29:52Z",
+          "updatedAt": "2023-03-13T13:29:53Z",
+          "comments": [
+            {
+              "originalPosition": 20,
+              "body": "How about \u201cUser-identifying information\u201d or \u201cFingerprinting\u201d, etc",
+              "createdAt": "2023-03-13T13:29:52Z",
+              "updatedAt": "2023-03-13T13:29:53Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85Pse_n",
+          "commit": {
+            "abbreviatedOid": "ae921e8"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-13T13:32:45Z",
+          "updatedAt": "2023-03-13T13:32:45Z",
+          "comments": [
+            {
+              "originalPosition": 16,
+              "body": "```suggestion\r\nlinked and (b) non-user-identifying information (including content a user\r\ngenerates or accesses), which can be often sensitive when combined with user identity.\r\n```",
+              "createdAt": "2023-03-13T13:32:45Z",
+              "updatedAt": "2023-03-13T13:32:45Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85PsfMK",
+          "commit": {
+            "abbreviatedOid": "ae5f9ae"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-13T13:33:10Z",
+          "updatedAt": "2023-03-13T13:33:11Z",
+          "comments": [
+            {
+              "originalPosition": 20,
+              "body": "I don't think it's much of an improvement, but that works.",
+              "createdAt": "2023-03-13T13:33:10Z",
+              "updatedAt": "2023-03-13T13:33:11Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85PsfSj",
+          "commit": {
+            "abbreviatedOid": "ae5f9ae"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-13T13:33:22Z",
+          "updatedAt": "2023-03-13T13:33:23Z",
+          "comments": [
+            {
+              "originalPosition": 20,
+              "body": "```suggestion\r\n## User-Identifying Information\r\n```",
+              "createdAt": "2023-03-13T13:33:23Z",
+              "updatedAt": "2023-03-13T13:33:23Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85Pt3m0",
+          "commit": {
+            "abbreviatedOid": "af71a8f"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-03-13T16:02:08Z",
+          "updatedAt": "2023-03-13T16:02:08Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 51,
+      "id": "PR_kwDOHPOG-85L0GqO",
+      "title": "Explain diversity of approaches",
+      "url": "https://github.com/intarchboard/draft-obliviousness/pull/51",
+      "state": "MERGED",
+      "author": "tfpauly",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "Closes #40",
+      "createdAt": "2023-03-11T04:38:07Z",
+      "updatedAt": "2023-03-13T17:23:04Z",
+      "baseRepository": "intarchboard/draft-obliviousness",
+      "baseRefName": "main",
+      "baseRefOid": "87dff76c033c1904a8c5baa95e8f01c9be875e64",
+      "headRepository": "intarchboard/draft-obliviousness",
+      "headRefName": "tfpauly-patch-5",
+      "headRefOid": "34c0115962ca0c2fc7d8089a62e5b6cac74dd73d",
+      "closedAt": "2023-03-13T17:23:04Z",
+      "mergedAt": "2023-03-13T17:23:04Z",
+      "mergedBy": "tfpauly",
+      "mergeCommit": {
+        "oid": "ab6c3d1f121099cc2ae9e05cc9b6add13bdc19da"
+      },
+      "comments": [
+        {
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "body": "@chris-wood @mirjak can you review before the deadline today?",
+          "createdAt": "2023-03-13T13:30:31Z",
+          "updatedAt": "2023-03-13T13:30:31Z"
+        },
+        {
+          "author": "mirjak",
+          "authorAssociation": "MEMBER",
+          "body": "I think this PR is good but not sure if it fully address the issue in #40. I think initially these protocol have been developed for every different use case and we in this draft don't question or discuss this, we only observe that they are all because on the same principle.\r\n\r\nSo Martin question is now, if I have a new use case which of these protocols should I use? Not sure if that even works that way because all of the protocols have a certain use case and if you have a different use case you might need yet another protocol applying the same design principle however. Don't know.\r\n\r\nI guess we could talk about more about the uses cases that these protocols have been developed for. The Other interesting question is, would it be possible to cover all these use case with one protocol....? No idea...",
+          "createdAt": "2023-03-13T16:04:46Z",
+          "updatedAt": "2023-03-13T16:04:46Z"
+        },
+        {
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "body": "@mirjak I think this is the degree to which we can respond to the issue now \u2014 this isn't a guide for which protocol you need to choose, but rather explains (as Martin asked for) why there are different approaches and what makes them different. These are the factors you need to consider when selecting a set of protocols to use.",
+          "createdAt": "2023-03-13T16:46:03Z",
+          "updatedAt": "2023-03-13T16:46:03Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOHPOG-85PsgES",
+          "commit": {
+            "abbreviatedOid": "c61390c"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-03-13T13:35:01Z",
+          "updatedAt": "2023-03-13T13:48:22Z",
+          "comments": [
+            {
+              "originalPosition": 7,
+              "body": "```suggestion\r\nWhile all of the partitioning protocols described in this document separate contexts\r\nusing cryptography, connection separation, or a combination of the two, each one has a\r\n```\r\n\r\nBecause DAP doesn't need connection separation -- it just uses secret sharing.",
+              "createdAt": "2023-03-13T13:35:01Z",
+              "updatedAt": "2023-03-13T13:48:22Z"
+            },
+            {
+              "originalPosition": 14,
+              "body": "```suggestion\r\npartitioning, including:\r\n```\r\n\r\nTo make more clear that this list is not exhaustive.",
+              "createdAt": "2023-03-13T13:35:57Z",
+              "updatedAt": "2023-03-13T13:48:22Z"
+            },
+            {
+              "originalPosition": 29,
+              "body": "```suggestion\r\ndepending on if tokens can be cached and reused. CONNECT-style proxying and\r\nOblivious HTTP often require bidirectional and interactive communication.\r\n```\r\n\r\nI wouldn't say that OHTTP requires bidirectional communication since apps could implement fire-and-forget (clients POST and then don't care about the response).",
+              "createdAt": "2023-03-13T13:40:56Z",
+              "updatedAt": "2023-03-13T13:48:22Z"
+            },
+            {
+              "originalPosition": 31,
+              "body": "```suggestion\r\n- The threat model, and in particular whether or not the servers providing support for context\r\nseparation are trusted. The degree to which contexts need to be partitioned depends on part\r\non how much clients trust them with such information. For example, in Oblivious HTTP, clients\r\ntrust relays to learn that clients are accessing a particular application-specific gateway. If clients\r\ndo not trust relays with this option, they may opt for a multi-hop CONNECT-style proxy approach\r\nwherein no single party learns whether specific clients are accessing a specific application. Indeed,\r\nthis is the default trust model for systems like Tor, where multiple hops are used to drive down the\r\nprobability of privacy violations due to collusion or related attacks.\r\n```",
+              "createdAt": "2023-03-13T13:48:19Z",
+              "updatedAt": "2023-03-13T13:48:22Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85Pt2RT",
+          "commit": {
+            "abbreviatedOid": "c61390c"
+          },
+          "author": "mirjak",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-13T15:59:30Z",
+          "updatedAt": "2023-03-13T15:59:30Z",
+          "comments": [
+            {
+              "originalPosition": 31,
+              "body": "This first sentence seem broken, so maybe I don't get the point. However, I think this is all pretty much the core of what this document says but I would put is the other way a round - in order to minimise the needed trust, you should partition your data as much as you can - however this means of course also if you can't partition certain data because that's needed for the functionality you are requesting, then you might need a higher level of trust the more data you share (or maybe it's not so much about the \"amount\" of data but more particularly about the kind of data).",
+              "createdAt": "2023-03-13T15:59:30Z",
+              "updatedAt": "2023-03-13T15:59:30Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85Pt7sL",
+          "commit": {
+            "abbreviatedOid": "c61390c"
+          },
+          "author": "chris-wood",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-13T16:10:28Z",
+          "updatedAt": "2023-03-13T16:10:29Z",
+          "comments": [
+            {
+              "originalPosition": 31,
+              "body": "This suggested point is that the trust model dictates how you partition, which is not a factor we explicitly cover in either of the other two points, which are mostly about compatibility with existing systems and usability.",
+              "createdAt": "2023-03-13T16:10:28Z",
+              "updatedAt": "2023-03-13T16:10:29Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85PuHOf",
+          "commit": {
+            "abbreviatedOid": "c61390c"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-13T16:34:39Z",
+          "updatedAt": "2023-03-13T16:34:39Z",
+          "comments": [
+            {
+              "originalPosition": 7,
+              "body": "```suggestion\r\nWhile all of the partitioning protocols described in this document create\r\nseparate contexts using encryption and/or connection separation, each one has a\r\n```",
+              "createdAt": "2023-03-13T16:34:39Z",
+              "updatedAt": "2023-03-13T16:34:39Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85PuKrR",
+          "commit": {
+            "abbreviatedOid": "1d18388"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-13T16:42:24Z",
+          "updatedAt": "2023-03-13T16:42:25Z",
+          "comments": [
+            {
+              "originalPosition": 31,
+              "body": "Yeah I think this is a good point to add, but I think we should make the first sentence complete.",
+              "createdAt": "2023-03-13T16:42:24Z",
+              "updatedAt": "2023-03-13T16:42:25Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85PuLix",
+          "commit": {
+            "abbreviatedOid": "1d18388"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-13T16:44:23Z",
+          "updatedAt": "2023-03-13T16:44:24Z",
+          "comments": [
+            {
+              "originalPosition": 31,
+              "body": "```suggestion\r\n- The degree to which contexts need to be partitioned depends in part\r\non the client's threat models and level of trust in various protocol participants. For example,\r\nin Oblivious HTTP, clients allow relays to learn that clients are accessing a particular\r\napplication-specific gateway. If clients do not trust relays with this information, they can\r\ninstead use a multi-hop CONNECT-style proxy approach wherein no single party learns\r\nwhether specific clients are accessing a specific application. This is the default trust model\r\nfor systems like Tor, where multiple hops are used to drive down the probability of privacy\r\nviolations due to collusion or related attacks.\r\n```",
+              "createdAt": "2023-03-13T16:44:23Z",
+              "updatedAt": "2023-03-13T16:44:24Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85PubkY",
+          "commit": {
+            "abbreviatedOid": "6929d06"
+          },
+          "author": "mirjak",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-13T17:16:11Z",
+          "updatedAt": "2023-03-13T17:16:11Z",
+          "comments": [
+            {
+              "originalPosition": 38,
+              "body": "```suggestion\r\nviolations due to collusion or related attacks.\r\n\r\n```",
+              "createdAt": "2023-03-13T17:16:11Z",
+              "updatedAt": "2023-03-13T17:16:12Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85PubzU",
+          "commit": {
+            "abbreviatedOid": "34c0115"
+          },
+          "author": "mirjak",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-03-13T17:16:45Z",
+          "updatedAt": "2023-03-13T17:16:45Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 52,
+      "id": "PR_kwDOHPOG-85L6adn",
+      "title": "Add text about RFC6973 to intro",
+      "url": "https://github.com/intarchboard/draft-obliviousness/pull/52",
+      "state": "MERGED",
+      "author": "mirjak",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "fixes #13",
+      "createdAt": "2023-03-13T16:30:36Z",
+      "updatedAt": "2023-03-13T17:51:18Z",
+      "baseRepository": "intarchboard/draft-obliviousness",
+      "baseRefName": "main",
+      "baseRefOid": "87dff76c033c1904a8c5baa95e8f01c9be875e64",
+      "headRepository": "intarchboard/draft-obliviousness",
+      "headRefName": "mirjak-patch-6",
+      "headRefOid": "aba5b5d2b29d5fa7fdd2c956f539ef9451c01da4",
+      "closedAt": "2023-03-13T17:51:18Z",
+      "mergedAt": "2023-03-13T17:51:18Z",
+      "mergedBy": "tfpauly",
+      "mergeCommit": {
+        "oid": "5ce0fc5f5e6a74f0f1be9b72a9bc3af08684b0db"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOHPOG-85PuJlR",
+          "commit": {
+            "abbreviatedOid": "6dc0849"
+          },
+          "author": "mirjak",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-13T16:40:00Z",
+          "updatedAt": "2023-03-13T16:40:00Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "```suggestion\r\nRFC6973 discusses the use of identity management systems for data minimization.\r\n```",
+              "createdAt": "2023-03-13T16:40:00Z",
+              "updatedAt": "2023-03-13T16:40:00Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85PuHmO",
+          "commit": {
+            "abbreviatedOid": "6dc0849"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "state": "CHANGES_REQUESTED",
+          "body": "",
+          "createdAt": "2023-03-13T16:35:30Z",
+          "updatedAt": "2023-03-13T16:40:43Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "```suggestion\r\n{{?RFC6973}} already discusses data minimization, especially in the context of\r\nuser identity and identity management systems.\r\n```",
+              "createdAt": "2023-03-13T16:35:31Z",
+              "updatedAt": "2023-03-13T16:40:43Z"
+            },
+            {
+              "originalPosition": 9,
+              "body": "```suggestion\r\nPrivacy partitioning as defined in this document goes further, to consider different deployment\r\n```",
+              "createdAt": "2023-03-13T16:38:18Z",
+              "updatedAt": "2023-03-13T16:40:43Z"
+            },
+            {
+              "originalPosition": 8,
+              "body": "I'm not sure this identity provider detail belongs in our intro? I think it is different than the privacy pass approach \u2014 the RFC6973 text seems to be more about only collecting what you need for an account, etc.",
+              "createdAt": "2023-03-13T16:40:39Z",
+              "updatedAt": "2023-03-13T16:40:43Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85PudCf",
+          "commit": {
+            "abbreviatedOid": "51a7e06"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-13T17:19:52Z",
+          "updatedAt": "2023-03-13T17:19:52Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "```suggestion\r\n{{?RFC6973}} discusses data minimization, especially in the context of\r\nuser identity and identity management systems.\r\n```",
+              "createdAt": "2023-03-13T17:19:52Z",
+              "updatedAt": "2023-03-13T17:19:53Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85Puoxf",
+          "commit": {
+            "abbreviatedOid": "1923a46"
+          },
+          "author": "mirjak",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-13T17:40:30Z",
+          "updatedAt": "2023-03-13T17:40:30Z",
+          "comments": [
+            {
+              "originalPosition": 9,
+              "body": "```suggestion\r\nprivacy partitioning, similar as used for privacy pass (see Section {{privacypass}}).\r\n```",
+              "createdAt": "2023-03-13T17:40:30Z",
+              "updatedAt": "2023-03-13T17:40:30Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85PupTH",
+          "commit": {
+            "abbreviatedOid": "d12503b"
+          },
+          "author": "mirjak",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-13T17:41:36Z",
+          "updatedAt": "2023-03-13T17:41:37Z",
+          "comments": [
+            {
+              "originalPosition": 11,
+              "body": "```suggestion\r\nmodels that can create multiple contexts where data is minimized in each context.\r\n```",
+              "createdAt": "2023-03-13T17:41:36Z",
+              "updatedAt": "2023-03-13T17:41:37Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOHPOG-85Pus5W",
+          "commit": {
+            "abbreviatedOid": "aba5b5d"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-03-13T17:50:06Z",
+          "updatedAt": "2023-03-13T17:50:06Z",
+          "comments": []
+        }
+      ]
+    }
+  ]
+}
