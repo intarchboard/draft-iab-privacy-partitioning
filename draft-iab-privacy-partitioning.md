@@ -223,7 +223,7 @@ In order to define and analyze how various partitioning techniques work, the bou
 being partitioned need to be established. This is the role of context separation. In particular,
 in order to prevent the correlation of user-specific information across contexts, partitions need
 to ensure that any single entity (other than the client itself) does not participate in contexts
-where both identities are visible.
+where both identifiers are visible.
 
 Context separation can be achieved in different ways, for example, over time, across network paths, based
 on (en)coding, etc. The privacy-oriented protocols described in this document generally involve
@@ -236,8 +236,8 @@ application transactions.
 
 These techniques are frequently used in conjunction for context separation. For example,
 encrypting an HTTP exchange might prevent a network middlebox that sees a client IP address
-from seeing the user account identity, but it doesn't prevent the TLS-terminating server
-from observing both identities and correlating them. As such, preventing correlation
+from seeing the user account identifier, but it doesn't prevent the TLS-terminating server
+from observing both identifiers and correlating them. As such, preventing correlation
 requires separating contexts, such as by using proxying to conceal a client's IP address
 that would otherwise be used as an identifier.
 
@@ -584,9 +584,9 @@ information in any given context to only include what is necessary for that
 context, and prevent the sharing of data across contexts wherever possible.
 
 The most impactful types of information to partition are (a) user-identifying information,
-such as user identity or identities (including account names or IP addresses) that can be
+such as user identifiers (including account names or IP addresses) that can be
 linked and (b) non-user-identifying information (including content a user
-generates or accesses), which can be often sensitive when combined with a user identity.
+generates or accesses), which can be often sensitive when combined with a user identifier.
 
 In this section, we discuss considerations for partitioning these types of information.
 
@@ -633,8 +633,8 @@ ensure that all information exposed in a context serves as few purposes as possi
 principle from the start helps mitigate issues that arise if users of the system or protocol inadvertently
 ossify on the information available in contexts. Legacy systems that have ossified on information available
 in contexts may be difficult to change in practice. As an example, many existing anti-abuse systems
-depend on some notion of client identity such as client IP address, coupled with client data, to provide
-value. Partitioning contexts in these systems such that they no longer see the client's identity requires new
+depend on some client identifier such as client IP address, coupled with client data, to provide
+value. Partitioning contexts in these systems such that they no longer determine the client identity requires new
 solutions to the anti-abuse problem.
 
 # Limits of Privacy Partitioning {#limits}
@@ -656,9 +656,9 @@ across contexts. Thus, non-collusion is a fundamental requirement for privacy pa
 to offer meaningful privacy for end-users. In particular, the trust relationships that users have
 with different parties affect the resulting impact on the user's privacy.
 
-As an example, consider OHTTP, wherein the Oblivious Relay knows the Client identity but not
-the Client data, and the Oblivious Gateway knows the Client data but not the Client identity.
-If the Oblivious Relay and Gateway collude, they can link Client identity and data together
+As an example, consider OHTTP, wherein the Oblivious Relay knows the client identity but not
+the client data, and the Oblivious Gateway knows the client data but not the client identity.
+If the Oblivious Relay and Gateway collude, they can link client identity and data together
 for each request and response transaction by simply observing requests in transit.
 
 It is not currently possible to guarantee with technical protocol measures that two
@@ -687,8 +687,8 @@ a relay, the server still learns this directly from the client.
 
 Other relevant examples of insufficient partitioning include TLS Encrypted Client Hello (ECH) {{?I-D.ietf-tls-esni}}
 and VPNs. ECH use cryptographic protection (encryption) to hide information from unauthorized parties,
-but both clients and servers (two entities) can link user-specific data to user-specific identity (IP address).
-Similarly, while VPNs hide identity from end servers, the VPN server has still can see the identity of both the
+but both clients and servers (two entities) can link user-specific data to user-specific identifier (IP address).
+Similarly, while VPNs hide identifiers from end servers, the VPN server can still see the identifiers of both the
 client and server. Applying privacy partitioning would advocate for at least two additional entities to avoid
 revealing both identity (who) and user actions (what) from each involved party.
 
