@@ -76,10 +76,9 @@ privacy. Thus, in order to protect user privacy, it is important to keep identit
 This document defines "privacy partitioning," sometimes also referred to as the "decoupling principle"
 {{?DECOUPLING=DOI.10.1145/3563766.3564112}}, as the general technique used to separate the data
 and metadata visible to various parties in network communication, with the aim of improving
-user privacy. Partitioning is a spectrum and not a panacea. It is difficult to guarantee there
-is no link between user-specific identity and user-specific data. However, when applied properly,
-privacy partitioning helps ensure that user privacy violations become more technically difficult
-to achieve over time.
+user privacy. Although privacy partitioning cannot guarantee there is no link between user-specific
+identity and user-specific data, when applied properly it helps ensure that user privacy violations
+become more technically difficult to achieve over time.
 
 Several IETF working groups are working on protocols or systems that adhere to the principle
 of privacy partitioning, including Oblivious HTTP Application Intermediation (OHAI), Multiplexed Application Substrate over QUIC Encryption (MASQUE), Privacy Pass, and Privacy Preserving Measurement (PPM). This document summarizes
@@ -762,8 +761,7 @@ and protocol). This has a number of practical implications, described below.
 
 # Security Considerations
 
-{{limits}} discusses some of the limitations of privacy partitioning in practice. In general,
-privacy is best viewed as a spectrum and not a binary state (private or not). Applied correctly,
+{{limits}} discusses some of the limitations of privacy partitioning in practice. Applied correctly,
 partitioning helps improve an end-user's privacy posture, thereby making violations harder to
 do via technical, social, or policy means. For example, side channels such as traffic analysis
 {{?I-D.irtf-pearg-website-fingerprinting}} or timing analysis are still possible and can allow
