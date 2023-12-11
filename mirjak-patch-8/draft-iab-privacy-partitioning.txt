@@ -1069,8 +1069,8 @@ Table of Contents
 Acknowledgments
 
    We would like to thank Martin Thomas, Eliot Lear, Mark Nottingham,
-   Niles ten Oever, Vittori Bertola, Antoine Fressancourt, and Dhruv
-   Dhody for their review and feedback.
+   Niles ten Oever, Vittori Bertola, Antoine Fressancourt, Cullen
+   Jennings, and Dhruv Dhody for their review and feedback.
 
 Authors' Addresses
 
