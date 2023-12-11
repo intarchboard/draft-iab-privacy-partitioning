@@ -611,7 +611,9 @@ user data, could promote user data to user-identifying information.
 
 The selection of client identifiers used in the contexts used for privacy partitioning has a large
 impact on the effectiveness of partitioning. Identifier selection can either undermine or improve
-the value of partitioning.
+the value of partitioning. Generally, each context involves some form of client identifier,
+which might be directly associated with a client identity, but can also be a pseudonym
+or a random one-time identifier.
 
 Using the same client identifier across multiple contexts can partly or wholly undermine the
 effectiveness of partitioning, by allowing the various contexts to be linked back to the same client.
