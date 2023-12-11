@@ -786,4 +786,5 @@ This document has no IANA actions.
 # Acknowledgments
 {:numbered="false"}
 
-TODO acknowledge.
+We would like to thank Martin Thomas, Eliot Lear, Mark Nottingham, Niles ten Oever, Vittori Bertola,
+Antoine Fressancourt, and Dhruv Dhody for their review and feedback.
