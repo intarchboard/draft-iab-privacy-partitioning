@@ -1068,8 +1068,8 @@ Table of Contents
 
 Acknowledgments
 
-   We would like to thank Martin Thomas, Eliot Lear, Mark Nottingham,
-   Niles ten Oever, Vittori Bertola, Antoine Fressancourt, Cullen
+   We would like to thank Martin Thomson, Eliot Lear, Mark Nottingham,
+   Niels ten Oever, Vittorio Bertola, Antoine Fressancourt, Cullen
    Jennings, and Dhruv Dhody for their review and feedback.
 
 Authors' Addresses
