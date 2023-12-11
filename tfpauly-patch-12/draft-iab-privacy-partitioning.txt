@@ -5,10 +5,10 @@
 Network Working Group                                       M. Kühlewind
 Internet-Draft                                         Ericsson Research
 Intended status: Informational                                  T. Pauly
-Expires: 9 June 2024                                               Apple
+Expires: 13 June 2024                                              Apple
                                                               C. A. Wood
                                                               Cloudflare
-                                                         7 December 2023
+                                                        11 December 2023
 
 
               Partitioning as an Architecture for Privacy
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 9 June 2024.
+   This Internet-Draft will expire on 13 June 2024.
 
 Copyright Notice
 
@@ -742,7 +742,10 @@ Table of Contents
    The selection of client identifiers used in the contexts used for
    privacy partitioning has a large impact on the effectiveness of
    partitioning.  Identifier selection can either undermine or improve
-   the value of partitioning.
+   the value of partitioning.  Generally, each context involves some
+   form of client identifier, which might be directly associated with a
+   client identity, but can also be a pseudonym or a random one-time
+   identifier.
 
    Using the same client identifier across multiple contexts can partly
    or wholly undermine the effectiveness of partitioning, by allowing
