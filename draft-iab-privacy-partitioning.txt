@@ -5,10 +5,10 @@
 Network Working Group                                       M. Kühlewind
 Internet-Draft                                         Ericsson Research
 Intended status: Informational                                  T. Pauly
-Expires: 13 June 2024                                              Apple
+Expires: 15 June 2024                                              Apple
                                                               C. A. Wood
                                                               Cloudflare
-                                                        11 December 2023
+                                                        13 December 2023
 
 
               Partitioning as an Architecture for Privacy
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 13 June 2024.
+   This Internet-Draft will expire on 15 June 2024.
 
 Copyright Notice
 
@@ -77,8 +77,9 @@ Table of Contents
      3.4.  Privacy Preserving Measurement
    4.  Applying Privacy Partitioning
      4.1.  User-Identifying Information
-     4.2.  Incorrect or Incomplete Partitioning
-     4.3.  Identifying Information for Partitioning
+     4.2.  Selecting Client Identifiers
+     4.3.  Incorrect or Incomplete Partitioning
+     4.4.  Selecting Information Within a Context
    5.  Limits of Privacy Partitioning
      5.1.  Violations by Collusion
      5.2.  Violations by Insufficient Partitioning
@@ -736,7 +737,39 @@ Table of Contents
    identifying user data, could promote user data to user-identifying
    information.
 
-4.2.  Incorrect or Incomplete Partitioning
+4.2.  Selecting Client Identifiers
+
+   The selection of client identifiers used in the contexts used for
+   privacy partitioning has a large impact on the effectiveness of
+   partitioning.  Identifier selection can either undermine or improve
+   the value of partitioning.  Generally, each context involves some
+   form of client identifier, which might be directly associated with a
+   client identity, but can also be a pseudonym or a random one-time
+   identifier.
+
+   Using the same client identifier across multiple contexts can partly
+   or wholly undermine the effectiveness of partitioning, by allowing
+   the various contexts to be linked back to the same client.  For
+   example, if a client uses proxies as described in Section 3.1 to
+   separate connections, but uses the same email address to authenticate
+   to two servers in different contexts, those actions can be linked
+   back to the same client.  While this does not undermine all of the
+   partitioning achieved through proxying (the contexts along the
+   network path still cannot correlate the client identity and what
+   servers are being accessed), the overall effect of partitioning is
+   diminished.
+
+   When possible, using per-context unique client identifiers provides
+   better partitioning properties.  For example, a client can use a
+   unique email address as an account identifier with each different
+   server it needs to log into.  The same approach can apply across many
+   layers, as seen with per-network MAC address randomization
+   [I-D.ietf-madinas-mac-address-randomization], use of multiple
+   temporary IP addresses across connections and over time [RFC8981],
+   and use of unique per-subscription identifiers for HTTP Web Push
+   [RFC8030].
+
+4.3.  Incorrect or Incomplete Partitioning
 
    Privacy partitioning can be applied incorrectly or incompletely.
    Contexts may contain more user-identifying information than desired,
@@ -758,13 +791,13 @@ Table of Contents
    two contexts, one with the client IP address and the other with the
    client query.
 
-4.3.  Identifying Information for Partitioning
+4.4.  Selecting Information Within a Context
 
    Recognizing potential applications of privacy partitioning requires
    identifying the contexts in use, the information exposed in a
    context, and the intent of information exposed in a context.
    Unfortunately, determining what information to include in a given
-   context is a nontrivial task.  In principle, the information
+   context is a non-trivial task.  In principle, the information
    contained in a context should be fit for purpose.  As such, new
    systems or protocols developed should aim to ensure that all
    information exposed in a context serves as few purposes as possible.
@@ -1024,6 +1057,14 @@ Table of Contents
               DOI 10.17487/RFC9113, June 2022,
               <https://www.rfc-editor.org/rfc/rfc9113>.
 
+   [I-D.ietf-madinas-mac-address-randomization]
+              Zúñiga, J. C., Bernardos, C. J., and A. Andersdotter,
+              "Randomized and Changing MAC Address", Work in Progress,
+              Internet-Draft, draft-ietf-madinas-mac-address-
+              randomization-09, 4 November 2023,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-madinas-
+              mac-address-randomization-09>.
+
    [I-D.ietf-tls-esni]
               Rescorla, E., Oku, K., Sullivan, N., and C. A. Wood, "TLS
               Encrypted Client Hello", Work in Progress, Internet-Draft,
@@ -1065,6 +1106,17 @@ Table of Contents
               Considerations for Internet Protocols", RFC 6973,
               DOI 10.17487/RFC6973, July 2013,
               <https://www.rfc-editor.org/rfc/rfc6973>.
+
+   [RFC8030]  Thomson, M., Damaggio, E., and B. Raymor, Ed., "Generic
+              Event Delivery Using HTTP Push", RFC 8030,
+              DOI 10.17487/RFC8030, December 2016,
+              <https://www.rfc-editor.org/rfc/rfc8030>.
+
+   [RFC8981]  Gont, F., Krishnan, S., Narten, T., and R. Draves,
+              "Temporary Address Extensions for Stateless Address
+              Autoconfiguration in IPv6", RFC 8981,
+              DOI 10.17487/RFC8981, February 2021,
+              <https://www.rfc-editor.org/rfc/rfc8981>.
 
 Acknowledgments
 

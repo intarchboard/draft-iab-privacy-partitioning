@@ -21,16 +21,16 @@ to analyze such models.
 <!-- Generator version information:
   xml2rfc 3.18.2
     Python 3.11.6
-    ConfigArgParse 1.5.3
+    ConfigArgParse 1.7
     google-i18n-address 3.1.0
     intervaltree 3.1.0
     Jinja2 3.1.2
     lxml 4.9.3
     platformdirs 4.1.0
     pycountry 22.3.5
-    PyYAML 6.0
+    PyYAML 6.0.1
     requests 2.31.0
-    setuptools 67.7.2
+    setuptools 68.2.2
     six 1.16.0
     wcwidth 0.2.12
 -->
@@ -1035,7 +1035,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Kühlewind, et al.</td>
-<td class="center">Expires 13 June 2024</td>
+<td class="center">Expires 15 June 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1048,12 +1048,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-iab-privacy-partitioning-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2023-12-11" class="published">11 December 2023</time>
+<time datetime="2023-12-13" class="published">13 December 2023</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-06-13">13 June 2024</time></dd>
+<dd class="expires"><time datetime="2024-06-15">15 June 2024</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1110,7 +1110,7 @@ to analyze such models.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 13 June 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 15 June 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1177,10 +1177,13 @@ to analyze such models.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
                 <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="auto internal xref">4.1</a>.  <a href="#name-user-identifying-informatio" class="internal xref">User-Identifying Information</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2">
-                <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="auto internal xref">4.2</a>.  <a href="#name-incorrect-or-incomplete-par" class="internal xref">Incorrect or Incomplete Partitioning</a></p>
+                <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="auto internal xref">4.2</a>.  <a href="#name-selecting-client-identifier" class="internal xref">Selecting Client Identifiers</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.3">
-                <p id="section-toc.1-1.4.2.3.1"><a href="#section-4.3" class="auto internal xref">4.3</a>.  <a href="#name-identifying-information-for" class="internal xref">Identifying Information for Partitioning</a></p>
+                <p id="section-toc.1-1.4.2.3.1"><a href="#section-4.3" class="auto internal xref">4.3</a>.  <a href="#name-incorrect-or-incomplete-par" class="internal xref">Incorrect or Incomplete Partitioning</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.4">
+                <p id="section-toc.1-1.4.2.4.1"><a href="#section-4.4" class="auto internal xref">4.4</a>.  <a href="#name-selecting-information-withi" class="internal xref">Selecting Information Within a Context</a></p>
 </li>
             </ul>
 </li>
@@ -2210,32 +2213,57 @@ in privacy contexts. As a result, fingerprinting information, when combined with
 user data, could promote user data to user-identifying information.<a href="#section-4.1-2" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="incorrect-or-incomplete-partitioning">
+<div id="selecting-client-identifiers">
 <section id="section-4.2">
-        <h3 id="name-incorrect-or-incomplete-par">
-<a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-incorrect-or-incomplete-par" class="section-name selfRef">Incorrect or Incomplete Partitioning</a>
+        <h3 id="name-selecting-client-identifier">
+<a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-selecting-client-identifier" class="section-name selfRef">Selecting Client Identifiers</a>
         </h3>
-<p id="section-4.2-1">Privacy partitioning can be applied incorrectly or incompletely. Contexts may contain
+<p id="section-4.2-1">The selection of client identifiers used in the contexts used for privacy partitioning has a large
+impact on the effectiveness of partitioning. Identifier selection can either undermine or improve
+the value of partitioning. Generally, each context involves some form of client identifier,
+which might be directly associated with a client identity, but can also be a pseudonym
+or a random one-time identifier.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
+<p id="section-4.2-2">Using the same client identifier across multiple contexts can partly or wholly undermine the
+effectiveness of partitioning, by allowing the various contexts to be linked back to the same client.
+For example, if a client uses proxies as described in <a href="#masque" class="auto internal xref">Section 3.1</a> to separate connections, but uses
+the same email address to authenticate to two servers in different contexts, those actions can be linked
+back to the same client. While this does not undermine all of the partitioning achieved through
+proxying (the contexts along the network path still cannot correlate the client identity and
+what servers are being accessed), the overall effect of partitioning is diminished.<a href="#section-4.2-2" class="pilcrow">¶</a></p>
+<p id="section-4.2-3">When possible, using per-context unique client identifiers provides better partitioning properties.
+For example, a client can use a unique email address as an account identifier with each different
+server it needs to log into. The same approach can apply across many layers, as seen with
+per-network MAC address randomization <span>[<a href="#I-D.ietf-madinas-mac-address-randomization" class="cite xref">I-D.ietf-madinas-mac-address-randomization</a>]</span>, use of
+multiple temporary IP addresses across connections and over time <span>[<a href="#RFC8981" class="cite xref">RFC8981</a>]</span>, and use of
+unique per-subscription identifiers for HTTP Web Push <span>[<a href="#RFC8030" class="cite xref">RFC8030</a>]</span>.<a href="#section-4.2-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="incorrect-or-incomplete-partitioning">
+<section id="section-4.3">
+        <h3 id="name-incorrect-or-incomplete-par">
+<a href="#section-4.3" class="section-number selfRef">4.3. </a><a href="#name-incorrect-or-incomplete-par" class="section-name selfRef">Incorrect or Incomplete Partitioning</a>
+        </h3>
+<p id="section-4.3-1">Privacy partitioning can be applied incorrectly or incompletely. Contexts may contain
 more user-identifying information than desired, or some information in a context may be more user-identifying
 than intended. Moreover, splitting user-identifying information over multiple contexts has to be done
 with care, as creating more contexts can increase the number of entities that need to be trusted to not collude.
-Nevertheless, partitions can help improve the client's privacy posture when applied carefully.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
-<p id="section-4.2-2">Evaluating and qualifying the resulting privacy of a system or protocol that applies privacy partitioning depends
+Nevertheless, partitions can help improve the client's privacy posture when applied carefully.<a href="#section-4.3-1" class="pilcrow">¶</a></p>
+<p id="section-4.3-2">Evaluating and qualifying the resulting privacy of a system or protocol that applies privacy partitioning depends
 on the contexts that exist and the types of user-identifying information in each context. Such evaluation is
 helpful for identifying ways in which systems or protocols can improve their privacy posture. For example,
 consider DNS-over-HTTPS <span>[<a href="#DOH" class="cite xref">DOH</a>]</span>, which produces a single context which contains both the client IP
 address and client query. One application of privacy partitioning results in ODoH, which produces two contexts,
-one with the client IP address and the other with the client query.<a href="#section-4.2-2" class="pilcrow">¶</a></p>
+one with the client IP address and the other with the client query.<a href="#section-4.3-2" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="identifying-information-for-partitioning">
-<section id="section-4.3">
-        <h3 id="name-identifying-information-for">
-<a href="#section-4.3" class="section-number selfRef">4.3. </a><a href="#name-identifying-information-for" class="section-name selfRef">Identifying Information for Partitioning</a>
+<div id="selecting-information-within-a-context">
+<section id="section-4.4">
+        <h3 id="name-selecting-information-withi">
+<a href="#section-4.4" class="section-number selfRef">4.4. </a><a href="#name-selecting-information-withi" class="section-name selfRef">Selecting Information Within a Context</a>
         </h3>
-<p id="section-4.3-1">Recognizing potential applications of privacy partitioning requires identifying the contexts in use, the information
+<p id="section-4.4-1">Recognizing potential applications of privacy partitioning requires identifying the contexts in use, the information
 exposed in a context, and the intent of information exposed in a context. Unfortunately, determining what
-information to include in a given context is a nontrivial task. In principle, the information contained
+information to include in a given context is a non-trivial task. In principle, the information contained
 in a context should be fit for purpose. As such, new systems or protocols developed should aim to
 ensure that all information exposed in a context serves as few purposes as possible. Designing with this
 principle from the start helps mitigate issues that arise if users of the system or protocol inadvertently
@@ -2243,7 +2271,7 @@ ossify on the information available in contexts. Legacy systems that have ossifi
 in contexts may be difficult to change in practice. As an example, many existing anti-abuse systems
 depend on some client identifier such as client IP address, coupled with client data, to provide
 value. Partitioning contexts in these systems such that they no longer determine the client identity requires new
-solutions to the anti-abuse problem.<a href="#section-4.3-1" class="pilcrow">¶</a></p>
+solutions to the anti-abuse problem.<a href="#section-4.4-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -2465,6 +2493,10 @@ to violate end-user privacy.<a href="#section-7-1" class="pilcrow">¶</a></p>
       <dd>
 <span class="refAuthor">Thomson, M., Ed.</span> and <span class="refAuthor">C. Benfield, Ed.</span>, <span class="refTitle">"HTTP/2"</span>, <span class="seriesInfo">RFC 9113</span>, <span class="seriesInfo">DOI 10.17487/RFC9113</span>, <time datetime="2022-06" class="refDate">June 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9113">https://www.rfc-editor.org/rfc/rfc9113</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="I-D.ietf-madinas-mac-address-randomization">[I-D.ietf-madinas-mac-address-randomization]</dt>
+      <dd>
+<span class="refAuthor">Zúñiga, J. C.</span>, <span class="refAuthor">Bernardos, C. J.</span>, and <span class="refAuthor">A. Andersdotter</span>, <span class="refTitle">"Randomized and Changing MAC Address"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-madinas-mac-address-randomization-09</span>, <time datetime="2023-11-04" class="refDate">4 November 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-madinas-mac-address-randomization-09">https://datatracker.ietf.org/doc/html/draft-ietf-madinas-mac-address-randomization-09</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="I-D.ietf-tls-esni">[I-D.ietf-tls-esni]</dt>
       <dd>
 <span class="refAuthor">Rescorla, E.</span>, <span class="refAuthor">Oku, K.</span>, <span class="refAuthor">Sullivan, N.</span>, and <span class="refAuthor">C. A. Wood</span>, <span class="refTitle">"TLS Encrypted Client Hello"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-tls-esni-17</span>, <time datetime="2023-10-09" class="refDate">9 October 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-tls-esni-17">https://datatracker.ietf.org/doc/html/draft-ietf-tls-esni-17</a>&gt;</span>. </dd>
@@ -2490,8 +2522,16 @@ to violate end-user privacy.<a href="#section-7-1" class="pilcrow">¶</a></p>
 <span class="refAuthor">Iyengar, J., Ed.</span> and <span class="refAuthor">M. Thomson, Ed.</span>, <span class="refTitle">"QUIC: A UDP-Based Multiplexed and Secure Transport"</span>, <span class="seriesInfo">RFC 9000</span>, <span class="seriesInfo">DOI 10.17487/RFC9000</span>, <time datetime="2021-05" class="refDate">May 2021</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9000">https://www.rfc-editor.org/rfc/rfc9000</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC6973">[RFC6973]</dt>
-    <dd>
+      <dd>
 <span class="refAuthor">Cooper, A.</span>, <span class="refAuthor">Tschofenig, H.</span>, <span class="refAuthor">Aboba, B.</span>, <span class="refAuthor">Peterson, J.</span>, <span class="refAuthor">Morris, J.</span>, <span class="refAuthor">Hansen, M.</span>, and <span class="refAuthor">R. Smith</span>, <span class="refTitle">"Privacy Considerations for Internet Protocols"</span>, <span class="seriesInfo">RFC 6973</span>, <span class="seriesInfo">DOI 10.17487/RFC6973</span>, <time datetime="2013-07" class="refDate">July 2013</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6973">https://www.rfc-editor.org/rfc/rfc6973</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8030">[RFC8030]</dt>
+      <dd>
+<span class="refAuthor">Thomson, M.</span>, <span class="refAuthor">Damaggio, E.</span>, and <span class="refAuthor">B. Raymor, Ed.</span>, <span class="refTitle">"Generic Event Delivery Using HTTP Push"</span>, <span class="seriesInfo">RFC 8030</span>, <span class="seriesInfo">DOI 10.17487/RFC8030</span>, <time datetime="2016-12" class="refDate">December 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8030">https://www.rfc-editor.org/rfc/rfc8030</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8981">[RFC8981]</dt>
+    <dd>
+<span class="refAuthor">Gont, F.</span>, <span class="refAuthor">Krishnan, S.</span>, <span class="refAuthor">Narten, T.</span>, and <span class="refAuthor">R. Draves</span>, <span class="refTitle">"Temporary Address Extensions for Stateless Address Autoconfiguration in IPv6"</span>, <span class="seriesInfo">RFC 8981</span>, <span class="seriesInfo">DOI 10.17487/RFC8981</span>, <time datetime="2021-02" class="refDate">February 2021</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8981">https://www.rfc-editor.org/rfc/rfc8981</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
