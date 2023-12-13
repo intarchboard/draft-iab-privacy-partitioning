@@ -621,7 +621,7 @@ For example, if a client uses proxies as described in {{masque}} to separate con
 the same email address to authenticate to two servers in different contexts, those actions can be linked
 back to the same client. While this does not undermine all of the partitioning achieved through
 proxying (the contexts along the network path still cannot correlate the client identity and
-what servers are being accessed), the overall effect of unlinkability is diminished.
+what servers are being accessed), the overall effect of partitioning is diminished.
 
 When possible, using per-context unique client identifiers provides better partitioning properties.
 For example, a client can use a unique email address as an account identifier with each different
