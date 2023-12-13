@@ -607,6 +607,29 @@ Depending on the application and system constraints, users may not be able to pr
 in privacy contexts. As a result, fingerprinting information, when combined with non-user-identifying
 user data, could promote user data to user-identifying information.
 
+## Selecting Client Identifiers
+
+The selection of client identifiers used in the contexts used for privacy partitioning has a large
+impact on the effectiveness of partitioning. Identifier selection can either undermine or improve
+the value of partitioning. Generally, each context involves some form of client identifier,
+which might be directly associated with a client identity, but can also be a pseudonym
+or a random one-time identifier.
+
+Using the same client identifier across multiple contexts can partly or wholly undermine the
+effectiveness of partitioning, by allowing the various contexts to be linked back to the same client.
+For example, if a client uses proxies as described in {{masque}} to separate connections, but uses
+the same email address to authenticate to two servers in different contexts, those actions can be linked
+back to the same client. While this does not undermine all of the partitioning achieved through
+proxying (the contexts along the network path still cannot correlate the client identity and
+what servers are being accessed), the overall effect of partitioning is diminished.
+
+When possible, using per-context unique client identifiers provides better partitioning properties.
+For example, a client can use a unique email address as an account identifier with each different
+server it needs to log into. The same approach can apply across many layers, as seen with
+per-network MAC address randomization {{?I-D.ietf-madinas-mac-address-randomization}}, use of
+multiple temporary IP addresses across connections and over time {{?RFC8981}}, and use of
+unique per-subscription identifiers for HTTP Web Push {{?RFC8030}}.
+
 ## Incorrect or Incomplete Partitioning
 
 Privacy partitioning can be applied incorrectly or incompletely. Contexts may contain
@@ -623,11 +646,11 @@ consider DNS-over-HTTPS {{?DOH=RFC8484}}, which produces a single context which 
 address and client query. One application of privacy partitioning results in ODoH, which produces two contexts,
 one with the client IP address and the other with the client query.
 
-## Identifying Information for Partitioning
+## Selecting Information Within a Context
 
 Recognizing potential applications of privacy partitioning requires identifying the contexts in use, the information
 exposed in a context, and the intent of information exposed in a context. Unfortunately, determining what
-information to include in a given context is a nontrivial task. In principle, the information contained
+information to include in a given context is a non-trivial task. In principle, the information contained
 in a context should be fit for purpose. As such, new systems or protocols developed should aim to
 ensure that all information exposed in a context serves as few purposes as possible. Designing with this
 principle from the start helps mitigate issues that arise if users of the system or protocol inadvertently
