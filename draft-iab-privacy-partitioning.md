@@ -233,7 +233,7 @@ same techniques:
 1. Cryptographic protection, such as the use of encryption to specific parties, allows
    partitioning of contexts between different parties (those with the ability to remove
    cryptographic protections, and those without).
-1. Connection separation across time or space allows partitioning of contexts for different
+1. Connection separation across time or space to allow partitioning of contexts for different
    application transactions over the network.
 
 These techniques are frequently used in conjunction for context separation. For example,
