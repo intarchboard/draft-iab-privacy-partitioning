@@ -321,8 +321,9 @@ Table of Contents
        different parties (those with the ability to remove cryptographic
        protections, and those without).
 
-   2.  Connection separation across time or space allows partitioning of
-       contexts for different application transactions over the network.
+   2.  Connection separation across time or space to allow partitioning
+       of contexts for different application transactions over the
+       network.
 
    These techniques are frequently used in conjunction for context
    separation.  For example, encrypting an HTTP exchange using TLS
