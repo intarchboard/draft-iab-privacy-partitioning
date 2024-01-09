@@ -15,11 +15,11 @@ This document describes emerging patterns in protocols to partition what data an
 revealed through protocol interactions, provides common terminology, and discusses how
 to analyze such models. 
     " name="description">
-<meta content="xml2rfc 3.18.2" name="generator">
+<meta content="xml2rfc 3.19.0" name="generator">
 <meta content="Internet-Draft" name="keyword">
 <meta content="draft-iab-privacy-partitioning-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.18.2
+  xml2rfc 3.19.0
     Python 3.11.6
     ConfigArgParse 1.7
     google-i18n-address 3.1.0
@@ -1031,11 +1031,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">Partitioning for Privacy</td>
-<td class="right">December 2023</td>
+<td class="right">January 2024</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Kühlewind, et al.</td>
-<td class="center">Expires 15 June 2024</td>
+<td class="center">Expires 12 July 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1048,12 +1048,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-iab-privacy-partitioning-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2023-12-13" class="published">13 December 2023</time>
+<time datetime="2024-01-09" class="published">9 January 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-06-15">15 June 2024</time></dd>
+<dd class="expires"><time datetime="2024-07-12">12 July 2024</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1110,7 +1110,7 @@ to analyze such models.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 15 June 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 12 July 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1119,7 +1119,7 @@ to analyze such models.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 <a href="#name-copyright-notice" class="section-name selfRef">Copyright Notice</a>
         </h2>
 <p id="section-boilerplate.2-1">
-            Copyright (c) 2023 IETF Trust and the persons identified as the
+            Copyright (c) 2024 IETF Trust and the persons identified as the
             document authors. All rights reserved.<a href="#section-boilerplate.2-1" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.2-2">
             This document is subject to BCP 78 and the IETF Trust's Legal
@@ -1531,19 +1531,21 @@ more complex partitioning, but the techniques to partition communication context
 same techniques:<a href="#section-2.2-2" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-2.2-3">
 <li id="section-2.2-3.1">
-            <p id="section-2.2-3.1.1">Encryption allows partitioning of contexts within a given network path.<a href="#section-2.2-3.1.1" class="pilcrow">¶</a></p>
+            <p id="section-2.2-3.1.1">Cryptographic protection, such as the use of encryption to specific parties, allows
+partitioning of contexts between different parties (those with the ability to remove
+cryptographic protections, and those without).<a href="#section-2.2-3.1.1" class="pilcrow">¶</a></p>
 </li>
           <li id="section-2.2-3.2">
-            <p id="section-2.2-3.2.1">Using separate connections across time or space allows partitioning of contexts for different
-application transactions.<a href="#section-2.2-3.2.1" class="pilcrow">¶</a></p>
+            <p id="section-2.2-3.2.1">Connection separation across time or space to allow partitioning of contexts for different
+application transactions over the network.<a href="#section-2.2-3.2.1" class="pilcrow">¶</a></p>
 </li>
         </ol>
 <p id="section-2.2-4">These techniques are frequently used in conjunction for context separation. For example,
-encrypting an HTTP exchange might prevent a network middlebox that sees a client IP address
-from seeing the user account identifier, but it doesn't prevent the TLS-terminating server
-from observing both identifiers and correlating them. As such, preventing correlation
-requires separating contexts, such as by using proxying to conceal a client's IP address
-that would otherwise be used as an identifier.<a href="#section-2.2-4" class="pilcrow">¶</a></p>
+encrypting an HTTP exchange using TLS between client and TLS-terminating server might prevent
+a network middlebox that sees a client IP address from seeing the user account identifier,
+but it doesn't prevent the TLS-terminating server from observing both identifiers and correlating
+them. As such, preventing correlation requires separating contexts, such as by using proxying to
+conceal a client's IP address that would otherwise be used as an identifier.<a href="#section-2.2-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="approaches-to-partitioning">
@@ -1552,7 +1554,7 @@ that would otherwise be used as an identifier.<a href="#section-2.2-4" class="pi
 <a href="#section-2.3" class="section-number selfRef">2.3. </a><a href="#name-approaches-to-partitioning" class="section-name selfRef">Approaches to Partitioning</a>
         </h3>
 <p id="section-2.3-1">While all of the partitioning protocols described in this document create
-separate contexts using encryption and/or connection separation, each one has a
+separate contexts using cryptographic protection and/or connection separation, each one has a
 unique approach that results in different sets of contexts. Since many of
 these protocols are new, it is yet to be seen how each approach will be
 used at scale across the Internet, and what new models will emerge in the

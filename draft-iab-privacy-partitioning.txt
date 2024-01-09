@@ -5,10 +5,10 @@
 Network Working Group                                       M. Kühlewind
 Internet-Draft                                         Ericsson Research
 Intended status: Informational                                  T. Pauly
-Expires: 15 June 2024                                              Apple
+Expires: 12 July 2024                                              Apple
                                                               C. A. Wood
                                                               Cloudflare
-                                                        13 December 2023
+                                                          9 January 2024
 
 
               Partitioning as an Architecture for Privacy
@@ -50,11 +50,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 15 June 2024.
+   This Internet-Draft will expire on 12 July 2024.
 
 Copyright Notice
 
-   Copyright (c) 2023 IETF Trust and the persons identified as the
+   Copyright (c) 2024 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -316,29 +316,33 @@ Table of Contents
    involve more complex partitioning, but the techniques to partition
    communication contexts still employ the same techniques:
 
-   1.  Encryption allows partitioning of contexts within a given network
-       path.
+   1.  Cryptographic protection, such as the use of encryption to
+       specific parties, allows partitioning of contexts between
+       different parties (those with the ability to remove cryptographic
+       protections, and those without).
 
-   2.  Using separate connections across time or space allows
-       partitioning of contexts for different application transactions.
+   2.  Connection separation across time or space to allow partitioning
+       of contexts for different application transactions over the
+       network.
 
    These techniques are frequently used in conjunction for context
-   separation.  For example, encrypting an HTTP exchange might prevent a
-   network middlebox that sees a client IP address from seeing the user
-   account identifier, but it doesn't prevent the TLS-terminating server
-   from observing both identifiers and correlating them.  As such,
-   preventing correlation requires separating contexts, such as by using
-   proxying to conceal a client's IP address that would otherwise be
-   used as an identifier.
+   separation.  For example, encrypting an HTTP exchange using TLS
+   between client and TLS-terminating server might prevent a network
+   middlebox that sees a client IP address from seeing the user account
+   identifier, but it doesn't prevent the TLS-terminating server from
+   observing both identifiers and correlating them.  As such, preventing
+   correlation requires separating contexts, such as by using proxying
+   to conceal a client's IP address that would otherwise be used as an
+   identifier.
 
 2.3.  Approaches to Partitioning
 
    While all of the partitioning protocols described in this document
-   create separate contexts using encryption and/or connection
-   separation, each one has a unique approach that results in different
-   sets of contexts.  Since many of these protocols are new, it is yet
-   to be seen how each approach will be used at scale across the
-   Internet, and what new models will emerge in the future.
+   create separate contexts using cryptographic protection and/or
+   connection separation, each one has a unique approach that results in
+   different sets of contexts.  Since many of these protocols are new,
+   it is yet to be seen how each approach will be used at scale across
+   the Internet, and what new models will emerge in the future.
 
    There are multiple factors that lead to a diversity in approaches to
    partitioning, including:
