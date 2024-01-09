@@ -5,10 +5,10 @@
 Network Working Group                                       M. Kühlewind
 Internet-Draft                                         Ericsson Research
 Intended status: Informational                                  T. Pauly
-Expires: 9 June 2024                                               Apple
+Expires: 12 July 2024                                              Apple
                                                               C. A. Wood
                                                               Cloudflare
-                                                         7 December 2023
+                                                          9 January 2024
 
 
               Partitioning as an Architecture for Privacy
@@ -50,11 +50,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 9 June 2024.
+   This Internet-Draft will expire on 12 July 2024.
 
 Copyright Notice
 
-   Copyright (c) 2023 IETF Trust and the persons identified as the
+   Copyright (c) 2024 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -77,8 +77,9 @@ Table of Contents
      3.4.  Privacy Preserving Measurement
    4.  Applying Privacy Partitioning
      4.1.  User-Identifying Information
-     4.2.  Incorrect or Incomplete Partitioning
-     4.3.  Identifying Information for Partitioning
+     4.2.  Selecting Client Identifiers
+     4.3.  Incorrect or Incomplete Partitioning
+     4.4.  Selecting Information Within a Context
    5.  Limits of Privacy Partitioning
      5.1.  Violations by Collusion
      5.2.  Violations by Insufficient Partitioning
@@ -133,10 +134,9 @@ Table of Contents
    to as the "decoupling principle" [DECOUPLING], as the general
    technique used to separate the data and metadata visible to various
    parties in network communication, with the aim of improving user
-   privacy.  Partitioning is a spectrum and not a panacea.  It is
-   difficult to guarantee there is no link between user-specific
-   identity and user-specific data.  However, when applied properly,
-   privacy partitioning helps ensure that user privacy violations become
+   privacy.  Although privacy partitioning cannot guarantee there is no
+   link between user-specific identity and user-specific data, when
+   applied properly it helps ensure that user privacy violations become
    more technically difficult to achieve over time.
 
    Several IETF working groups are working on protocols or systems that
@@ -308,7 +308,7 @@ Table of Contents
    in order to prevent the correlation of user-specific information
    across contexts, partitions need to ensure that any single entity
    (other than the client itself) does not participate in contexts where
-   both identities are visible.
+   both identifiers are visible.
 
    Context separation can be achieved in different ways, for example,
    over time, across network paths, based on (en)coding, etc.  The
@@ -316,25 +316,28 @@ Table of Contents
    involve more complex partitioning, but the techniques to partition
    communication contexts still employ the same techniques:
 
-   1.  Encryption allows partitioning of contexts within a given network
-       path.
+   1.  Cryptographic protection, such as the use of encryption to
+       specific parties, allows partitioning of contexts between
+       different parties (those with the ability to remove cryptographic
+       protections, and those without).
 
-   2.  Using separate connections across time or space allows
-       partitioning of contexts for different application transactions.
+   2.  Connection separation across time or space allows partitioning of
+       contexts for different application transactions over the network.
 
    These techniques are frequently used in conjunction for context
-   separation.  For example, encrypting an HTTP exchange might prevent a
-   network middlebox that sees a client IP address from seeing the user
-   account identity, but it doesn't prevent the TLS-terminating server
-   from observing both identities and correlating them.  As such,
-   preventing correlation requires separating contexts, such as by using
-   proxying to conceal a client's IP address that would otherwise be
-   used as an identifier.
+   separation.  For example, encrypting an HTTP exchange using TLS
+   between client and TLS-terminating server might prevent a network
+   middlebox that sees a client IP address from seeing the user account
+   identifier, but it doesn't prevent the TLS-terminating server from
+   observing both identifiers and correlating them.  As such, preventing
+   correlation requires separating contexts, such as by using proxying
+   to conceal a client's IP address that would otherwise be used as an
+   identifier.
 
 2.3.  Approaches to Partitioning
 
    While all of the partitioning protocols described in this document
-   create separate contexts using encryption and/or connection
+   create separate contexts using cryptographic protection or connection
    separation, each one has a unique approach that results in different
    sets of contexts.  Since many of these protocols are new, it is yet
    to be seen how each approach will be used at scale across the
@@ -703,11 +706,11 @@ Table of Contents
        data across contexts wherever possible.
 
    The most impactful types of information to partition are (a) user-
-   identifying information, such as user identity or identities
-   (including account names or IP addresses) that can be linked and (b)
-   non-user-identifying information (including content a user generates
-   or accesses), which can be often sensitive when combined with a user
-   identity.
+   identifying information, such as user identifiers (including account
+   names or IP addresses) that can be linked and (b) non-user-
+   identifying information (including content a user generates or
+   accesses), which can be often sensitive when combined with a user
+   identifier.
 
    In this section, we discuss considerations for partitioning these
    types of information.
@@ -737,7 +740,39 @@ Table of Contents
    identifying user data, could promote user data to user-identifying
    information.
 
-4.2.  Incorrect or Incomplete Partitioning
+4.2.  Selecting Client Identifiers
+
+   The selection of client identifiers used in the contexts used for
+   privacy partitioning has a large impact on the effectiveness of
+   partitioning.  Identifier selection can either undermine or improve
+   the value of partitioning.  Generally, each context involves some
+   form of client identifier, which might be directly associated with a
+   client identity, but can also be a pseudonym or a random one-time
+   identifier.
+
+   Using the same client identifier across multiple contexts can partly
+   or wholly undermine the effectiveness of partitioning, by allowing
+   the various contexts to be linked back to the same client.  For
+   example, if a client uses proxies as described in Section 3.1 to
+   separate connections, but uses the same email address to authenticate
+   to two servers in different contexts, those actions can be linked
+   back to the same client.  While this does not undermine all of the
+   partitioning achieved through proxying (the contexts along the
+   network path still cannot correlate the client identity and what
+   servers are being accessed), the overall effect of partitioning is
+   diminished.
+
+   When possible, using per-context unique client identifiers provides
+   better partitioning properties.  For example, a client can use a
+   unique email address as an account identifier with each different
+   server it needs to log into.  The same approach can apply across many
+   layers, as seen with per-network MAC address randomization
+   [I-D.ietf-madinas-mac-address-randomization], use of multiple
+   temporary IP addresses across connections and over time [RFC8981],
+   and use of unique per-subscription identifiers for HTTP Web Push
+   [RFC8030].
+
+4.3.  Incorrect or Incomplete Partitioning
 
    Privacy partitioning can be applied incorrectly or incompletely.
    Contexts may contain more user-identifying information than desired,
@@ -759,13 +794,13 @@ Table of Contents
    two contexts, one with the client IP address and the other with the
    client query.
 
-4.3.  Identifying Information for Partitioning
+4.4.  Selecting Information Within a Context
 
    Recognizing potential applications of privacy partitioning requires
    identifying the contexts in use, the information exposed in a
    context, and the intent of information exposed in a context.
    Unfortunately, determining what information to include in a given
-   context is a nontrivial task.  In principle, the information
+   context is a non-trivial task.  In principle, the information
    contained in a context should be fit for purpose.  As such, new
    systems or protocols developed should aim to ensure that all
    information exposed in a context serves as few purposes as possible.
@@ -774,9 +809,9 @@ Table of Contents
    the information available in contexts.  Legacy systems that have
    ossified on information available in contexts may be difficult to
    change in practice.  As an example, many existing anti-abuse systems
-   depend on some notion of client identity such as client IP address,
-   coupled with client data, to provide value.  Partitioning contexts in
-   these systems such that they no longer see the client's identity
+   depend on some client identifier such as client IP address, coupled
+   with client data, to provide value.  Partitioning contexts in these
+   systems such that they no longer determine the client identity
    requires new solutions to the anti-abuse problem.
 
 5.  Limits of Privacy Partitioning
@@ -804,9 +839,9 @@ Table of Contents
    user's privacy.
 
    As an example, consider OHTTP, wherein the Oblivious Relay knows the
-   Client identity but not the Client data, and the Oblivious Gateway
-   knows the Client data but not the Client identity.  If the Oblivious
-   Relay and Gateway collude, they can link Client identity and data
+   client identity but not the client data, and the Oblivious Gateway
+   knows the client data but not the client identity.  If the Oblivious
+   Relay and Gateway collude, they can link client identity and data
    together for each request and response transaction by simply
    observing requests in transit.
 
@@ -847,9 +882,9 @@ Table of Contents
    Encrypted Client Hello (ECH) [I-D.ietf-tls-esni] and VPNs.  ECH use
    cryptographic protection (encryption) to hide information from
    unauthorized parties, but both clients and servers (two entities) can
-   link user-specific data to user-specific identity (IP address).
-   Similarly, while VPNs hide identity from end servers, the VPN server
-   has still can see the identity of both the client and server.
+   link user-specific data to user-specific identifier (IP address).
+   Similarly, while VPNs hide identifiers from end servers, the VPN
+   server can still see the identifiers of both the client and server.
    Applying privacy partitioning would advocate for at least two
    additional entities to avoid revealing both identity (who) and user
    actions (what) from each involved party.
@@ -962,20 +997,18 @@ Table of Contents
 7.  Security Considerations
 
    Section 5 discusses some of the limitations of privacy partitioning
-   in practice.  In general, privacy is best viewed as a spectrum and
-   not a binary state (private or not).  Applied correctly, partitioning
-   helps improve an end-user's privacy posture, thereby making
-   violations harder to do via technical, social, or policy means.  For
-   example, side channels such as traffic analysis
-   [I-D.irtf-pearg-website-fingerprinting] or timing analysis are still
-   possible and can allow an unauthorized entity to learn information
-   about a context they are not a participant of.  Proposed mitigations
-   for these types of attacks, e.g., padding application traffic or
-   generating fake traffic, can be very expensive and are therefore not
-   typically applied in practice.  Nevertheless, privacy partitioning
-   moves the threat vector from one that has direct access to user-
-   specific information to one which requires more effort, e.g.,
-   computational resources, to violate end-user privacy.
+   in practice.  Applied correctly, partitioning helps improve an end-
+   user's privacy posture, thereby making violations harder to do via
+   technical, social, or policy means.  For example, side channels such
+   as traffic analysis [I-D.irtf-pearg-website-fingerprinting] or timing
+   analysis are still possible and can allow an unauthorized entity to
+   learn information about a context they are not a participant of.
+   Proposed mitigations for these types of attacks, e.g., padding
+   application traffic or generating fake traffic, can be very expensive
+   and are therefore not typically applied in practice.  Nevertheless,
+   privacy partitioning moves the threat vector from one that has direct
+   access to user-specific information to one which requires more
+   effort, e.g., computational resources, to violate end-user privacy.
 
 8.  IANA Considerations
 
@@ -1027,6 +1060,14 @@ Table of Contents
               DOI 10.17487/RFC9113, June 2022,
               <https://www.rfc-editor.org/rfc/rfc9113>.
 
+   [I-D.ietf-madinas-mac-address-randomization]
+              Zúñiga, J. C., Bernardos, C. J., and A. Andersdotter,
+              "Randomized and Changing MAC Address", Work in Progress,
+              Internet-Draft, draft-ietf-madinas-mac-address-
+              randomization-09, 4 November 2023,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-madinas-
+              mac-address-randomization-09>.
+
    [I-D.ietf-tls-esni]
               Rescorla, E., Oku, K., Sullivan, N., and C. A. Wood, "TLS
               Encrypted Client Hello", Work in Progress, Internet-Draft,
@@ -1069,9 +1110,22 @@ Table of Contents
               DOI 10.17487/RFC6973, July 2013,
               <https://www.rfc-editor.org/rfc/rfc6973>.
 
+   [RFC8030]  Thomson, M., Damaggio, E., and B. Raymor, Ed., "Generic
+              Event Delivery Using HTTP Push", RFC 8030,
+              DOI 10.17487/RFC8030, December 2016,
+              <https://www.rfc-editor.org/rfc/rfc8030>.
+
+   [RFC8981]  Gont, F., Krishnan, S., Narten, T., and R. Draves,
+              "Temporary Address Extensions for Stateless Address
+              Autoconfiguration in IPv6", RFC 8981,
+              DOI 10.17487/RFC8981, February 2021,
+              <https://www.rfc-editor.org/rfc/rfc8981>.
+
 Acknowledgments
 
-   TODO acknowledge.
+   We would like to thank Martin Thomson, Eliot Lear, Mark Nottingham,
+   Niels ten Oever, Vittorio Bertola, Antoine Fressancourt, Cullen
+   Jennings, and Dhruv Dhody for their reviews and feedback.
 
 Authors' Addresses
 
