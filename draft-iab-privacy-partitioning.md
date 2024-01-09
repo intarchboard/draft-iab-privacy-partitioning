@@ -246,7 +246,7 @@ conceal a client's IP address that would otherwise be used as an identifier.
 ## Approaches to Partitioning
 
 While all of the partitioning protocols described in this document create
-separate contexts using cryptographic protection or connection separation, each one has a
+separate contexts using cryptographic protection and/or connection separation, each one has a
 unique approach that results in different sets of contexts. Since many of
 these protocols are new, it is yet to be seen how each approach will be
 used at scale across the Internet, and what new models will emerge in the
