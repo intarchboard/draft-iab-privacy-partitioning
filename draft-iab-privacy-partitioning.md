@@ -230,21 +230,23 @@ on (en)coding, etc. The privacy-oriented protocols described in this document ge
 more complex partitioning, but the techniques to partition communication contexts still employ the
 same techniques:
 
-1. Encryption allows partitioning of contexts within a given network path.
-1. Using separate connections across time or space allows partitioning of contexts for different
-application transactions.
+1. Cryptographic protection, such as the use of encryption to specific parties, allows
+   partitioning of contexts between different parties (those with the ability to remove
+   cryptographic protections, and those without).
+1. Connection separation across time or space allows partitioning of contexts for different
+   application transactions over the network.
 
 These techniques are frequently used in conjunction for context separation. For example,
-encrypting an HTTP exchange might prevent a network middlebox that sees a client IP address
-from seeing the user account identifier, but it doesn't prevent the TLS-terminating server
-from observing both identifiers and correlating them. As such, preventing correlation
-requires separating contexts, such as by using proxying to conceal a client's IP address
-that would otherwise be used as an identifier.
+encrypting an HTTP exchange using TLS between client and TLS-terminating server might prevent
+a network middlebox that sees a client IP address from seeing the user account identifier,
+but it doesn't prevent the TLS-terminating server from observing both identifiers and correlating
+them. As such, preventing correlation requires separating contexts, such as by using proxying to
+conceal a client's IP address that would otherwise be used as an identifier.
 
 ## Approaches to Partitioning
 
 While all of the partitioning protocols described in this document create
-separate contexts using encryption and/or connection separation, each one has a
+separate contexts using cryptographic protection or connection separation, each one has a
 unique approach that results in different sets of contexts. Since many of
 these protocols are new, it is yet to be seen how each approach will be
 used at scale across the Internet, and what new models will emerge in the
