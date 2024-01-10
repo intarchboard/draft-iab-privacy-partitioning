@@ -711,7 +711,7 @@ enough parties to recover identities.
 ## Violations by Insufficient Partitioning
 
 Partitioning alone is not a panacea for privacy. It is possible to apply partitioning in a way
-that is insufficient for meaningful privvacy. For example, partitioning at one layer in the stack
+that is insufficient for meaningful privacy. For example, partitioning at one layer in the stack
 can fail to account for linkable information at different layers in the stack. Privacy violations
 can stem from partitioning failures in a multitude of ways, some of which are described below.
 
