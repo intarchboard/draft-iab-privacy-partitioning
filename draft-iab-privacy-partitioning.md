@@ -673,7 +673,7 @@ Privacy partitioning aims to increase user privacy, though as stated, it is not 
 Privacy partitioning is an architectural tool that helps manage privacy risks. Understanding
 the limits of its benefits requires a more comprehensive analysis of the system in question.
 Such analysis also helps determine whether or not the tool has been applied correctly. In particular,
-the value of Privacy partitioning depends on numerous factors, including, though not limited to:
+the value of privacy partitioning depends on numerous factors, including, though not limited to:
 
 - Non-collusion across contexts; and
 - The type of information exposed in each context.
