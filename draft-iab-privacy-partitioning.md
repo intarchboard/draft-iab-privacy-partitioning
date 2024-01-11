@@ -670,7 +670,7 @@ solutions to the anti-abuse problem.
 # Limits of Privacy Partitioning {#limits}
 
 Privacy partitioning aims to increase user privacy, though as stated, it is merely one of possibly many
-architectural tool that help manage privacy risks. Understanding
+architectural tools that help manage privacy risks. Understanding
 the limits of its benefits requires a more comprehensive analysis of the system in question.
 Such analysis also helps determine whether or not the tool has been applied correctly. In particular,
 the value of privacy partitioning depends on numerous factors, including, though not limited to:
