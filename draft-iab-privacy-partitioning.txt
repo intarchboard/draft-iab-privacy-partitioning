@@ -5,10 +5,10 @@
 Network Working Group                                       M. Kühlewind
 Internet-Draft                                         Ericsson Research
 Intended status: Informational                                  T. Pauly
-Expires: 12 July 2024                                              Apple
+Expires: 14 July 2024                                              Apple
                                                               C. A. Wood
                                                               Cloudflare
-                                                          9 January 2024
+                                                         11 January 2024
 
 
               Partitioning as an Architecture for Privacy
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 12 July 2024.
+   This Internet-Draft will expire on 14 July 2024.
 
 Copyright Notice
 
@@ -82,7 +82,11 @@ Table of Contents
      4.4.  Selecting Information Within a Context
    5.  Limits of Privacy Partitioning
      5.1.  Violations by Collusion
-     5.2.  Violations by Insufficient Partitioning
+     5.2.  Violations by Insufficient or Incorrect Partitioning
+       5.2.1.  Violations from Application Information
+       5.2.2.  Violations from Network Information
+       5.2.3.  Violations from Side Channels
+       5.2.4.  Identifying Partitions
    6.  Partitioning Impacts
    7.  Security Considerations
    8.  IANA Considerations
@@ -159,6 +163,11 @@ Table of Contents
    Privacy partitioning can also be used as a way to separate identity
    providers from relying parties (see Section 6.1.4 of [RFC6973]), as
    in the case of Privacy Pass (see Section Section 3.3).
+
+   Privacy partitioning is not a panacea; applying it well requires
+   holistic analysis of the system in question to determine whether or
+   not partitioning as a tool, and as implemented, offers meaningful
+   privacy improvements.  See Section 5 for more information.
 
 2.  Privacy Partitioning
 
@@ -817,9 +826,13 @@ Table of Contents
 
 5.  Limits of Privacy Partitioning
 
-   Privacy Partitioning aims to increase user privacy, though as stated,
-   it is not a panacea.  The privacy properties depend on numerous
-   factors, including, though not limited to:
+   Privacy partitioning aims to increase user privacy, though as stated,
+   it is merely one of possibly many architectural tools that help
+   manage privacy risks.  Understanding the limits of its benefits
+   requires a more comprehensive analysis of the system in question.
+   Such analysis also helps determine whether or not the tool has been
+   applied correctly.  In particular, the value of privacy partitioning
+   depends on numerous factors, including, though not limited to:
 
    *  Non-collusion across contexts; and
 
@@ -866,38 +879,45 @@ Table of Contents
    *  Adding more partitions and contexts, to make it increasingly
       difficult to collude with enough parties to recover identities.
 
-5.2.  Violations by Insufficient Partitioning
+5.2.  Violations by Insufficient or Incorrect Partitioning
 
-   It is possible to define contexts that contain more than one type of
-   user-specific information, despite efforts to do otherwise.  As an
-   example, consider OHTTP used for the purposes of hiding client-
-   identifying information for a browser telemetry system.  It is
-   entirely possible for reports in such a telemetry system to contain
-   both client-specific telemetry data, such as information about their
-   specific browser instance, as well as client-identifying information,
-   such as the client's location or IP address.  Even though OHTTP
-   separates the client IP address from the server via a relay, the
-   server still learns this directly from the client.
+   Insufficient or incorrect application of privacy partitioning can
+   lessen or negate benefits to users.  In particular, it is possible to
+   apply partitioning in a way that is either insufficient or incorrect
+   for meaningful privacy.  For example, partitioning at one layer in
+   the stack can fail to account for linkable information at different
+   layers in the stack.  Privacy violations can stem from partitioning
+   failures in a multitude of ways, some of which are described below.
 
-   Other relevant examples of insufficient partitioning include TLS
-   Encrypted Client Hello (ECH) [I-D.ietf-tls-esni] and VPNs.  ECH use
-   cryptographic protection (encryption) to hide information from
-   unauthorized parties, but both clients and servers (two entities) can
-   link user-specific data to user-specific identifier (IP address).
-   Similarly, while VPNs hide identifiers from end servers, the VPN
-   server can still see the identifiers of both the client and server.
-   Applying privacy partitioning would advocate for at least two
-   additional entities to avoid revealing both identity (who) and user
-   actions (what) from each involved party.
+5.2.1.  Violations from Application Information
 
-   While straightforward violations of user privacy like this may seem
-   straightforward to mitigate, it remains an open problem to determine
-   whether a certain set of information reveals "too much" about a
-   specific user.  There is ample evidence of data being assumed
-   "private" or "anonymous" but, in hindsight, winds up revealing too
-   much information such that it allows one to link back to individual
-   clients; see [DataSetReconstruction] and [CensusReconstruction] for
-   more examples of this in the real world.
+   Partitioning at the network layer can be insufficient when the
+   application layer fails to properly partition.  As an example,
+   consider OHTTP used for the purposes of hiding client-identifying
+   information for a browser telemetry system.  It is entirely possible
+   for reports in such a telemetry system to contain both client-
+   specific telemetry data, such as information about their specific
+   browser instance, as well as client-identifying information, such as
+   the client's email address, location, or IP address.  Even though
+   OHTTP separates the client IP address from the server via a relay,
+   the server can still learn this directly from the client's telemetry
+   report.
+
+5.2.2.  Violations from Network Information
+
+   It is also possible to inadequately partition at the network layer.
+   As an example, consider both TLS Encrypted Client Hello (ECH)
+   [I-D.ietf-tls-esni] and VPNs.  ECH uses cryptographic protection
+   (encryption) to hide information from unauthorized parties, but both
+   clients and servers (two entities) can link user-specific data to
+   user-specific identifier (IP address).  Similarly, while VPNs hide
+   identifiers from end servers, the VPN server can still see the
+   identifiers of both the client and server.  Applying privacy
+   partitioning would advocate for at least two additional entities to
+   avoid revealing both identity (who) and user actions (what) from each
+   involved party.
+
+5.2.3.  Violations from Side Channels
 
    Beyond the information that is intentionally revealed by applying
    privacy partitioning, it is also possible for the information to be
@@ -912,6 +932,22 @@ Table of Contents
    privacy partitioning does not obviate such attacks, it does increase
    the cost necessary to carry them out in practice.  See Section 7 for
    more discussion on this topic.
+
+5.2.4.  Identifying Partitions
+
+   While straightforward violations of user privacy that stem from
+   insufficient partitioning may seem straightforward to mitigate, it
+   remains an open problem to rigorously determine what information
+   needs to be partitioned for meaningful privacy, and to implement it
+   in a way that achieves the desired properties.  In essence, it is
+   difficult to determine whether a certain set of information reveals
+   "too much" about a specific user, and it is similarly challenging to
+   determine whether or not an implementation of partitioning works as
+   intended.  There is ample evidence of data being assumed "private" or
+   "anonymous" but, in hindsight, winds up revealing too much
+   information such that it allows one to link back to individual
+   clients; see [DataSetReconstruction] and [CensusReconstruction] for
+   more examples of this in the real world.
 
 6.  Partitioning Impacts
 
@@ -998,7 +1034,9 @@ Table of Contents
 7.  Security Considerations
 
    Section 5 discusses some of the limitations of privacy partitioning
-   in practice.  Applied correctly, partitioning helps improve an end-
+   in practice, and advocates for holistic analysis to understand the
+   extent to which privacy partitioning offers meaningful privacy
+   improvements.  Applied correctly, partitioning helps improve an end-
    user's privacy posture, thereby making violations harder to do via
    technical, social, or policy means.  For example, side channels such
    as traffic analysis [I-D.irtf-pearg-website-fingerprinting] or timing
@@ -1063,11 +1101,11 @@ Table of Contents
 
    [I-D.ietf-madinas-mac-address-randomization]
               Zúñiga, J. C., Bernardos, C. J., and A. Andersdotter,
-              "Randomized and Changing MAC Address", Work in Progress,
-              Internet-Draft, draft-ietf-madinas-mac-address-
-              randomization-09, 4 November 2023,
+              "Randomized and Changing MAC Address state of affairs",
+              Work in Progress, Internet-Draft, draft-ietf-madinas-mac-
+              address-randomization-10, 11 January 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-madinas-
-              mac-address-randomization-09>.
+              mac-address-randomization-10>.
 
    [I-D.ietf-tls-esni]
               Rescorla, E., Oku, K., Sullivan, N., and C. A. Wood, "TLS
