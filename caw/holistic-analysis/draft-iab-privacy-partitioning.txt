@@ -900,7 +900,7 @@ Table of Contents
    browser instance, as well as client-identifying information, such as
    the client's email address, location, or IP address.  Even though
    OHTTP separates the client IP address from the server via a relay,
-   the server still can still this directly from the client's telemetry
+   the server can still learn this directly from the client's telemetry
    report.
 
 5.2.2.  Violations from Network Information
