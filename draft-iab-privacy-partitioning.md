@@ -724,7 +724,7 @@ client-identifying information for a browser telemetry system. It is entirely po
 in such a telemetry system to contain both client-specific telemetry data, such as information
 about their specific browser instance, as well as client-identifying information, such as the client's
 email address, location, or IP address. Even though OHTTP separates the client IP address from the
-server via a relay, the server still can still this directly from the client's telemetry report.
+server via a relay, the server can still learn this directly from the client's telemetry report.
 
 ### Violations from Network Information
 
