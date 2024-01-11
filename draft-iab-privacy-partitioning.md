@@ -669,8 +669,8 @@ solutions to the anti-abuse problem.
 
 # Limits of Privacy Partitioning {#limits}
 
-Privacy partitioning aims to increase user privacy, though as stated, it is not a panacea.
-Privacy partitioning is an architectural tool that helps manage privacy risks. Understanding
+Privacy partitioning aims to increase user privacy, though as stated, it is merely one of possibly many
+architectural tool that help manage privacy risks. Understanding
 the limits of its benefits requires a more comprehensive analysis of the system in question.
 Such analysis also helps determine whether or not the tool has been applied correctly. In particular,
 the value of privacy partitioning depends on numerous factors, including, though not limited to:
@@ -708,12 +708,13 @@ be minimized and anonymized to prevent it from being useful for collusion.
 - Adding more partitions and contexts, to make it increasingly difficult to collude with
 enough parties to recover identities.
 
-## Violations by Insufficient Partitioning
+## Violations by Insufficient or Incorrect Partitioning
 
-Partitioning alone is not a panacea for privacy. It is possible to apply partitioning in a way
-that is insufficient for meaningful privacy. For example, partitioning at one layer in the stack
-can fail to account for linkable information at different layers in the stack. Privacy violations
-can stem from partitioning failures in a multitude of ways, some of which are described below.
+Insufficient or incorrect application of privacy partitioning can lessen or negate benefits to users.
+In particular, it is possible to apply partitioning in a way that is either insufficient or incorrect
+for meaningful privacy. For example, partitioning at one layer in the stack can fail to account for
+linkable information at different layers in the stack. Privacy violations can stem from partitioning
+failures in a multitude of ways, some of which are described below.
 
 ### Violations from Application Information
 
