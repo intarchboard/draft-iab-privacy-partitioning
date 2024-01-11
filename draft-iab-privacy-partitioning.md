@@ -95,7 +95,7 @@ with regard to how identifiers and data can be correlated by protocol participan
 observers in each context that has been partitioned. Privacy partitioning can also be
 used as a way to separate identity providers from relying parties
 (see {{Section 6.1.4 of RFC6973}}), as in the case of Privacy Pass
-(see Section {{privacypass}}). 
+(see Section {{privacypass}}).
 
 Privacy partitioning is not a panacea; applying it well requires holistic analysis of the system
 in question to determine whether or not partitioning as a tool, and as implemented, offers
