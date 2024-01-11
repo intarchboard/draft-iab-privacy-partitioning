@@ -827,12 +827,12 @@ Table of Contents
 5.  Limits of Privacy Partitioning
 
    Privacy partitioning aims to increase user privacy, though as stated,
-   it is merely one of possibly many architectural tool that help manage
-   privacy risks.  Understanding the limits of its benefits requires a
-   more comprehensive analysis of the system in question.  Such analysis
-   also helps determine whether or not the tool has been applied
-   correctly.  In particular, the value of privacy partitioning depends
-   on numerous factors, including, though not limited to:
+   it is merely one of possibly many architectural tools that help
+   manage privacy risks.  Understanding the limits of its benefits
+   requires a more comprehensive analysis of the system in question.
+   Such analysis also helps determine whether or not the tool has been
+   applied correctly.  In particular, the value of privacy partitioning
+   depends on numerous factors, including, though not limited to:
 
    *  Non-collusion across contexts; and
 
@@ -1101,11 +1101,11 @@ Table of Contents
 
    [I-D.ietf-madinas-mac-address-randomization]
               Zúñiga, J. C., Bernardos, C. J., and A. Andersdotter,
-              "Randomized and Changing MAC Address", Work in Progress,
-              Internet-Draft, draft-ietf-madinas-mac-address-
-              randomization-09, 4 November 2023,
+              "Randomized and Changing MAC Address state of affairs",
+              Work in Progress, Internet-Draft, draft-ietf-madinas-mac-
+              address-randomization-10, 11 January 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-madinas-
-              mac-address-randomization-09>.
+              mac-address-randomization-10>.
 
    [I-D.ietf-tls-esni]
               Rescorla, E., Oku, K., Sullivan, N., and C. A. Wood, "TLS
